@@ -1,0 +1,13 @@
+<oracle-webservices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/oracle-webservices-10_0.xsd">
+    <webservice-description name="GateAutomationService">
+       <expose-testpage>true</expose-testpage>
+        <port-component name="GateAutomationServiceSoapHttpPort">
+            <operations>
+                <operation name="getContainerDetails" input="{http://service.gasws.dpw.com/}getContainerDetails"/>
+                <operation name="getEirLocationDetails" input="{http://service.gasws.dpw.com/}getEirLocationDetails"/>
+                <operation name="getTokenDetails" input="{http://service.gasws.dpw.com/}getTokenDetails"/>
+                <operation name="postExceptionData" input="{http://service.gasws.dpw.com/}postExceptionData"/>
+            </operations>
+        </port-component>
+    </webservice-description>
+</oracle-webservices>

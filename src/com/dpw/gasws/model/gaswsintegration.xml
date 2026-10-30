@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+"http://www.ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="gaswsintegration">
+   <typeAlias type="com.dpw.gasws.type.TokenDetailsType" alias="tokendetails"/> 
+   <typeAlias type="com.dpw.gasws.type.ContainerDetailsType" alias="contrdetails"/> 
+   <typeAlias type="com.dpw.gasws.type.EirDetailsType" alias="eirdetails"/> 
+   <typeAlias type="com.dpw.gasws.type.LocDetailsType" alias="locdetails"/> 
+   
+   <!-- get token details-->
+   <resultMap id="tokenDetailsResultMap" class="tokendetails">
+            <result property="terminalId" column="terminal_id"/>
+            <result property="tokenNo" column="token_no"/>
+            <result property="containerNo" column="contr_no"/> 
+            <result property="startTime" column="lv_start_time"/>
+            <result property="endTime" column="lv_end_time"/> 
+  </resultMap>
+   <parameterMap id="getTokenDetailsParamMap" class="map">
+            <parameter property="PI_RFID_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_TRUCK_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="INOUT"/>
+            <parameter property="PI_REG_PLACE" javaType="java.lang.String" jdbcType="VARCHAR" mode="INOUT"/>
+            <parameter property="PI_TERMINAL_ID" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PO_TOKEN_DTL" javaType="java.sql.ResultSet" jdbcType="ORACLECURSOR" resultMap="tokenDetailsResultMap" mode="OUT"/> 
+            <parameter property="PO_ERROR" javaType="java.lang.String" jdbcType="VARCHAR" mode="OUT"/>		
+   </parameterMap>
+   <procedure id="getTokenDetails" parameterMap="getTokenDetailsParamMap">{call GAS_WEB_SERVICE_INTERFACE.GET_TOKEN_DATA(?,?,?,?,?,?)}</procedure>
+   
+    <!-- get container data --> 
+   <resultMap id="contrDetailsResultMap" class="contrdetails">   
+            <result property="terminalId" column="terminal_id"/>   
+            <result property="containerNo" column="contr_no"/> 
+            <result property="plateEmirate" column="PLATE_EMIRATE"/> 
+            <result property="plateNo" column="PLATE_NO"/> 
+            <result property="tokenNo" column="token_no"/> 
+            <result property="rfIdNo" column="RFID_NO"/>             
+   </resultMap>
+   <parameterMap id="getContainerDetailsParamMap" class="map">           
+            <parameter property="PI_TERMINAL_ID" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PO_CONTAINER_DTL" javaType="java.sql.ResultSet" jdbcType="ORACLECURSOR" resultMap="contrDetailsResultMap" mode="OUT"/> 
+            <parameter property="PO_ERROR" javaType="java.lang.String" jdbcType="VARCHAR" mode="OUT"/>		
+   </parameterMap>
+   <procedure id="getContainerDetails" parameterMap="getContainerDetailsParamMap">{call GAS_WEB_SERVICE_INTERFACE.GET_CONTAINER_DATA(?,?,?)}</procedure>
+      
+     <!-- get eir location data --> 
+   <resultMap id="eirDetailsResultMap" class="eirdetails">   
+            <result property="terminalId" column="terminal_id"/>   
+            <result property="plateNo" column="PLATE_NO"/>  
+            <result property="plateEmirate" column="PLATE_EMIRATE"/>  
+            <result property="tokenNo" column="TOKEN_NO"/>  
+            <result property="containerNo" column="CONTR_NO"/>  
+            <result property="load" column="load"/> 
+            <result property="handling" column="handling"/>  
+            <result property="consignee" column="consignee"/>  
+            <result property="dpaSeal" column="dpa_seal"/>  
+            <result property="seal" column="SEAL"/>  
+            <result property="agentSeal" column="AGENT_SEAL"/>  
+            <result property="customsSeal" column="customs_seal"/>  
+            <result property="eirNo" column="eir_no"/>  
+            <result property="eirDate" column="EIR_DATE"/>  
+            <result property="remarks" column="REMARKS"/>  
+            <result property="remarks2" column="REMARKS2"/> 
+            <result property="remarks3" column="REMARKS3"/>  
+            <result property="location" column="LOCATION"/>  
+   </resultMap>
+   <resultMap id="locDetailsResultMap" class="locdetails">   
+            <result property="terminalId" column="terminal_id"/> 
+            <result property="plateNo" column="PLATE_NO"/>        
+            <result property="plateEmirate" column="PLATE_EMIRATE"/>        
+            <result property="tokenNo" column="TOKEN_NO"/>        
+            <result property="containerNo" column="CONTR_NO"/>   
+            <result property="load" column="load"/>  
+            <result property="handling" column="handling"/>  
+            <result property="location" column="LOCATION"/>  
+            <result property="seal" column="SEAL"/>  
+            <result property="remarks" column="REMARKS"/>  
+            <result property="remarks2" column="REMARKS2"/>  
+            <result property="remarks3" column="REMARKS3"/>  
+   </resultMap>
+   <parameterMap id="getEirLocationDetailsParamMap" class="map">           
+            <parameter property="PI_PORT_CODE" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_RFID_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_TRUCK_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_REG_PLACE" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_TOKEN_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_CONTR_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_LANE_ID" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_VISIT_ID" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PO_EIR_DTL" javaType="java.sql.ResultSet" jdbcType="ORACLECURSOR" resultMap="eirDetailsResultMap" mode="OUT"/> 
+            <parameter property="PO_LOC_DTL" javaType="java.sql.ResultSet" jdbcType="ORACLECURSOR" resultMap="locDetailsResultMap" mode="OUT"/> 
+            <parameter property="PO_ERROR" javaType="java.lang.String" jdbcType="VARCHAR" mode="OUT"/>		
+   </parameterMap>
+   <procedure id="getEirLocationDetails" parameterMap="getEirLocationDetailsParamMap">{call GAS_WEB_SERVICE_INTERFACE.GET_EIR_LOC_DATA(?,?,?,?,?,?,?,?,?,?,?)}</procedure>
+
+  <!-- Post ExceptionData-->
+   <parameterMap id="postExceptionDataParamMap" class="map">
+            <parameter property="PI_CAMCO_ERR_DATE" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_TRUCK_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_REG_PLACE" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_CONTR_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>  
+             <parameter property="PI_TOKEN_NO" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_LANE_ID" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>      
+             <parameter property="PI_ERR_CODE" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+            <parameter property="PI_ERR_DESC" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>      
+            <parameter property="PO_ERROR" javaType="java.lang.String" jdbcType="VARCHAR" mode="OUT"/>		
+   </parameterMap>
+   <procedure id="postExceptionData" parameterMap="postExceptionDataParamMap">{call GAS_WEB_SERVICE_INTERFACE.INS_CAMCO_EXCEPTION_DATA(?,?,?,?,?,?,?,?,?)}</procedure>   
+</sqlMap>

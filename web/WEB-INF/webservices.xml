@@ -1,0 +1,17 @@
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_web_services_1_1.xsd"
+     version="1.1">
+    <webservice-description>
+        <webservice-description-name>GateAutomationService</webservice-description-name>
+        <wsdl-file>WEB-INF/wsdl/GateAutomationService.wsdl</wsdl-file>
+        <jaxrpc-mapping-file>WEB-INF/GateAutomationService-java-wsdl-mapping.xml</jaxrpc-mapping-file>
+        <port-component>
+            <port-component-name>GateAutomationServiceSoapHttpPort</port-component-name>
+            <wsdl-port xmlns:wsa0="http://service.gasws.dpw.com/">wsa0:GateAutomationServiceSoapHttpPort</wsdl-port>
+            <service-endpoint-interface>com.dpw.gasws.service.GateAutomationService</service-endpoint-interface>
+            <service-impl-bean>
+                <servlet-link>GateAutomationServiceSoapHttpPort</servlet-link>
+            </service-impl-bean>
+        </port-component>
+    </webservice-description>
+</webservices>

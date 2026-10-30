@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+    <bean id="classpathResource" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg>
+            <value>gasws.properties</value>
+        </constructor-arg>
+    </bean>
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <ref local="classpathResource"/>
+        </property>
+    </bean>
+         
+    
+    <!-- Integration service -->
+    <bean id="integrationService"
+    	class="com.dpw.gasws.service.IntegrationServiceImpl">      
+    	<property name="integrationDAO">
+            <ref bean="integrationDAO" />
+	</property>
+    </bean>
+    
+    <!-- Web  service -->
+   <bean class="com.dpw.gasws.service.GateAutomationServiceImpl" lazy-init="true">
+        <property name="integrationService">
+            <ref bean="integrationService" />
+        </property>
+    </bean>  
+     
+</beans>

@@ -1,0 +1,319 @@
+<definitions
+     name="GateAutomationService"
+     targetNamespace="http://service.gasws.dpw.com/"
+     xmlns="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://service.gasws.dpw.com/"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+     xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.gasws.dpw.com/"
+             elementFormDefault="qualified" xmlns:tns="http://service.gasws.dpw.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/">
+            <complexType name="ContainerDetailsRequestType">
+                <sequence>
+                    <element name="terminalId" type="string" nillable="false"/>
+                    <element name="userCredentials" type="tns:LoginInfoRequestType" nillable="false"/>
+                </sequence>
+            </complexType>
+            <complexType name="LoginInfoRequestType">
+                <sequence>
+                    <element name="password" type="string" nillable="false"/>
+                    <element name="username" type="string" nillable="false"/>
+                </sequence>
+            </complexType>
+            <complexType name="EirLocDetailsRequestType">
+                <sequence>
+                    <element name="regPlace" type="string" nillable="true"/>
+                    <element name="laneId" type="string" nillable="false"/>
+                    <element name="rfIdNo" type="string" nillable="true"/>
+                    <element name="truckNo" type="string" nillable="true"/>
+                    <element name="contrDetails" type="tns:ContrDetailsReqType" nillable="true"
+                         minOccurs="0" maxOccurs="unbounded"/>
+                    <element name="tokenDetails" type="tns:TokenDetailsReqType" nillable="true"
+                         minOccurs="0" maxOccurs="unbounded"/>
+                    <element name="visitId" type="string" nillable="true"/>
+                    <element name="chassisType" type="string" nillable="true"/>
+                    <element name="portCode" type="string" nillable="false"/>
+                    <element name="userCredentials" type="tns:LoginInfoRequestType" nillable="false"/>
+                </sequence>
+            </complexType>
+            <complexType name="ContrDetailsReqType">
+                <sequence>
+                    <element name="doorDirection" type="string" nillable="true"/>
+                    <element name="contrPosition" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>
+                    <element name="isoCode" type="string" nillable="true"/>
+                    <element name="chassisNo" type="string" nillable="true"/>
+                    <element name="sealPresence" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="TokenDetailsReqType">
+                <sequence>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetTokenRequestType">
+                <sequence>
+                    <element name="regPlace" type="string" nillable="true"/>
+                    <element name="rfIdNo" type="string" nillable="true"/>
+                    <element name="truckNo" type="string" nillable="true"/>
+                    <element name="terminalId" type="string" nillable="false"/>
+                    <element name="userCredentials" type="tns:LoginInfoRequestType" nillable="false"/>
+                </sequence>
+            </complexType>
+            <complexType name="ExceptionDataRequestType">
+                <sequence>
+                    <element name="regPlace" type="string" nillable="true"/>
+                    <element name="laneId" type="string" nillable="true"/>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                    <element name="truckNo" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>       
+                    <element name="errorDesc" type="string" nillable="true"/>
+                    <element name="errorDate" type="string" nillable="true"/>                                 
+                    <element name="errorCode" type="string" nillable="true"/>
+                    <element name="userCredentials" type="tns:LoginInfoRequestType" nillable="false"/>
+                </sequence>
+            </complexType>
+            <element name="getContainerDetails" type="tns:getContainerDetails"/>
+            <complexType name="getContainerDetails">
+                <sequence>
+                    <element name="contrDtlsReqType" type="tns:ContainerDetailsRequestType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="getContainerDetailsResponse" type="tns:getContainerDetailsResponse"/>
+            <complexType name="getContainerDetailsResponse">
+                <sequence>
+                    <element name="return" type="tns:ContainerDetailsResponseType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="ContainerDetailsResponseType">
+                <sequence>
+                    <element name="exception" type="tns:ServiceExceptionType" nillable="true"/>
+                    <element name="contrDetails" type="tns:ContainerDetailsType" nillable="true"
+                         minOccurs="0" maxOccurs="unbounded"/>
+                    <element name="errorMessage" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="ServiceExceptionType">
+                <sequence>
+                    <element name="technicalException" type="tns:ExceptionType" nillable="true"/>
+                    <element name="businessException" type="tns:ExceptionType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="ExceptionType">
+                <sequence>
+                    <element name="message" type="string" nillable="true"/>
+                    <element name="id" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="ContainerDetailsType">
+                <sequence>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                    <element name="plateEmirate" type="string" nillable="true"/>
+                    <element name="terminalId" type="string" nillable="true"/>
+                    <element name="plateNo" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>
+					<element name="rfIdNo" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="getEirLocationDetails" type="tns:getEirLocationDetails"/>
+            <complexType name="getEirLocationDetails">
+                <sequence>
+                    <element name="eirLocReqType" type="tns:EirLocDetailsRequestType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="getEirLocationDetailsResponse" type="tns:getEirLocationDetailsResponse"/>
+            <complexType name="getEirLocationDetailsResponse">
+                <sequence>
+                    <element name="return" type="tns:EirLocDetailsResponseType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="EirLocDetailsResponseType">
+                <sequence>
+                    <element name="eirDetails" type="tns:EirDetailsType" nillable="true" minOccurs="0"
+                         maxOccurs="unbounded"/>
+                    <element name="exception" type="tns:ServiceExceptionType" nillable="true"/>
+                    <element name="locDetails" type="tns:LocDetailsType" nillable="true" minOccurs="0"
+                         maxOccurs="unbounded"/>
+                    <element name="errorMessage" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="EirDetailsType">
+                <sequence>
+                    <element name="remarks3" type="string" nillable="true"/>
+                    <element name="remarks" type="string" nillable="true"/>
+                    <element name="remarks2" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                    <element name="seal" type="string" nillable="true"/>
+                    <element name="plateEmirate" type="string" nillable="true"/>
+                    <element name="terminalId" type="string" nillable="true"/>
+                    <element name="load" type="string" nillable="true"/>
+                    <element name="dpaSeal" type="string" nillable="true"/>
+                    <element name="eirNo" type="string" nillable="true"/>
+                    <element name="consignee" type="string" nillable="true"/>
+                    <element name="eirDate" type="string" nillable="true"/>
+                    <element name="handling" type="string" nillable="true"/>
+                    <element name="agentSeal" type="string" nillable="true"/>
+                    <element name="plateNo" type="string" nillable="true"/>
+                    <element name="customsSeal" type="string" nillable="true"/>
+                    <element name="location" type="string" nillable="true"/>
+                    <element name="movType" type="string" nillable="true"/>
+                    <element name="printEir" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="LocDetailsType">
+                <sequence>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                    <element name="seal" type="string" nillable="true"/>
+                    <element name="plateEmirate" type="string" nillable="true"/>
+                    <element name="terminalId" type="string" nillable="true"/>
+                    <element name="remarks3" type="string" nillable="true"/>
+                    <element name="load" type="string" nillable="true"/>
+                    <element name="remarks" type="string" nillable="true"/>
+                    <element name="handling" type="string" nillable="true"/>
+                    <element name="plateNo" type="string" nillable="true"/>
+                    <element name="location" type="string" nillable="true"/>
+                    <element name="remarks2" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="getTokenDetails" type="tns:getTokenDetails"/>
+            <complexType name="getTokenDetails">
+                <sequence>
+                    <element name="tokenReqType" type="tns:GetTokenRequestType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="getTokenDetailsResponse" type="tns:getTokenDetailsResponse"/>
+            <complexType name="getTokenDetailsResponse">
+                <sequence>
+                    <element name="return" type="tns:GetTokenResponseType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetTokenResponseType">
+                <sequence>
+                    <element name="exception" type="tns:ServiceExceptionType" nillable="true"/>
+                    <element name="tokenDetails" type="tns:TokenDetailsType" nillable="true" minOccurs="0"
+                         maxOccurs="unbounded"/>
+                    <element name="errorMessage" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="TokenDetailsType">
+                <sequence>
+                    <element name="tokenNo" type="string" nillable="true"/>
+                    <element name="terminalId" type="string" nillable="true"/>
+                    <element name="containerNo" type="string" nillable="true"/>
+		    <element name="startTime" type="dateTime" nillable="true"/>
+		    <element name="endTime" type="dateTime" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="postExceptionData" type="tns:postExceptionData"/>
+            <complexType name="postExceptionData">
+                <sequence>
+                    <element name="exceptionDataReqType" type="tns:ExceptionDataRequestType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <element name="postExceptionDataResponse" type="tns:postExceptionDataResponse"/>
+            <complexType name="postExceptionDataResponse">
+                <sequence>
+                    <element name="return" type="tns:ExceptionDataResponseType" nillable="true"/>
+                </sequence>
+            </complexType>
+            <complexType name="ExceptionDataResponseType">
+                <sequence>
+                    <element name="exception" type="tns:ServiceExceptionType" nillable="true"/>
+                    <element name="errorMessage" type="string" nillable="true"/>
+                </sequence>
+            </complexType>
+        </schema>
+    </types>
+    <message name="GateAutomationService_getContainerDetails">
+        <part name="parameters" element="tns:getContainerDetails"/>
+    </message>
+    <message name="GateAutomationService_getContainerDetailsResponse">
+        <part name="parameters" element="tns:getContainerDetailsResponse"/>
+    </message>
+    <message name="GateAutomationService_getEirLocationDetails">
+        <part name="parameters" element="tns:getEirLocationDetails"/>
+    </message>
+    <message name="GateAutomationService_getEirLocationDetailsResponse">
+        <part name="parameters" element="tns:getEirLocationDetailsResponse"/>
+    </message>
+    <message name="GateAutomationService_getTokenDetails">
+        <part name="parameters" element="tns:getTokenDetails"/>
+    </message>
+    <message name="GateAutomationService_getTokenDetailsResponse">
+        <part name="parameters" element="tns:getTokenDetailsResponse"/>
+    </message>
+    <message name="GateAutomationService_postExceptionData">
+        <part name="parameters" element="tns:postExceptionData"/>
+    </message>
+    <message name="GateAutomationService_postExceptionDataResponse">
+        <part name="parameters" element="tns:postExceptionDataResponse"/>
+    </message>
+    <portType name="GateAutomationService">
+        <operation name="getContainerDetails">
+            <input message="tns:GateAutomationService_getContainerDetails"/>
+            <output message="tns:GateAutomationService_getContainerDetailsResponse"/>
+        </operation>
+        <operation name="getEirLocationDetails">
+            <input message="tns:GateAutomationService_getEirLocationDetails"/>
+            <output message="tns:GateAutomationService_getEirLocationDetailsResponse"/>
+        </operation>
+        <operation name="getTokenDetails">
+            <input message="tns:GateAutomationService_getTokenDetails"/>
+            <output message="tns:GateAutomationService_getTokenDetailsResponse"/>
+        </operation>
+        <operation name="postExceptionData">
+            <input message="tns:GateAutomationService_postExceptionData"/>
+            <output message="tns:GateAutomationService_postExceptionDataResponse"/>
+        </operation>
+    </portType>
+    <binding name="GateAutomationServiceSoapHttp" type="tns:GateAutomationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getContainerDetails">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getEirLocationDetails">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getTokenDetails">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="postExceptionData">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="GateAutomationService">
+        <port name="GateAutomationServiceSoapHttpPort" binding="tns:GateAutomationServiceSoapHttp">
+            <soap:address location="http://10.18.206.71:8888/gasws/GateAutomationServiceSoapHttpPort"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--###############################################################################
+# Copyright: 2011 Dubai Ports World. All rights reserved.
+# Created By:   Ambili    
+# Creation Date:   30/10/2011  
+# Description:	    This xml file provides directions for the build process. Configure the
+#		    change and include relevant .properties file in current path before execution
+#
+###############################################################################-->
+<project name="VTSWS-Integration" basedir=".">
+	<property file="${basedir}/build.properties"/>
+	<!-- Project libraries -->
+	<path id="projectlibs">	
+	     <fileset dir="${lib.home}">
+			<include name="*.jar"/>
+			<include name="*.zip"/>
+	    </fileset>
+	    <fileset dir="${j2ee.home}\lib">
+			<include name="*.jar"/>
+			<include name="*.zip"/>
+	    </fileset>
+	    <fileset dir="${oracle.jdbc.lib}">
+			<include name="*.jar"/>
+			<include name="*.zip"/>
+	    </fileset>
+	</path>
+
+	<target name="clean" description="Clean up the build area">
+	    <echo message="Cleaning build area..."/>
+	    <delete dir="${build.home}"/>
+	    <delete dir="${co.home}"/>
+	</target>
+
+	<!--creating build area with temporary folders and copying contents from workspace-->
+	<target name="prepare" description="Preparation of build area">
+		<echo message="Creating required build area, folders..."/>
+		<mkdir dir="${build.home}"/>
+		<mkdir dir="${war.home}"/>	
+		<mkdir dir="${war.home}\WEB-INF\classes"/>
+		<mkdir dir="${war.home}\WEB-INF\lib"/>
+		<mkdir dir="${ear.home}"/>
+		<mkdir dir="${dest.meta.inf}"/>
+		<echo message="Copying files from ${src.meta.inf} to ${dest.meta.inf}"/>
+		<copy todir="${dest.meta.inf}">
+			<fileset dir="${src.meta.inf}">
+				<exclude name="applicationdt.xml"/>				
+			</fileset>
+		</copy>
+		<copy todir="${war.home}">
+			<fileset dir="${web.home}">
+				<exclude name="*.jar"/>
+				<exclude name="**/*.java"/>
+				<exclude name="**/*.properties"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="compile-war" description="Compile web project">
+		<echo message="Compiling web"/>
+			<javac srcdir="${src.home}" destdir="${war.home}\WEB-INF\classes" debug="true" deprecation="false" nowarn="true" debuglevel="lines,vars,source">
+			<include name="**/*.java" />
+			<include name="**/*.xml" />
+			<include name="**/*.vm" />
+			<include name="**/*.properties" />
+			<classpath refid="projectlibs"/>
+			<include name="**/*.jasper" />
+			<include name="**/*.gif" />
+		</javac>
+		<copy todir="${war.home}">
+			<fileset dir="${src.home}">
+				<include name="**/*.jsp"/>
+			</fileset>
+		</copy>
+		<copy todir="${war.home}\WEB-INF\classes">
+			<fileset dir="${src.home}">
+				<include name="**/*.properties" />
+				<include name="**/*.vm" />
+				<exclude name="**/Config.properties" />				
+				<include name="**/*.gif" />
+				<exclude name="css.properties"/>
+				<exclude name="gasws.properties"/>
+				<exclude name="log4j.properties"/>				
+			</fileset>
+		</copy>
+		<copy todir="${war.home}\WEB-INF\classes">
+			<fileset dir="${src.home}">
+				<include name="**/*.xml" />	
+			</fileset>
+		</copy>
+		<copy todir="${war.home}\WEB-INF\lib">
+			<fileset dir="${lib.home}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	
+
+		<jar destfile="${war.home}\${Web.war.name}.war" basedir="${war.home}"/>	
+	</target>
+
+      	<target name="compile" depends="compile-war" description="Compile Java sources and move to build area"> 
+	</target>
+
+	<!--Creating the war file-->
+	<target name="buildear"  description="build ear file">
+	    <delete file="${ear.home}/${Ear.name}.ear"/>
+	    <jar destfile="${ear.home}/${Ear.name}.ear" basedir="${ear.home}">
+		<fileset file="${war.home}/${Web.war.name}.war"/>
+	    </jar>		
+	</target>	
+	
+	<!-- Grouping it in war with META-INF to create the EAR file.-->
+	<target name="build" depends="checkout, prepare, compile, buildear" description="Compile Java sources">
+	</target>
+
+	<!--Get the code from subversion-->
+	<target name="checkout" depends="clean" description="Check out sources from Subversion into the build directory">
+		<echo message="Checking out sources from Subversion with below details..."/>	
+		<echo message="SVN URL->${svn.projecturl} REVISION->${svn.revision} USER NAME->${svn.username}"/>			
+	    <exec executable="svn">
+			<arg line="co ${svn.projecturl}/src ${co.home}/src -r ${svn.revision} --username ${svn.username} --password ${svn.password}"/>
+		</exec>
+		<exec executable="svn">
+			<arg line="co ${svn.projecturl}/web ${co.home}/web -r ${svn.revision} --username ${svn.username} --password ${svn.password}"/>
+		</exec>
+		<exec executable="svn">
+			<arg line="co ${svn.projecturl}/META-INF ${co.home}/META-INF -r ${svn.revision} --username ${svn.username} --password ${svn.password}"/>
+		</exec>
+	</target>
+
+	<!-- EAR file deployment -->
+  <target name="deploy">
+    <java jar="${j2ee.home}/admin.jar" fork="yes">
+      <arg value="${oc4j.deploy.ormi}"/>
+      <arg value="${oc4j.deploy.username}"/>
+      <arg value="${oc4j.deploy.password}"/>
+      <arg value="-deploy"/>
+      <arg value="-file"/>
+      <arg value="${war.ear.name}.ear"/>
+      <arg value="-deploymentName"/>
+      <arg value="${project.name}"/>
+    </java>
+   </target>
+
+	<!--For all operations -->
+	<target name="all"  description="Do Everything" depends="build,deploy"/>
+	
+<!-- Undeployment: -->
+
+  <target name="undeploy">
+    <java jar="${j2ee.home}/admin.jar" fork="yes">
+      <arg value="${oc4j.deploy.ormi}"/>
+      <arg value="${oc4j.deploy.username}"/>
+      <arg value="${oc4j.deploy.password}"/>
+      <arg value="-undeploy"/>
+      <arg value="${project.name}"/>
+    </java>
+  </target>
+	
+</project>

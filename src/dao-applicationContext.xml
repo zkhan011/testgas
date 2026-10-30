@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+   
+  <!--  <bean id="promisDS" class="oracle.jdbc.pool.OracleDataSource">
+            <property name="URL" value="jdbc:oracle:thin:@172.20.27.90:1679:dprdt"/>
+            <property name="user" value="OPCTJAD_DBA"/>
+            <property name="password" value="OPCTJAD_DBA"/>
+            <property name="connectionCachingEnabled" value="true"/>
+    </bean>
+    
+    <bean id="goldDS" class="oracle.jdbc.pool.OracleDataSource">
+            <property name="URL" value="jdbc:oracle:thin:@172.20.27.90:1679:dprdt"/>
+            <property name="user" value="OPCTJAD_DBA"/>
+            <property name="password" value="OPCTJAD_DBA"/>
+            <property name="connectionCachingEnabled" value="true"/>
+    </bean>-->
+     
+   <bean id="promisDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/promisDS"/>
+    </bean>
+    <bean id="goldDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/goldDS"/>
+    </bean>
+    <bean id="sqlMapClient"
+          class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation">
+            <value>classpath:gaswsSqlMapConfig.xml</value>
+        </property>
+    </bean>      
+    
+     <bean id="integrationDAO" class="com.dpw.gasws.dao.IntegrationDAOImpl">  
+            <property name="dataSource">
+		<ref local="promisDS"/>
+	   </property>
+            <property name="goldDS">
+                    <ref bean="goldDS" />
+            </property>
+            <property name="promisDS">
+                    <ref bean="promisDS" />
+            </property>
+            <property name="sqlMapClient">
+                    <ref bean="sqlMapClient" />
+            </property>   
+            <property name="getEirLocationDetailsProc">
+               <ref local="getEirLocationDetailsProc"/>
+	    </property>
+            <property name="getEirLocationDetailsProcGold">
+               <ref local="getEirLocationDetailsProcGold"/>
+	    </property>
+    </bean>    
+    
+    <bean id="getEirLocationDetailsProc" class="com.dpw.gasws.dao.GetEirLocationDetailsProc">
+        <constructor-arg index="0" ref="promisDS"/>        
+    </bean>
+    <bean id="getEirLocationDetailsProcGold" class="com.dpw.gasws.dao.GetEirLocationDetailsProc">
+        <constructor-arg index="0" ref="goldDS"/>        
+    </bean>  
+  
+</beans>
