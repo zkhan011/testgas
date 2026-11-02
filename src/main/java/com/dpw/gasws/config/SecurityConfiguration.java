@@ -26,6 +26,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    @org.springframework.core.annotation.Order(2)
     SecurityFilterChain security(HttpSecurity http) throws Exception {
         // Machine-to-machine API only; no cookie/session or browser form authentication.
         return http.csrf(csrf -> csrf.disable())

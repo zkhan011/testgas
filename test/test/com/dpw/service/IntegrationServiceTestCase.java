@@ -14,7 +14,7 @@ import com.dpw.gasws.type.LoginInfoRequestType;
 
 import com.dpw.gasws.type.TokenDetailsReqType;
 
-import com.pcfc.ports.promis.common.Utilities;
+import com.dpw.ports.promis.common.Utilities;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

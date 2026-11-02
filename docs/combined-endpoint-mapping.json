@@ -1,0 +1,348 @@
+[
+  {
+    "operation": "getVoyages",
+    "method": "POST",
+    "path": "/api/v1/marine/voyages/search",
+    "request": "StandardReqType",
+    "response": "VoyagesResType"
+  },
+  {
+    "operation": "getRefData",
+    "method": "POST",
+    "path": "/api/v1/reference-data/search",
+    "request": "StandardReqType",
+    "response": "RefDataRespType"
+  },
+  {
+    "operation": "pushMarineDetails",
+    "method": "POST",
+    "path": "/api/v1/marine/transactions",
+    "request": "MarinePushReqType",
+    "response": "MarinePushRespType"
+  },
+  {
+    "operation": "uploadSignature",
+    "method": "POST",
+    "path": "/api/v1/marine/signatures",
+    "request": "SignReqType",
+    "response": "SignRespType"
+  },
+  {
+    "operation": "getVoyagesFromCTMS",
+    "method": "POST",
+    "path": "/api/v1/ctms/voyages/search",
+    "request": "StandardReqType",
+    "response": "CTMSVoyageResType"
+  },
+  {
+    "operation": "CTMSVoyageUpdate",
+    "method": "POST",
+    "path": "/api/v1/ctms/voyage-updates",
+    "request": "UpdVesselReqType",
+    "response": "CTMSUpdVesselResType"
+  },
+  {
+    "operation": "getTokens",
+    "method": "POST",
+    "path": "/api/v1/tokens/search",
+    "request": "StandardReqType",
+    "response": "TokenResType"
+  },
+  {
+    "operation": "getTokenForTruck",
+    "method": "POST",
+    "path": "/api/v1/trucks/token-search",
+    "request": "TruckReqType",
+    "response": "TruckResType"
+  },
+  {
+    "operation": "getDWCTruckEIR",
+    "method": "POST",
+    "path": "/api/v1/trucks/eirs/search",
+    "request": "TruckEIRReqType",
+    "response": "TruckEIRResType"
+  },
+  {
+    "operation": "updateCustmGateEntry",
+    "method": "POST",
+    "path": "/api/v1/gates/customs-entries",
+    "request": "UpdateCustmReqType",
+    "response": "UpdateCustmResType"
+  },
+  {
+    "operation": "getDynamicMTContainer",
+    "method": "POST",
+    "path": "/api/v1/containers/empty-allocations",
+    "request": "ContainerReqType",
+    "response": "ContainerResType"
+  },
+  {
+    "operation": "getDEDContrPlanMoves",
+    "method": "POST",
+    "path": "/api/v1/containers/planned-moves/search",
+    "request": "ContrReqType",
+    "response": "ContrResType"
+  },
+  {
+    "operation": "sendTOSMsg",
+    "method": "POST",
+    "path": "/api/v1/tos/messages",
+    "request": "TOSMsgReqType",
+    "response": "TOSMsgResType"
+  },
+  {
+    "operation": "updateContainer",
+    "method": "POST",
+    "path": "/api/v1/containers/seal-updates",
+    "request": "UpdateSealReqType",
+    "response": "UpdateSealResType"
+  },
+  {
+    "operation": "acceptToken",
+    "method": "POST",
+    "path": "/api/v1/tokens/acceptances",
+    "request": "AcceptTokenReqType",
+    "response": "AcceptTokenResType"
+  },
+  {
+    "operation": "getEir",
+    "method": "POST",
+    "path": "/api/v1/eirs/search",
+    "request": "EirReqType",
+    "response": "EirResType"
+  },
+  {
+    "operation": "confirmGateoutMove",
+    "method": "POST",
+    "path": "/api/v1/gates/exit-confirmations",
+    "request": "ConfirmGateoutMoveReqType",
+    "response": "ConfirmGateoutMoveResType"
+  },
+  {
+    "operation": "getFZGPGateInOutSearchList",
+    "method": "POST",
+    "path": "/api/v1/gate-passes/search",
+    "request": "FZGPGateInOutSearchReqType",
+    "response": "FZGPGateInOutSearchResType"
+  },
+  {
+    "operation": "procFZGPGateInOutUpdate",
+    "method": "POST",
+    "path": "/api/v1/gate-passes/movements",
+    "request": "FZGPGateInOutUpdateReqType",
+    "response": "FZGPGateInOutUpdateResType"
+  },
+  {
+    "operation": "prevSealDetails",
+    "method": "POST",
+    "path": "/api/v1/containers/seal-history/search",
+    "request": "SealReqType",
+    "response": "SealResType"
+  },
+  {
+    "operation": "prevDamageDetails",
+    "method": "POST",
+    "path": "/api/v1/containers/damage-history/search",
+    "request": "DamageReqType",
+    "response": "DamageResType"
+  },
+  {
+    "operation": "getMajorDamages",
+    "method": "POST",
+    "path": "/api/v1/damage-codes/search",
+    "request": "CodeReqType",
+    "response": "CodeResType"
+  },
+  {
+    "operation": "verifyUser",
+    "method": "POST",
+    "path": "/api/v1/users/verifications",
+    "request": "VerifyUserReqType",
+    "response": "VerifyUserRespType"
+  },
+  {
+    "operation": "getTokenForCommercialTruck",
+    "method": "POST",
+    "path": "/api/v1/commercial-trucks/token-search",
+    "request": "ComTruckNoReqType",
+    "response": "ComTruckNoRespType"
+  },
+  {
+    "operation": "getContrLocation",
+    "method": "POST",
+    "path": "/api/v1/containers/location-search",
+    "request": "ContrLocationReqType",
+    "response": "ContrLocationResType"
+  },
+  {
+    "operation": "printEir",
+    "method": "POST",
+    "path": "/api/v1/eirs/print-jobs",
+    "request": "PrintEirReqType",
+    "response": "PrintEirResType"
+  },
+  {
+    "operation": "addMTRefusal",
+    "method": "POST",
+    "path": "/api/v1/containers/empty-refusals",
+    "request": "AddMTRefusalReqType",
+    "response": "AddMTRefusalResType"
+  },
+  {
+    "operation": "getNoticeDetailsForVessel",
+    "method": "POST",
+    "path": "/api/v1/vessels/notices/search",
+    "request": "NoticeDetailsReqType",
+    "response": "NoticeDetailsResType"
+  },
+  {
+    "operation": "updateNoticeDetailsForVessel",
+    "method": "POST",
+    "path": "/api/v1/vessels/notice-updates",
+    "request": "UpdateNoticeDetailsReqType",
+    "response": "UpdateNoticeDetailsResType"
+  },
+  {
+    "operation": "getBerthDetails",
+    "method": "POST",
+    "path": "/api/v1/berths/search",
+    "request": "StandardReqType",
+    "response": "BerthResType"
+  },
+  {
+    "operation": "getVGMContainerWeightDetails",
+    "method": "POST",
+    "path": "/api/v1/containers/weights/search",
+    "request": "VGMWtReqType",
+    "response": "VGMWtResType"
+  },
+  {
+    "operation": "updateVGMContainerWeightDetails",
+    "method": "POST",
+    "path": "/api/v1/containers/weight-updates",
+    "request": "UpdateVGMReqType",
+    "response": "UpdateVGMResType"
+  },
+  {
+    "operation": "getTokenTimeSlot",
+    "method": "POST",
+    "path": "/api/v1/tokens/time-slots/search",
+    "request": "TokenTimeSlotReqType",
+    "response": "TokenTimeSlotResType"
+  },
+  {
+    "operation": "getTruckInfoByContainer",
+    "method": "POST",
+    "path": "/api/v1/containers/truck-search",
+    "request": "TruckInfoReqType",
+    "response": "TruckInfoResType"
+  },
+  {
+    "operation": "getAdjustTimeSlot",
+    "method": "POST",
+    "path": "/api/v1/tokens/time-slot-adjustments",
+    "request": "AdjustTimeSlotReqType",
+    "response": "AdjustTimeSlotRespType"
+  },
+  {
+    "operation": "getContainerDamages",
+    "method": "POST",
+    "path": "/api/v1/containers/standing-damages/search",
+    "request": "ContainerDamageReqType",
+    "response": "ContainerDamageRespType"
+  },
+  {
+    "operation": "updateStdDmgDetails",
+    "method": "POST",
+    "path": "/api/v1/containers/standing-damage-updates",
+    "request": "UpdateStdDmgDtlsReqType",
+    "response": "UpdateStdDmgDtlsRespType"
+  },
+  {
+    "operation": "getMajorDamageFlag",
+    "method": "GET",
+    "path": "/api/v1/configuration/major-damage-flag",
+    "request": null,
+    "response": "MajorDamageFlagResType"
+  },
+  {
+    "operation": "updateContainerWithDamages",
+    "method": "POST",
+    "path": "/api/v1/containers/damage-updates",
+    "request": "UpdateDamagesReqType",
+    "response": "UpdateDamagesResType"
+  },
+  {
+    "operation": "generateRotationNo",
+    "method": "POST",
+    "path": "/api/v1/voyages/rotations",
+    "request": "Voyage",
+    "response": "Rotation"
+  },
+  {
+    "operation": "adviceVoyage",
+    "method": "POST",
+    "path": "/api/v1/voyages/{twsId}/advices",
+    "request": "Actor",
+    "response": "Outcome"
+  },
+  {
+    "operation": "cancelVoyage",
+    "method": "POST",
+    "path": "/api/v1/voyages/{twsId}/cancellations",
+    "request": "Actor",
+    "response": "Outcome"
+  },
+  {
+    "operation": "billVoyage",
+    "method": "POST",
+    "path": "/api/v1/voyages/{twsId}/billings",
+    "request": null,
+    "response": "Outcome"
+  },
+  {
+    "operation": "getConfiguredJobsForMarineAQ",
+    "method": "GET",
+    "path": "/api/v1/admin/schedulers",
+    "request": null,
+    "response": "SchedulerNames"
+  },
+  {
+    "operation": "startScheduler",
+    "method": "POST",
+    "path": "/api/v1/admin/schedulers/{name}/starts",
+    "request": null,
+    "response": "Outcome"
+  },
+  {
+    "operation": "stopScheduler",
+    "method": "POST",
+    "path": "/api/v1/admin/schedulers/{name}/stops",
+    "request": null,
+    "response": "Outcome"
+  },
+  {
+    "operation": "getTokenDetails",
+    "method": "GET",
+    "path": "/api/v1/tokens",
+    "authentication": "HTTP Basic"
+  },
+  {
+    "operation": "getContainerDetails",
+    "method": "GET",
+    "path": "/api/v1/containers",
+    "authentication": "HTTP Basic"
+  },
+  {
+    "operation": "getEirLocationDetails",
+    "method": "POST",
+    "path": "/api/v1/eir-location-requests",
+    "authentication": "HTTP Basic"
+  },
+  {
+    "operation": "postExceptionData",
+    "method": "POST",
+    "path": "/api/v1/gate-exceptions",
+    "authentication": "HTTP Basic"
+  }
+]

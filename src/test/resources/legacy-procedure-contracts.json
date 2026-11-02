@@ -1,0 +1,1584 @@
+{
+  "getvoyages": [
+    {
+      "property": "userid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "password",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceid",
+      "jdbcType": "NUMBER",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pcontainerres",
+      "jdbcType": "ORACLECURSOR",
+      "mode": "OUT"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getRefData": [
+    {
+      "property": "pcurpilots",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "mode": "OUT",
+      "resultMap": "respilots"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getschemaname": [
+    {
+      "property": "schemaname",
+      "jdbcType": "VARCHAR",
+      "mode": "OUT"
+    },
+    {
+      "property": "pkgname",
+      "jdbcType": "VARCHAR",
+      "mode": "IN"
+    }
+  ],
+  "validateloggedinuser": [
+    {
+      "property": "txntype",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "id",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "userid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "password",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceidresp",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "retval",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "errmsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getctmsvoyages": [
+    {
+      "property": "userid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "password",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "pcontainerres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "ctmsvoyagesrs",
+      "mode": "OUT"
+    }
+  ],
+  "updvesslreq": [
+    {
+      "property": "userid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "rotationnumber",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "startworkdt",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "endworkdt",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "berthdt",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "mode": "OUT"
+    }
+  ],
+  "gettokens": [
+    {
+      "property": "userid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "password",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "deviceid",
+      "jdbcType": "NUMBER",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "tokenres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "tokensrs",
+      "mode": "OUT"
+    }
+  ],
+  "gettokenfortruck": [
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "rfid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "tokenres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "truckrs",
+      "mode": "OUT"
+    }
+  ],
+  "getdwctruckeir": [
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "tokendwcres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "truckeirrs",
+      "mode": "OUT"
+    }
+  ],
+  "getVGMContainerWeightDetails": [
+    {
+      "property": "pi_reg_place",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_truck_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_contr_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_terminal_id",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "po_error",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "po_result_cpm",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "vgmrs",
+      "mode": "OUT"
+    }
+  ],
+  "updateVGMContainerWeightDetails": [
+    {
+      "property": "pi_contr_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_lift_wt",
+      "jdbcType": "NUMBER",
+      "javaType": "java.lang.Float",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_crane_id",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "pi_user",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "po_error",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "updateCustmGateEntry": [
+    {
+      "property": "p_vehicle_reg_place",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_vehicle_reg_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_token_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_contr_no",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_source",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_user_id",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_gate_code",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_lane_code",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "p_lane_type",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "v_error_msg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "updatecontainer": [
+    {
+      "property": "tokenno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "sealno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "movetype",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "damagecode",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "damagedescr",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "mtinspflag",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "customseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "dpwseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "agentseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "usercode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "atdate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "devid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "tipmsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "cancelstatus",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isSealInvalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isImcoLabelInvalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "mtOutSeatIssued",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "chassisType",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "contrChassisPos",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "oogStatus",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "oogReason",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "addMTRefusal": [
+    {
+      "property": "tokenno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "damagecode",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "damagedescr",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "usercode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isMTRefusal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "updateContainerWithDamages": [
+    {
+      "property": "tokenno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "sealno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "movetype",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "damagecode",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "damagedescr",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "mtinspflag",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "customseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "dpwseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "agentseal",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "usercode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "atdate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "devid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "tipmsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "cancelstatus",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isSealInvalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isImcoLabelInvalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "mtOutSeatIssued",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "chassisType",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "contrChassisPos",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "oogStatus",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "oogReason",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "accepttoken": [
+    {
+      "property": "tokenno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "terminalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "acctdate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "usercode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "active",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "geteir": [
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplace",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param1",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param2",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param3",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "eirres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "eirrs",
+      "mode": "OUT"
+    }
+  ],
+  "confirmgateoutmove": [
+    {
+      "property": "tokenno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "eirno",
+      "jdbcType": "INTEGER",
+      "mode": "IN"
+    },
+    {
+      "property": "containerno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "terminalid",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "confirm",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "usercode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "fzgatepasslist": [
+    {
+      "property": "gpnumber",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplace",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gpType",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gatepasslist",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "mode": "OUT",
+      "resultMap": "gatepasslist"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "fzgatepassupdate": [
+    {
+      "property": "gpnumber",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gprefnumber",
+      "jdbcType": "NUMBER",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gateno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "gateuser",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "sourcesys",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "remarks",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "noofrows",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getTokenDetails": [
+    {
+      "property": "tokenNo",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "IN"
+    },
+    {
+      "property": "userId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "contrList",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "tokenDetailsRS",
+      "mode": "OUT"
+    },
+    {
+      "property": "errMsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getDEDContrPlanMoves": [
+    {
+      "property": "tokenNo",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "IN"
+    },
+    {
+      "property": "dummyContrList",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "dummyContainerRS",
+      "mode": "OUT"
+    },
+    {
+      "property": "errMsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "sendTOSMsg": [
+    {
+      "property": "msgID",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "msgAction",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "lineCode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "contrNo",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "isoType",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "contrSize",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "newIsoCode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "truckCode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "scheduleId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "slotId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "haulCode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "terminalId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "msg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "errMsg",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "prevSealDetails": [
+    {
+      "property": "PI_CONTR_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_TOKEN_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_RESULT",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "prevSealDetailsRS",
+      "mode": "OUT"
+    }
+  ],
+  "prevDamageDetails": [
+    {
+      "property": "PI_CONTR_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_TOKEN_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_RESULT",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "prevDamageDetailsRS",
+      "mode": "OUT"
+    }
+  ],
+  "getTokenContrDtlsForTruck": [
+    {
+      "property": "PI_VEHICLE_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_RESULT",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "getTokenContrDtlsForTruckRS",
+      "mode": "OUT"
+    }
+  ],
+  "verifyUser": [
+    {
+      "property": "PI_USER_NAME",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_USER_PWD",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_VALID",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getContrLocation": [
+    {
+      "property": "contrno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "contrlocres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "contrlocRS",
+      "mode": "OUT"
+    }
+  ],
+  "printEir": [
+    {
+      "property": "contrno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplace",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "platecode",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param1",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param2",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "param3",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "printeirres",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "printeirRS",
+      "mode": "OUT"
+    }
+  ],
+  "getNoticeDetails": [
+    {
+      "property": "rotationNumber",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "IN"
+    },
+    {
+      "property": "terminalId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "vesselRS",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "vesselRS",
+      "mode": "OUT"
+    },
+    {
+      "property": "noticeDetailsRS",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "noticeDetailsRS",
+      "mode": "OUT"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "updateNoticeDetails": [
+    {
+      "property": "rotationNumber",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "IN"
+    },
+    {
+      "property": "terminalId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "noticeType",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "etcDate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "procStatus",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "userId",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "status",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getBerths": [
+    {
+      "property": "berthRS",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "berthrs",
+      "mode": "OUT"
+    },
+    {
+      "property": "errmessage",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getTokenSlot": [
+    {
+      "property": "vehicleno",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "regplate",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "tokenSlotRs",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "tokenSlotRs",
+      "mode": "OUT"
+    }
+  ],
+  "getTruckInfoByContainer": [
+    {
+      "property": "containerNumber",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "trunkInfoRs",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "trunkInfoRs",
+      "mode": "OUT"
+    }
+  ],
+  "getAdjustTimeSlot": [
+    {
+      "property": "PI_CONTR_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_TOKEN_NO",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_USER_CODE",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_RESULT",
+      "jdbcType": "INTEGER",
+      "javaType": "java.lang.Integer",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_REMARKS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ],
+  "getContainerDamages": [
+    {
+      "property": "PI_CONTR_NO",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    },
+    {
+      "property": "PO_RESULT",
+      "jdbcType": "ORACLECURSOR",
+      "javaType": "java.sql.ResultSet",
+      "resultMap": "containerDamagesRS",
+      "mode": "OUT"
+    }
+  ],
+  "updateStdDmgDetails": [
+    {
+      "property": "PI_STD_INSTR_ID",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_STD_INSTR_SPE_ID",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PI_USER_ID",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "IN"
+    },
+    {
+      "property": "PO_STATUS",
+      "jdbcType": "VARCHAR",
+      "javaType": "java.lang.String",
+      "mode": "OUT"
+    }
+  ]
+}

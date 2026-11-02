@@ -11,7 +11,7 @@ import com.dpw.gasws.type.LocDetailsType;
 
 import com.dpw.gasws.type.TokenDetailsReqType;
 
-import com.pcfc.ports.promis.common.Utilities;
+import com.dpw.ports.promis.common.Utilities;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

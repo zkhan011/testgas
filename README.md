@@ -1,6 +1,40 @@
-# Gate Automation REST Service — Java 21
+# DPW Integration REST Service — Java 21
 
 Spring Boot 3.5.16 / Java 21 migration of the legacy GAS SOAP service. The Maven application calls the existing `GAS_WEB_SERVICE_INTERFACE` Oracle package through Spring JDBC. No Oracle package or schema changes are included.
+
+
+## Combined application
+
+This repository now builds **one Maven project, one Spring Boot application and one executable JAR** containing 50 business routes: 4 GAS routes plus the 46 HHT/Marine/Voyage/Scheduler routes from the supplied TestGateMDT REST project. There is one entry point, `com.dpw.DpwIntegrationApplication`, and all compiled application packages are under `com.dpw`:
+
+- `com.dpw.gasws`: GAS gate automation.
+- `com.dpw.ports.promis`: HHT, marine, voyages, schedulers and database configuration.
+- `com.dpw.services`: shared exceptions imported from the MDT project.
+
+Subpackages remain to separate domains and avoid class collisions. The MDT controller is named `HhtController`; the GAS controller retains `GateController`. Java imports, mapper class references and tests use the DPW namespace. The ZIP's prebuilt JAR is deliberately excluded; Maven packages fresh compiled code.
+
+| Endpoints | Authentication |
+|---|---|
+| GAS `/api/v1/tokens`, `/containers`, `/eir-location-requests`, `/gate-exceptions` | HTTP Basic, using `gasws.security` |
+| HHT and voyage routes listed in [docs/ENDPOINTS.md](docs/ENDPOINTS.md) | `X-API-Key`, using `gate.security.api-key` or the admin key |
+| `/api/v1/admin/schedulers` and commands beneath it | `X-API-Key`, using `gate.security.admin-key` only |
+
+The two existing authentication contracts are preserved. GAS credentials do not bypass HHT authentication, and the client API key cannot invoke admin scheduler operations. Exception advice is scoped to its owning controllers.
+
+Configure **both** authentication sections before starting. Add the following to the same external YAML file used below:
+
+```yaml
+gate:
+  security:
+    api-key: 'REPLACE_WITH_A_UNIQUE_CLIENT_KEY_AT_LEAST_24_CHARACTERS'
+    admin-key: 'REPLACE_WITH_A_DIFFERENT_ADMIN_KEY_AT_LEAST_24_CHARACTERS'
+```
+
+Also override all eight `gate.databases` entries from `src/main/resources/application.yml`: `ctms-ja`, `ctms-pr`, `marine-aq`, `marine`, `efz-gate-pass`, `promis-main`, `general-cargo`, and `rsis`. They are separate from the GAS `gasws.datasource.promis/gold` pools. Keep URLs/users/passwords in an external local YAML; the committed file contains placeholders. Existing HHT business credential fields and procedure behavior are retained.
+
+The merged OpenAPI document is served at `/openapi.json` (HTTP Basic authentication). It describes all 50 routes and their authentication requirements.
+
+See [the combined Postman collection](docs/DPW-Integration.postman_collection.json) and [all 50 endpoint mappings](docs/combined-endpoint-mapping.json). The original 46-route mapping is retained for the imported contract tests. The health endpoint currently probes the selected GAS database; it does not certify the eight HHT database groups.
 
 ## Build and run
 
@@ -9,7 +43,7 @@ Requirements: JDK 21, Maven 3.6.3+, and access to an Oracle database with the pa
 ```bash
 java -version
 mvn clean verify
-java -jar target/gasws-rest-1.0.0.jar --generate-password-hash
+java -jar target/dpw-integration-rest-1.0.0.jar --generate-password-hash
 ```
 
 The last command securely prompts for an API password in an interactive terminal and prints its BCrypt hash without starting the server. Keep the password for your HTTP client.
@@ -34,7 +68,7 @@ gasws:
 ```
 
 ```bash
-java -jar target/gasws-rest-1.0.0.jar --spring.config.additional-location=file:./application-local.yml
+java -jar target/dpw-integration-rest-1.0.0.jar --spring.config.additional-location=file:./application-local.yml
 ```
 
 All options, including pool sizes, query timeout and Oracle type names, are defined in `src/main/resources/application.yml`. You can configure them in an external YAML file; environment variables are optional. Startup intentionally fails when the API BCrypt hash is missing or malformed. No default API password is supplied. GOLD credentials are needed only when selecting GOLD.
