@@ -41,7 +41,7 @@ class CombinedApplicationTest {
     @MockitoBean DBManagerServiceImpl schedulers;
     @MockitoBean ManageVoyageServiceImpl voyages;
 
-    @Test void allFiftyRoutesShareOneApplication() {
+    @Test void allFiftyRoutesShareOneApplication() throws Exception {
         var controllers = Set.of(com.dpw.gasws.api.GateController.class,
                 com.dpw.ports.promis.web.HhtController.class,
                 com.dpw.ports.promis.web.VoyageController.class,
@@ -49,40 +49,65 @@ class CombinedApplicationTest {
         long count = mappings.getHandlerMethods().values().stream()
                 .filter(handler -> controllers.contains(handler.getBeanType())).count();
         assertThat(count).isEqualTo(50);
+        var actual = new java.util.HashSet<String>();
+        mappings.getHandlerMethods().forEach((mapping, handler) -> {
+            if (controllers.contains(handler.getBeanType())) {
+                assertThat(mapping.getMethodsCondition().getMethods())
+                        .containsExactly(org.springframework.web.bind.annotation.RequestMethod.POST);
+                assertThat(mapping.getConsumesCondition().getConsumableMediaTypes())
+                        .contains(org.springframework.http.MediaType.APPLICATION_JSON);
+                actual.addAll(mapping.getPatternValues());
+            }
+        });
+        var json = new com.fasterxml.jackson.databind.ObjectMapper();
+        var expected = new java.util.HashSet<String>();
+        for (var operation : json.readTree(java.nio.file.Files.readString(java.nio.file.Path.of("docs/combined-endpoint-mapping.json")))) {
+            assertThat(operation.get("method").asText()).isEqualTo("POST");
+            assertThat(operation.get("path").asText()).isEqualTo("/api/v1/" + operation.get("operation").asText());
+            expected.add(operation.get("path").asText());
+        }
+        assertThat(actual).isEqualTo(expected);
+        var openapi = json.readTree(getClass().getResourceAsStream("/static/openapi.json"));
+        var documented = new java.util.HashSet<String>();
+        openapi.get("paths").fields().forEachRemaining(entry -> {
+            assertThat(entry.getValue().has("post")).isTrue();
+            documented.add(entry.getKey());
+        });
+        assertThat(documented).isEqualTo(expected);
     }
 
     @Test void hhtRequiresApiKeyAndBasicCannotBypassIt() throws Exception {
-        mvc.perform(get("/api/v1/configuration/major-damage-flag")).andExpect(status().isUnauthorized());
-        mvc.perform(get("/api/v1/configuration/major-damage-flag").with(httpBasic("gas-test", "test-password")))
+        mvc.perform(post("/api/v1/getMajorDamageFlag").contentType("application/json").content("{}")).andExpect(status().isUnauthorized());
+        mvc.perform(post("/api/v1/getMajorDamageFlag").contentType("application/json").content("{}").with(httpBasic("gas-test", "test-password")))
                 .andExpect(status().isUnauthorized());
         verifyNoInteractions(hht);
         when(hht.getMajorDamageFlag()).thenReturn(new MajorDamageFlagResType());
-        mvc.perform(get("/api/v1/configuration/major-damage-flag").header("X-API-Key", CLIENT))
+        mvc.perform(post("/api/v1/getMajorDamageFlag").contentType("application/json").content("{}").header("X-API-Key", CLIENT))
                 .andExpect(status().isOk());
     }
 
     @Test void gasRetainsBasicAuthAndApiKeyCannotBypassIt() throws Exception {
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").header("X-API-Key", CLIENT))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").header("X-API-Key", CLIENT))
                 .andExpect(status().isUnauthorized());
         verifyNoInteractions(gas);
         when(gas.containers("T1")).thenReturn(new Responses.Containers(List.of()));
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(httpBasic("gas-test", "test-password")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(httpBasic("gas-test", "test-password")))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.contrDetails").isEmpty());
     }
 
     @Test void schedulerRequiresAdminKeyIncludingPostCommands() throws Exception {
-        mvc.perform(get("/api/v1/admin/schedulers").header("X-API-Key", CLIENT)).andExpect(status().isForbidden());
-        mvc.perform(post("/api/v1/admin/schedulers/TEST_JOB/starts").header("X-API-Key", CLIENT)).andExpect(status().isForbidden());
+        mvc.perform(post("/api/v1/getConfiguredJobsForMarineAQ").contentType("application/json").content("{}").header("X-API-Key", CLIENT)).andExpect(status().isForbidden());
+        mvc.perform(post("/api/v1/startScheduler").contentType("application/json").content("{\"name\":\"TEST_JOB\"}").header("X-API-Key", CLIENT)).andExpect(status().isForbidden());
         verifyNoInteractions(schedulers);
         when(schedulers.getConfiguredJobsForMarineAQ()).thenReturn(List.of("TEST_JOB"));
-        mvc.perform(get("/api/v1/admin/schedulers").header("X-API-Key", ADMIN)).andExpect(status().isOk());
-        mvc.perform(post("/api/v1/admin/schedulers/TEST_JOB/starts").header("X-API-Key", ADMIN)).andExpect(status().isOk());
+        mvc.perform(post("/api/v1/getConfiguredJobsForMarineAQ").contentType("application/json").content("{}").header("X-API-Key", ADMIN)).andExpect(status().isOk());
+        mvc.perform(post("/api/v1/startScheduler").contentType("application/json").content("{\"name\":\"TEST_JOB\"}").header("X-API-Key", ADMIN)).andExpect(status().isOk());
         verify(schedulers).startScheduler("TEST_JOB");
     }
 
     @Test void voyagePathVariablesReachApiKeyProtectedController() throws Exception {
-        mvc.perform(post("/api/v1/voyages/42/billings")).andExpect(status().isUnauthorized());
-        mvc.perform(post("/api/v1/voyages/42/billings").header("X-API-Key", CLIENT)).andExpect(status().isOk());
+        mvc.perform(post("/api/v1/billVoyage").contentType("application/json").content("{\"twsId\":42}")).andExpect(status().isUnauthorized());
+        mvc.perform(post("/api/v1/billVoyage").contentType("application/json").content("{\"twsId\":42}").header("X-API-Key", CLIENT)).andExpect(status().isOk());
         verify(voyages).billVoyage(42L);
     }
 }

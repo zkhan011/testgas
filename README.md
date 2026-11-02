@@ -15,9 +15,9 @@ Subpackages remain to separate domains and avoid class collisions. The MDT contr
 
 | Endpoints | Authentication |
 |---|---|
-| GAS `/api/v1/tokens`, `/containers`, `/eir-location-requests`, `/gate-exceptions` | HTTP Basic, using `gasws.security` |
+| GAS `getTokenDetails`, `getContainerDetails`, `getEirLocationDetails`, `postExceptionData` | HTTP Basic, using `gasws.security` |
 | HHT and voyage routes listed in [docs/ENDPOINTS.md](docs/ENDPOINTS.md) | `X-API-Key`, using `gate.security.api-key` or the admin key |
-| `/api/v1/admin/schedulers` and commands beneath it | `X-API-Key`, using `gate.security.admin-key` only |
+| `getConfiguredJobsForMarineAQ`, `startScheduler`, `stopScheduler` | `X-API-Key`, using `gate.security.admin-key` only |
 
 The two existing authentication contracts are preserved. GAS credentials do not bypass HHT authentication, and the client API key cannot invoke admin scheduler operations. Exception advice is scoped to its owning controllers.
 
@@ -77,22 +77,24 @@ Use HTTPS at the reverse proxy; HTTP Basic credentials must not travel over an u
 
 ## REST contract
 
+All business operations now use **POST `/api/v1/<legacyOperationName>`**, consuming JSON. See [endpoint changes](docs/ENDPOINT-CHANGES.md) for all 50 old-to-new URLs. URL query/path parameters have moved to JSON bodies; the old routes are removed. Infrastructure endpoints remain GET.
+
 | Method | Route | Request | Successful response |
 |---|---|---|---|
-| GET | `/api/v1/tokens` | `terminalId`, plus `rfIdNo` or both `truckNo` and `regPlace` | `{tokenDetails:[], truckNo:..., regPlace:...}` |
-| GET | `/api/v1/containers` | `terminalId` | `{contrDetails:[]}` |
-| POST | `/api/v1/eir-location-requests` | EIR JSON below | `{eirDetails:[], locDetails:[]}` |
-| POST | `/api/v1/gate-exceptions` | Exception JSON below | `{success:true}` |
+| POST | `/api/v1/getTokenDetails` | JSON: `terminalId`, plus `rfIdNo` or both `truckNo` and `regPlace` | `{tokenDetails:[], truckNo:..., regPlace:...}` |
+| POST | `/api/v1/getContainerDetails` | JSON: `terminalId` | `{contrDetails:[]}` |
+| POST | `/api/v1/getEirLocationDetails` | EIR JSON below | `{eirDetails:[], locDetails:[]}` |
+| POST | `/api/v1/postExceptionData` | Exception JSON below | `{success:true}` |
 
 Business property names are retained where practical. This is a new JSON contract, not a drop-in SOAP response serializer. SOAP envelopes, `userCredentials`, and embedded `exception`/`errorMessage` fields are removed. Unknown JSON fields are rejected to catch misspellings and accidental legacy credential payloads. Token dates are serialized by Jackson as ISO timestamps; confirm the deployment JVM time zone against Oracle DATE/TIMESTAMP semantics. Numeric identifiers remain strings to preserve leading zeros.
 
 Example commands prompt for the API password (`curl.exe` on Windows):
 
 ```bash
-curl --user gate-api 'http://localhost:8080/api/v1/containers?terminalId=T1'
-curl --user gate-api 'http://localhost:8080/api/v1/tokens?terminalId=T1&truckNo=00123&regPlace=DXB'
-curl --user gate-api -H 'Content-Type: application/json' --data-binary @eir-request.json http://localhost:8080/api/v1/eir-location-requests
-curl --user gate-api -H 'Content-Type: application/json' --data-binary @exception-request.json http://localhost:8080/api/v1/gate-exceptions
+curl --user gate-api -H 'Content-Type: application/json' --data '{"terminalId":"T1"}' http://localhost:8080/api/v1/getContainerDetails
+curl --user gate-api -H 'Content-Type: application/json' --data '{"terminalId":"T1","truckNo":"00123","regPlace":"DXB"}' http://localhost:8080/api/v1/getTokenDetails
+curl --user gate-api -H 'Content-Type: application/json' --data-binary @eir-request.json http://localhost:8080/api/v1/getEirLocationDetails
+curl --user gate-api -H 'Content-Type: application/json' --data-binary @exception-request.json http://localhost:8080/api/v1/postExceptionData
 ```
 
 `eir-request.json`:
@@ -142,7 +144,7 @@ Responses: 400 invalid input, 401 unauthenticated, 403 insufficient role, 422 no
 1. Obtain and inspect the actual package specification/body and the `CAMCO_CONTR_OBJ` and `TBL_CAMCO_CONTR_OBJ` DDL. They are absent from this repository.
 2. Confirm the active EIR signature below. The legacy iBATIS XML has an obsolete 11-parameter version; this implementation follows the active Java DAO's 12-parameter version.
 3. Confirm schema/synonyms, execute/type privileges, cursor columns, package internal commits, and error conventions. Any nonblank `PO_ERROR` is treated as rejection; adapt only after documenting real success/error values.
-4. Confirm `GET_TOKEN_DATA` and `GET_CONTAINER_DATA` have no side effects before exposing the GET routes to clients. EIR and exception calls are POST because their business behavior may write data.
+4. Confirm procedure side effects and commit behavior before enabling retries. All business operations use POST, including searches; the verb does not imply that a call is safe to retry.
 5. Run integration tests against the deployed Oracle version and JDBC driver. Mock tests do not prove database compatibility. Confirm the Maven-resolved `ojdbc11` release is certified for the target Oracle server.
 6. Compare legacy and REST results with controlled UAT data; avoid invoking write operations twice on production data.
 

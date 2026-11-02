@@ -11,28 +11,28 @@ public class GateController {
     private final GateRepository repository;
     public GateController(GateRepository repository) { this.repository = repository; }
 
-    @GetMapping("/tokens")
-    public Responses.Tokens tokens(@RequestParam("terminalId") @NotBlank String terminalId,
-                                   @RequestParam(value = "rfIdNo", required = false) String rfIdNo,
-                                   @RequestParam(value = "truckNo", required = false) String truckNo,
-                                   @RequestParam(value = "regPlace", required = false) String regPlace) {
-        if ((rfIdNo == null || rfIdNo.isBlank()) &&
-                (truckNo == null || truckNo.isBlank() || regPlace == null || regPlace.isBlank())) {
+    public record TokenSearch(@NotBlank String terminalId, String rfIdNo, String truckNo, String regPlace) {}
+    public record ContainerSearch(@NotBlank String terminalId) {}
+
+    @PostMapping(value = "/getTokenDetails", consumes = "application/json")
+    public Responses.Tokens getTokenDetails(@Valid @RequestBody TokenSearch request) {
+        if ((request.rfIdNo() == null || request.rfIdNo().isBlank()) &&
+                (request.truckNo() == null || request.truckNo().isBlank() || request.regPlace() == null || request.regPlace().isBlank())) {
             throw new IllegalArgumentException("Supply rfIdNo or both truckNo and regPlace");
         }
-        return repository.tokens(terminalId, rfIdNo, truckNo, regPlace);
+        return repository.tokens(request.terminalId(), request.rfIdNo(), request.truckNo(), request.regPlace());
     }
 
-    @GetMapping("/containers")
-    public Responses.Containers containers(@RequestParam("terminalId") @NotBlank String terminalId) {
-        return repository.containers(terminalId);
+    @PostMapping(value = "/getContainerDetails", consumes = "application/json")
+    public Responses.Containers getContainerDetails(@Valid @RequestBody ContainerSearch request) {
+        return repository.containers(request.terminalId());
     }
 
-    @PostMapping("/eir-location-requests")
-    public Responses.Eir eir(@Valid @RequestBody Requests.Eir request) { return repository.eir(request); }
+    @PostMapping(value = "/getEirLocationDetails", consumes = "application/json")
+    public Responses.Eir getEirLocationDetails(@Valid @RequestBody Requests.Eir request) { return repository.eir(request); }
 
-    @PostMapping("/gate-exceptions")
-    public Responses.Accepted exception(@Valid @RequestBody Requests.GateException request) {
+    @PostMapping(value = "/postExceptionData", consumes = "application/json")
+    public Responses.Accepted postExceptionData(@Valid @RequestBody Requests.GateException request) {
         repository.exception(request);
         return new Responses.Accepted(true);
     }
