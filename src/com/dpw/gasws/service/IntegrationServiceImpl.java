@@ -19,7 +19,7 @@ import com.dpw.gasws.type.ServiceExceptionType;
 import com.dpw.gasws.type.TokenDetailsType;
 import com.dpw.gasws.util.GaswsIntegrationConstants;
 import com.dpw.gen.util.EncryptDecryptUtil;
-import com.pcfc.ports.promis.common.Utilities;
+import com.dpw.ports.promis.common.Utilities;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

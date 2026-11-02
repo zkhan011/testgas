@@ -8,9 +8,9 @@ import com.dpw.gasws.type.GetTokenRequestType;
 import com.dpw.gasws.type.TokenDetailsReqType;
 import com.dpw.gasws.util.GaswsIntegrationConstants;
 
-import com.pcfc.ports.promis.common.Utilities;
+import com.dpw.ports.promis.common.Utilities;
 
-import com.pcfc.services.exception.SystemException;
+import com.dpw.services.exception.SystemException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

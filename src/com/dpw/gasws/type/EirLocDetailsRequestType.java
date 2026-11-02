@@ -1,6 +1,6 @@
 package com.dpw.gasws.type;
 
-import com.pcfc.ports.promis.common.Utilities;
+import com.dpw.ports.promis.common.Utilities;
 
 public class EirLocDetailsRequestType implements java.io.Serializable {
     protected String portCode;

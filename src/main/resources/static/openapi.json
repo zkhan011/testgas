@@ -1,0 +1,5442 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "DPW Gate and Marine Integration REST",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "security": [
+    {
+      "ApiKey": []
+    }
+  ],
+  "paths": {
+    "/api/v1/marine/voyages/search": {
+      "post": {
+        "operationId": "getVoyages",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VoyagesResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandardReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-data/search": {
+      "post": {
+        "operationId": "getRefData",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefDataRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandardReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/marine/transactions": {
+      "post": {
+        "operationId": "pushMarineDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarinePushRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarinePushReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/marine/signatures": {
+      "post": {
+        "operationId": "uploadSignature",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ctms/voyages/search": {
+      "post": {
+        "operationId": "getVoyagesFromCTMS",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CTMSVoyageResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandardReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ctms/voyage-updates": {
+      "post": {
+        "operationId": "CTMSVoyageUpdate",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CTMSUpdVesselResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdVesselReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/search": {
+      "post": {
+        "operationId": "getTokens",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandardReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trucks/token-search": {
+      "post": {
+        "operationId": "getTokenForTruck",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TruckResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trucks/eirs/search": {
+      "post": {
+        "operationId": "getDWCTruckEIR",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TruckEIRResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckEIRReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gates/customs-entries": {
+      "post": {
+        "operationId": "updateCustmGateEntry",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCustmResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustmReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/empty-allocations": {
+      "post": {
+        "operationId": "getDynamicMTContainer",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContainerResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContainerReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/planned-moves/search": {
+      "post": {
+        "operationId": "getDEDContrPlanMoves",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContrResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContrReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tos/messages": {
+      "post": {
+        "operationId": "sendTOSMsg",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TOSMsgResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TOSMsgReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/seal-updates": {
+      "post": {
+        "operationId": "updateContainer",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateSealResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSealReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/acceptances": {
+      "post": {
+        "operationId": "acceptToken",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptTokenResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptTokenReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/eirs/search": {
+      "post": {
+        "operationId": "getEir",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EirResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EirReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gates/exit-confirmations": {
+      "post": {
+        "operationId": "confirmGateoutMove",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmGateoutMoveResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmGateoutMoveReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gate-passes/search": {
+      "post": {
+        "operationId": "getFZGPGateInOutSearchList",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FZGPGateInOutSearchResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FZGPGateInOutSearchReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gate-passes/movements": {
+      "post": {
+        "operationId": "procFZGPGateInOutUpdate",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FZGPGateInOutUpdateResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FZGPGateInOutUpdateReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/seal-history/search": {
+      "post": {
+        "operationId": "prevSealDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SealResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SealReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/damage-history/search": {
+      "post": {
+        "operationId": "prevDamageDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DamageResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DamageReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/damage-codes/search": {
+      "post": {
+        "operationId": "getMajorDamages",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodeResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/verifications": {
+      "post": {
+        "operationId": "verifyUser",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyUserRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyUserReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commercial-trucks/token-search": {
+      "post": {
+        "operationId": "getTokenForCommercialTruck",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComTruckNoRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComTruckNoReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/location-search": {
+      "post": {
+        "operationId": "getContrLocation",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContrLocationResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContrLocationReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/eirs/print-jobs": {
+      "post": {
+        "operationId": "printEir",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrintEirResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintEirReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/empty-refusals": {
+      "post": {
+        "operationId": "addMTRefusal",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddMTRefusalResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddMTRefusalReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels/notices/search": {
+      "post": {
+        "operationId": "getNoticeDetailsForVessel",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeDetailsResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeDetailsReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels/notice-updates": {
+      "post": {
+        "operationId": "updateNoticeDetailsForVessel",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateNoticeDetailsResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateNoticeDetailsReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/berths/search": {
+      "post": {
+        "operationId": "getBerthDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BerthResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StandardReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/weights/search": {
+      "post": {
+        "operationId": "getVGMContainerWeightDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VGMWtResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VGMWtReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/weight-updates": {
+      "post": {
+        "operationId": "updateVGMContainerWeightDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateVGMResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVGMReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/time-slots/search": {
+      "post": {
+        "operationId": "getTokenTimeSlot",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenTimeSlotResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenTimeSlotReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/truck-search": {
+      "post": {
+        "operationId": "getTruckInfoByContainer",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TruckInfoResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckInfoReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/time-slot-adjustments": {
+      "post": {
+        "operationId": "getAdjustTimeSlot",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdjustTimeSlotRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdjustTimeSlotReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/standing-damages/search": {
+      "post": {
+        "operationId": "getContainerDamages",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContainerDamageRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContainerDamageReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/containers/standing-damage-updates": {
+      "post": {
+        "operationId": "updateStdDmgDetails",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateStdDmgDtlsRespType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStdDmgDtlsReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/configuration/major-damage-flag": {
+      "get": {
+        "operationId": "getMajorDamageFlag",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MajorDamageFlagResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        }
+      }
+    },
+    "/api/v1/containers/damage-updates": {
+      "post": {
+        "operationId": "updateContainerWithDamages",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDamagesResType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDamagesReqType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voyages/rotations": {
+      "post": {
+        "operationId": "generateRotationNo",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rotation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Voyage"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voyages/{twsId}/advices": {
+      "post": {
+        "operationId": "adviceVoyage",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "parameters": [
+          {
+            "name": "twsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Actor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voyages/{twsId}/cancellations": {
+      "post": {
+        "operationId": "cancelVoyage",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "parameters": [
+          {
+            "name": "twsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Actor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voyages/{twsId}/billings": {
+      "post": {
+        "operationId": "billVoyage",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "parameters": [
+          {
+            "name": "twsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/schedulers": {
+      "get": {
+        "operationId": "getConfiguredJobsForMarineAQ",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulerNames"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/schedulers/{name}/starts": {
+      "post": {
+        "operationId": "startScheduler",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/schedulers/{name}/stops": {
+      "post": {
+        "operationId": "stopScheduler",
+        "responses": {
+          "200": {
+            "description": "Inspect database status/error fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outcome"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "API key required"
+          },
+          "403": {
+            "description": "Admin key required"
+          },
+          "415": {
+            "description": "JSON required"
+          },
+          "422": {
+            "description": "Business exception"
+          },
+          "500": {
+            "description": "Technical failure"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/tokens": {
+      "get": {
+        "operationId": "getTokenDetails",
+        "tags": [
+          "GAS"
+        ],
+        "security": [
+          {
+            "GasBasic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GasTokens"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "HTTP Basic credentials required"
+          },
+          "422": {
+            "description": "Oracle business rejection"
+          },
+          "503": {
+            "description": "Database failure; check write outcome before retry"
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "terminalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rfIdNo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "truckNo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regPlace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Supply rfIdNo or both truckNo and regPlace."
+      }
+    },
+    "/api/v1/containers": {
+      "get": {
+        "operationId": "getContainerDetails",
+        "tags": [
+          "GAS"
+        ],
+        "security": [
+          {
+            "GasBasic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GasContainers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "HTTP Basic credentials required"
+          },
+          "422": {
+            "description": "Oracle business rejection"
+          },
+          "503": {
+            "description": "Database failure; check write outcome before retry"
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "terminalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/eir-location-requests": {
+      "post": {
+        "operationId": "getEirLocationDetails",
+        "tags": [
+          "GAS"
+        ],
+        "security": [
+          {
+            "GasBasic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GasEir"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "HTTP Basic credentials required"
+          },
+          "422": {
+            "description": "Oracle business rejection"
+          },
+          "503": {
+            "description": "Database failure; check write outcome before retry"
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasEirRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gate-exceptions": {
+      "post": {
+        "operationId": "postExceptionData",
+        "tags": [
+          "GAS"
+        ],
+        "security": [
+          {
+            "GasBasic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GasAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "HTTP Basic credentials required"
+          },
+          "422": {
+            "description": "Oracle business rejection"
+          },
+          "503": {
+            "description": "Database failure; check write outcome before retry"
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasExceptionRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      },
+      "GasBasic": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "CodeResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "recordList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeType"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ContrLocationType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "movetype": {
+            "type": "string"
+          },
+          "yardlocn": {
+            "type": "string"
+          },
+          "yardid": {
+            "type": "string"
+          },
+          "contrpos": {
+            "type": "string"
+          },
+          "gateno": {
+            "type": "string"
+          }
+        }
+      },
+      "MoveType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "codeDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "AcceptTokenResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "BerthResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "berth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BerthType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ContainerDamageRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerDamageTypesList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContainerDamageType"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "VGMWtResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vgmWtdet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VGMWtType"
+            }
+          },
+          "errorMsg": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "TOSMsgResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "msg": {
+            "type": "string"
+          },
+          "errMsg": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateVGMResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "SealReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          }
+        }
+      },
+      "DummyContainerType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "yardLocation": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "isoType": {
+            "type": "string"
+          },
+          "containerSize": {
+            "type": "string"
+          },
+          "newIsoCode": {
+            "type": "string"
+          },
+          "truckCode": {
+            "type": "string"
+          },
+          "schId": {
+            "type": "string"
+          },
+          "slotId": {
+            "type": "string"
+          },
+          "haulCode": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          }
+        }
+      },
+      "BouyType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "bouyPortCode": {
+            "type": "string"
+          },
+          "bouyId": {
+            "type": "string"
+          },
+          "bouyName": {
+            "type": "string"
+          }
+        }
+      },
+      "TruckType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rfidno": {
+            "type": "integer"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "tokenno": {
+            "type": "integer"
+          },
+          "planmovedate": {
+            "type": "string"
+          },
+          "contrno": {
+            "type": "string"
+          },
+          "chkDigit": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "movetype": {
+            "type": "string"
+          },
+          "og": {
+            "type": "string"
+          },
+          "imco": {
+            "type": "string"
+          },
+          "yardlocn": {
+            "type": "string"
+          },
+          "desig": {
+            "type": "string"
+          },
+          "yardid": {
+            "type": "string"
+          },
+          "damagecode": {
+            "type": "integer"
+          },
+          "damagedescr": {
+            "type": "string"
+          },
+          "inspStatus": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "customSealReqd": {
+            "type": "string"
+          },
+          "isExTown": {
+            "type": "string"
+          },
+          "agentSealReqd": {
+            "type": "string"
+          },
+          "newIsoCode": {
+            "type": "string"
+          },
+          "customSeal": {
+            "type": "string"
+          },
+          "agentSeal": {
+            "type": "string"
+          },
+          "dpwSeal": {
+            "type": "string"
+          },
+          "contrpos": {
+            "type": "string"
+          },
+          "gateno": {
+            "type": "string"
+          },
+          "chassisType": {
+            "type": "integer"
+          },
+          "contrChassisPos": {
+            "type": "integer"
+          },
+          "mtInspStatus": {
+            "type": "string"
+          },
+          "mtInspFlag": {
+            "type": "string"
+          },
+          "destTerminalId": {
+            "type": "string"
+          },
+          "oogDim": {
+            "type": "string"
+          },
+          "oogReason": {
+            "type": "string"
+          },
+          "oogRemarks": {
+            "type": "string"
+          },
+          "limitedQtyImcoFlag": {
+            "type": "string"
+          }
+        }
+      },
+      "SealType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sealNo": {
+            "type": "string"
+          },
+          "sealDate": {
+            "type": "string"
+          },
+          "moveType": {
+            "type": "string"
+          },
+          "moveTypeDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "CTMSVoyageResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "voyages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CTMSVoyagesType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "EirType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "eirno": {
+            "type": "integer"
+          },
+          "eirdate": {
+            "type": "string"
+          },
+          "contrno": {
+            "type": "string"
+          },
+          "desig": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "inspremark": {
+            "type": "string"
+          },
+          "freezone": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "custXrayHold": {
+            "type": "string"
+          },
+          "custXrayHoldRemarks": {
+            "type": "string"
+          },
+          "inspFlag": {
+            "type": "boolean"
+          },
+          "dmInspRemarks": {
+            "type": "string"
+          }
+        }
+      },
+      "PrintEirType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consigneename": {
+            "type": "string"
+          },
+          "tokenno": {
+            "type": "integer"
+          },
+          "eirno": {
+            "type": "integer"
+          },
+          "eirdate": {
+            "type": "string"
+          },
+          "contrno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "seal": {
+            "type": "string"
+          },
+          "dpaSeal": {
+            "type": "string"
+          },
+          "agentSeal": {
+            "type": "string"
+          },
+          "customsSeal": {
+            "type": "string"
+          },
+          "load": {
+            "type": "string"
+          },
+          "handling": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "remarks2": {
+            "type": "string"
+          },
+          "remarks3": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      },
+      "EirResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "eir": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EirType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "PrintEirResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "printEirDet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrintEirType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "UpdateSealReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "movetype": {
+            "type": "integer"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "damagecode": {
+            "type": "integer"
+          },
+          "damagedescr": {
+            "type": "string"
+          },
+          "usercode": {
+            "type": "string"
+          },
+          "atdate": {
+            "type": "string"
+          },
+          "devid": {
+            "type": "string"
+          },
+          "tipmsg": {
+            "type": "string"
+          },
+          "cancelstatus": {
+            "type": "string"
+          },
+          "mtinspflag": {
+            "type": "string"
+          },
+          "customseal": {
+            "type": "string"
+          },
+          "dpwseal": {
+            "type": "string"
+          },
+          "agentseal": {
+            "type": "string"
+          },
+          "gate": {
+            "type": "string"
+          },
+          "isSealInvalid": {
+            "type": "string"
+          },
+          "isImcoLabelInvalid": {
+            "type": "string"
+          },
+          "mtOutSeatIssued": {
+            "type": "string"
+          },
+          "chassisType": {
+            "type": "integer"
+          },
+          "contrChassisPos": {
+            "type": "integer"
+          },
+          "oogStatus": {
+            "type": "string"
+          },
+          "oogReason": {
+            "type": "string"
+          }
+        }
+      },
+      "AnchorageType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "codeDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "TruckResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "truckdet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "VGMWtType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "declaredWt": {
+            "type": "number"
+          },
+          "actualWt": {
+            "type": "number"
+          },
+          "eirDate": {
+            "type": "string"
+          },
+          "eirNo": {
+            "type": "string"
+          },
+          "desig": {
+            "type": "string"
+          }
+        }
+      },
+      "MajorDamageFlagResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "flag": {
+            "type": "string"
+          }
+        }
+      },
+      "FZGPGateInOutUpdateResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "prownos": {
+            "type": "string"
+          },
+          "param": {
+            "type": "string"
+          },
+          "perno": {
+            "type": "string"
+          }
+        }
+      },
+      "LocationType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "portCode": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "codeDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "TruckReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleno": {
+            "type": "string"
+          },
+          "RFID": {
+            "type": "string"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          }
+        }
+      },
+      "DamageResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "recordList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DamageType"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfirmGateoutMoveReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "eirno": {
+            "type": "integer"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "confirm": {
+            "type": "string"
+          },
+          "usercode": {
+            "type": "string"
+          },
+          "gate": {
+            "type": "string"
+          }
+        }
+      },
+      "TOSMsgReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "msgID": {
+            "type": "string"
+          },
+          "msgAction": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "contrNo": {
+            "type": "string"
+          },
+          "isoType": {
+            "type": "string"
+          },
+          "contrSize": {
+            "type": "string"
+          },
+          "newIsoCode": {
+            "type": "string"
+          },
+          "truckCode": {
+            "type": "string"
+          },
+          "scheduleId": {
+            "type": "string"
+          },
+          "slotId": {
+            "type": "string"
+          },
+          "haulCode": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          }
+        }
+      },
+      "ComTruckNoReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "truckNo": {
+            "type": "string"
+          }
+        }
+      },
+      "TxnType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "txn_id": {
+            "type": "integer"
+          },
+          "mdt_txn_id": {
+            "type": "integer"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ComTruckNoRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dummyTokenContrList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DummyTokenContrType"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ContrReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          }
+        }
+      },
+      "TokenResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "tokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokensType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "UpdateVGMReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerno": {
+            "type": "string"
+          },
+          "liftedWt": {
+            "type": "number"
+          },
+          "craneId": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          }
+        }
+      },
+      "BoatType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "boatId": {
+            "type": "string"
+          },
+          "boatType": {
+            "type": "string"
+          },
+          "boatName": {
+            "type": "string"
+          }
+        }
+      },
+      "SignReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "txn_id": {
+            "type": "integer"
+          },
+          "userCredentials": {
+            "$ref": "#/components/schemas/LoginInfoReqType"
+          },
+          "sign": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "FZGPGateInOutSearchResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "inspmessage": {
+            "type": "string"
+          },
+          "inspmessflag": {
+            "type": "string"
+          },
+          "gplist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FZGPGateInOutSearchList"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "BerthType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rotationNumber": {
+            "type": "integer"
+          },
+          "vesselName": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceExceptionType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "technicalException": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExceptionType"
+            }
+          },
+          "businessException": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExceptionType"
+            }
+          }
+        }
+      },
+      "AdjustTimeSlotReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "integer"
+          },
+          "userCode": {
+            "type": "string"
+          }
+        }
+      },
+      "TokenTimeSlotResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenSlotList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenSlotType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "MarinePushReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pilotPlanning": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarineType"
+            }
+          },
+          "userCredentials": {
+            "$ref": "#/components/schemas/LoginInfoReqType"
+          }
+        }
+      },
+      "UpdateNoticeDetailsReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rotationNumber": {
+            "type": "integer"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "noticeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoticeTypeList"
+            }
+          }
+        }
+      },
+      "SealResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "recordList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SealType"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "DummyTokenContrType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "integer"
+          },
+          "contrNo": {
+            "type": "string"
+          },
+          "yardLoc": {
+            "type": "string"
+          },
+          "desig": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "mtype": {
+            "type": "string"
+          },
+          "isoCode": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          },
+          "destTerminal": {
+            "type": "string"
+          },
+          "haulType": {
+            "type": "string"
+          }
+        }
+      },
+      "ContainerDamageReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          }
+        }
+      },
+      "FZGPGateInOutUpdateReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pgpno": {
+            "type": "string"
+          },
+          "pgprefno": {
+            "type": "string"
+          },
+          "gateno": {
+            "type": "string"
+          },
+          "gateuser": {
+            "type": "string"
+          },
+          "sourcesys": {
+            "type": "string"
+          },
+          "premark": {
+            "type": "string"
+          },
+          "srcApp": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          }
+        }
+      },
+      "ContrLocationReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "contrno": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyUserReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "VGMWtReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regplate": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          }
+        }
+      },
+      "CTMSUpdVesselResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "err_msg": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ContrResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          },
+          "dummyContrList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DummyContainerType"
+            }
+          },
+          "errMsg": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateStdDmgDtlsReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "stdInstructionId": {
+            "type": "string"
+          },
+          "stdInstructionSpecId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "CodeReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "includeNonMajor": {
+            "type": "integer"
+          }
+        }
+      },
+      "DamageReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateSealResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "FZGPGateInOutSearchList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "gpno": {
+            "type": "string"
+          },
+          "vehicle": {
+            "type": "string"
+          },
+          "gpdate": {
+            "type": "string"
+          },
+          "gpexpdate": {
+            "type": "string"
+          },
+          "gpstatus": {
+            "type": "string"
+          },
+          "gptype": {
+            "type": "string"
+          },
+          "gprefno": {
+            "type": "string"
+          },
+          "boeno": {
+            "type": "string"
+          },
+          "boeDesc": {
+            "type": "string"
+          },
+          "goodsdesc": {
+            "type": "string"
+          },
+          "pkgtype": {
+            "type": "string"
+          },
+          "contnrno": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "marksnos": {
+            "type": "string"
+          },
+          "custname": {
+            "type": "string"
+          },
+          "contnrsize": {
+            "type": "string"
+          },
+          "cargotypes": {
+            "type": "string"
+          },
+          "chasisunit": {
+            "type": "string"
+          },
+          "chasisno": {
+            "type": "string"
+          },
+          "gpitemqty": {
+            "type": "string"
+          },
+          "gpitemwt": {
+            "type": "string"
+          },
+          "inspnauth": {
+            "type": "string"
+          },
+          "actiondesc": {
+            "type": "string"
+          },
+          "inspremarks": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "southjafzaflag": {
+            "type": "string"
+          },
+          "custHold": {
+            "type": "string"
+          },
+          "custRemarks": {
+            "type": "string"
+          },
+          "srcApp": {
+            "type": "string"
+          },
+          "gateNo": {
+            "type": "string"
+          },
+          "dmInspRequired": {
+            "type": "string"
+          },
+          "dmInspStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "PrintEirReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          },
+          "param1": {
+            "type": "string"
+          },
+          "param2": {
+            "type": "string"
+          },
+          "param3": {
+            "type": "string"
+          }
+        }
+      },
+      "MarineType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "marineHeader": {
+            "$ref": "#/components/schemas/MarineHeaderType"
+          },
+          "marineDetail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarineDetailType"
+            }
+          }
+        }
+      },
+      "TruckEIRType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrno": {
+            "type": "string"
+          },
+          "eirDate": {
+            "type": "string"
+          },
+          "moverecdate": {
+            "type": "string"
+          },
+          "actmovedate": {
+            "type": "string"
+          },
+          "eirNo": {
+            "type": "string"
+          },
+          "tokenno": {
+            "type": "integer"
+          },
+          "desig": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "mobNo": {
+            "type": "string"
+          }
+        }
+      },
+      "NoticeTypeList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "noticeType": {
+            "type": "string"
+          },
+          "etcDate": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "RefDataRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pilot": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PilotType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "MarineHeaderType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "twsid": {
+            "type": "integer"
+          },
+          "txn_id": {
+            "type": "integer"
+          },
+          "mdt_txn_id": {
+            "type": "integer"
+          },
+          "rotn": {
+            "type": "integer"
+          },
+          "move_type": {
+            "type": "string"
+          },
+          "from_location": {
+            "type": "string"
+          },
+          "to_location": {
+            "type": "string"
+          },
+          "vessel_board_time": {
+            "type": "string"
+          },
+          "vessel_leave_time": {
+            "type": "string"
+          },
+          "launch_boat_code": {
+            "type": "string"
+          },
+          "modified_vessel_draft": {
+            "type": "integer"
+          },
+          "channel_entry_time": {
+            "type": "string"
+          },
+          "channel_exit_time": {
+            "type": "string"
+          },
+          "buoy_no": {
+            "type": "string"
+          },
+          "buoy_cross_time": {
+            "type": "string"
+          },
+          "breakwater_cross_time": {
+            "type": "string"
+          },
+          "fl_time": {
+            "type": "string"
+          },
+          "ll_time": {
+            "type": "string"
+          },
+          "is_detained": {
+            "type": "integer"
+          },
+          "detention_from_date": {
+            "type": "string"
+          },
+          "detention_to_date": {
+            "type": "string"
+          },
+          "is_dead_ship": {
+            "type": "integer"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "vessel_master_name": {
+            "type": "string"
+          },
+          "vessel_master_sign_date": {
+            "type": "string"
+          },
+          "is_job_complete": {
+            "type": "integer"
+          },
+          "is_valid": {
+            "type": "integer"
+          },
+          "crt_mod_by": {
+            "type": "string"
+          },
+          "crt_mod_passwd": {
+            "type": "string"
+          },
+          "crt_mod_device": {
+            "type": "string"
+          },
+          "crt_mod_date": {
+            "type": "string"
+          },
+          "anchoragetime": {
+            "type": "string"
+          },
+          "anchoragereason": {
+            "type": "integer"
+          },
+          "anchorageremarks": {
+            "type": "string"
+          }
+        }
+      },
+      "AddMTRefusalResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "AdjustTimeSlotRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "type": "integer"
+          },
+          "remarks": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateCustmResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "VoyagesResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "voyages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoyagesType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "TruckInfoResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNumber": {
+            "type": "string"
+          },
+          "moveType": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          },
+          "yardLocation": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "regPlate": {
+            "type": "string"
+          },
+          "vehicleNo": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "errorMsg": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "TruckEIRReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplate": {
+            "type": "string"
+          }
+        }
+      },
+      "AddMTRefusalReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "damagecode": {
+            "type": "integer"
+          },
+          "damagedescr": {
+            "type": "string"
+          },
+          "usercode": {
+            "type": "string"
+          },
+          "isMTRefusal": {
+            "type": "string"
+          }
+        }
+      },
+      "ContainerReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "AcceptTokenReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          },
+          "acctdate": {
+            "type": "string"
+          },
+          "usercode": {
+            "type": "string"
+          },
+          "gate": {
+            "type": "string"
+          },
+          "active": {
+            "type": "string"
+          }
+        }
+      },
+      "ContrLocationResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "contrLocationdet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContrLocationType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "TokenSlotType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regPlace": {
+            "type": "string"
+          },
+          "vehicleNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "slotStartTime": {
+            "type": "string"
+          },
+          "slotEndTime": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "timeSlotValid": {
+            "type": "string"
+          },
+          "stopInspection": {
+            "type": "string"
+          },
+          "satisfyAnyOne": {
+            "type": "string"
+          },
+          "validThreshold": {
+            "type": "string"
+          },
+          "thresholdError": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateStdDmgDtlsRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "stdInstructionId": {
+            "type": "string"
+          },
+          "stdInstructionSpecId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "StandardReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userCredentials": {
+            "$ref": "#/components/schemas/LoginInfoReqType"
+          }
+        }
+      },
+      "CodeType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "codeName": {
+            "type": "string"
+          },
+          "codeValue": {
+            "type": "string"
+          }
+        }
+      },
+      "PilotType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "userPassword": {
+            "type": "string"
+          },
+          "userDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "NoticeDetailsReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rotationNumber": {
+            "type": "integer"
+          },
+          "terminalId": {
+            "type": "string"
+          }
+        }
+      },
+      "NoticeDetailsResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "rotationNumber": {
+            "type": "integer"
+          },
+          "vesselName": {
+            "type": "string"
+          },
+          "berthNumber": {
+            "type": "string"
+          },
+          "voyageNumber": {
+            "type": "string"
+          },
+          "pinNumber": {
+            "type": "string"
+          },
+          "noticeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoticeTypeList"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "DamageType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "damageCode": {
+            "type": "string"
+          },
+          "damageDesc": {
+            "type": "string"
+          },
+          "damageDate": {
+            "type": "string"
+          },
+          "moveTypeCode": {
+            "type": "string"
+          },
+          "moveTypeDesc": {
+            "type": "string"
+          }
+        }
+      },
+      "SignRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "txn_id": {
+            "type": "integer"
+          },
+          "err_msg": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "UpdateDamagesResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ExceptionType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "CTMSVoyagesType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "portcode": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "rotationnumber": {
+            "type": "integer"
+          },
+          "vesselname": {
+            "type": "string"
+          },
+          "startworkdt": {
+            "type": "string"
+          },
+          "endworkdt": {
+            "type": "string"
+          },
+          "berthdt": {
+            "type": "string"
+          }
+        }
+      },
+      "TokenTimeSlotReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regplate": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          }
+        }
+      },
+      "ContainerResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          },
+          "contrList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContainerType"
+            }
+          },
+          "errMsg": {
+            "type": "string"
+          }
+        }
+      },
+      "TokensType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regplace": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "tokenno": {
+            "type": "integer"
+          },
+          "planmovedate": {
+            "type": "string"
+          },
+          "contrno": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "movetype": {
+            "type": "string"
+          },
+          "og": {
+            "type": "string"
+          },
+          "imco": {
+            "type": "string"
+          },
+          "yardlocn": {
+            "type": "string"
+          },
+          "desig": {
+            "type": "string"
+          },
+          "yardid": {
+            "type": "string"
+          },
+          "damagecode": {
+            "type": "integer"
+          },
+          "damagedescr": {
+            "type": "string"
+          },
+          "inspStatus": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "CtmsHHTRotnResp": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "portcode": {
+            "type": "string"
+          },
+          "terminalid": {
+            "type": "string"
+          },
+          "rotationnumber": {
+            "type": "integer"
+          },
+          "vesselname": {
+            "type": "string"
+          },
+          "startworkdt": {
+            "type": "string"
+          },
+          "endworkdt": {
+            "type": "string"
+          }
+        }
+      },
+      "TruckEIRResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "truckdet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckEIRType"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "UpdVesselReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rotationnumber": {
+            "type": "string"
+          },
+          "startworkdt": {
+            "type": "string"
+          },
+          "endworkdt": {
+            "type": "string"
+          },
+          "berthdt": {
+            "type": "string"
+          },
+          "deviceid": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyUserRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vaild": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "VoyagesType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "twsid": {
+            "type": "integer"
+          },
+          "rotationnumber": {
+            "type": "integer"
+          },
+          "vessel_name": {
+            "type": "string"
+          },
+          "vessel_type": {
+            "type": "string"
+          },
+          "portofarrival": {
+            "type": "string"
+          },
+          "vessel_country": {
+            "type": "string"
+          },
+          "agent_name": {
+            "type": "string"
+          },
+          "eta": {
+            "type": "string"
+          },
+          "etd": {
+            "type": "string"
+          },
+          "dwt": {
+            "type": "integer"
+          },
+          "grt": {
+            "type": "integer"
+          },
+          "loa": {
+            "type": "integer"
+          },
+          "nrt": {
+            "type": "integer"
+          },
+          "arrivedfrom": {
+            "type": "string"
+          },
+          "sailto": {
+            "type": "string"
+          },
+          "draft": {
+            "type": "number"
+          },
+          "lenba": {
+            "type": "number"
+          },
+          "lenbf": {
+            "type": "number"
+          },
+          "arrdraft": {
+            "type": "number"
+          },
+          "saildraft": {
+            "type": "number"
+          },
+          "readytosaildate": {
+            "type": "string"
+          },
+          "fromLoc": {
+            "type": "integer"
+          },
+          "toLoc": {
+            "type": "integer"
+          },
+          "moveType": {
+            "type": "string"
+          }
+        }
+      },
+      "MarineDetailType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resource_code": {
+            "type": "string"
+          },
+          "usage_start_time": {
+            "type": "string"
+          },
+          "usage_end_time": {
+            "type": "string"
+          }
+        }
+      },
+      "MarinePushRespType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          },
+          "txnType": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TxnType"
+            }
+          }
+        }
+      },
+      "ContainerDamageType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "stdInstructionId": {
+            "type": "integer"
+          },
+          "stdInstructionSpecId": {
+            "type": "integer"
+          },
+          "contrNO": {
+            "type": "string"
+          },
+          "agentRef": {
+            "type": "string"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "agentCode": {
+            "type": "string"
+          },
+          "validFrDate": {
+            "type": "string"
+          },
+          "validToDate": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "movementType": {
+            "type": "string"
+          },
+          "eventTypeCode": {
+            "type": "string"
+          },
+          "eventActionCode": {
+            "type": "string"
+          },
+          "eventQualifierCode": {
+            "type": "string"
+          },
+          "eventCriteriaKey": {
+            "type": "string"
+          },
+          "eventCriteriaConditon": {
+            "type": "string"
+          },
+          "eventCriteriaValue": {
+            "type": "string"
+          },
+          "eventCriteriaValue2": {
+            "type": "string"
+          },
+          "cntrCat": {
+            "type": "string"
+          },
+          "cntrSize": {
+            "type": "string"
+          },
+          "cntrStatus": {
+            "type": "string"
+          },
+          "isoType": {
+            "type": "string"
+          },
+          "cntrRangeFr": {
+            "type": "string"
+          },
+          "cntrRangeTo": {
+            "type": "string"
+          },
+          "cntrPrefix": {
+            "type": "string"
+          },
+          "chargeAppl": {
+            "type": "string"
+          },
+          "chargeCode": {
+            "type": "string"
+          },
+          "appRemarks": {
+            "type": "string"
+          },
+          "rejRemarks": {
+            "type": "string"
+          },
+          "cancelRemarks": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "chargeCode1": {
+            "type": "string"
+          },
+          "chargeCode2": {
+            "type": "string"
+          },
+          "chargeCode3": {
+            "type": "string"
+          },
+          "chargeCode4": {
+            "type": "string"
+          },
+          "damageCodes": {
+            "type": "string"
+          },
+          "damageTypeFlag": {
+            "type": "string"
+          },
+          "insFlag": {
+            "type": "string"
+          },
+          "displayContainerCategory": {
+            "type": "string"
+          },
+          "displayEventCriteriaCondition": {
+            "type": "string"
+          },
+          "displayEventCriteriaKey": {
+            "type": "string"
+          },
+          "displayLineName": {
+            "type": "string"
+          },
+          "displayAgentName": {
+            "type": "string"
+          },
+          "displayMovementType": {
+            "type": "string"
+          },
+          "displayEventType": {
+            "type": "string"
+          },
+          "displayEventAction": {
+            "type": "string"
+          },
+          "displayEventQualifier": {
+            "type": "string"
+          },
+          "displayContainerStatus": {
+            "type": "string"
+          },
+          "displayISOType": {
+            "type": "string"
+          },
+          "displayDamageCodes": {
+            "type": "string"
+          },
+          "stdInstrCreateDate": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateDamagesReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenno": {
+            "type": "integer"
+          },
+          "containerno": {
+            "type": "string"
+          },
+          "sealno": {
+            "type": "string"
+          },
+          "movetype": {
+            "type": "integer"
+          },
+          "regplate": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "damagecode": {
+            "type": "integer"
+          },
+          "damagedescr": {
+            "type": "string"
+          },
+          "usercode": {
+            "type": "string"
+          },
+          "atdate": {
+            "type": "string"
+          },
+          "devid": {
+            "type": "string"
+          },
+          "tipmsg": {
+            "type": "string"
+          },
+          "cancelstatus": {
+            "type": "string"
+          },
+          "mtinspflag": {
+            "type": "string"
+          },
+          "customseal": {
+            "type": "string"
+          },
+          "dpwseal": {
+            "type": "string"
+          },
+          "agentseal": {
+            "type": "string"
+          },
+          "gate": {
+            "type": "string"
+          },
+          "isSealInvalid": {
+            "type": "string"
+          },
+          "isImcoLabelInvalid": {
+            "type": "string"
+          },
+          "mtOutSeatIssued": {
+            "type": "string"
+          },
+          "chassisType": {
+            "type": "integer"
+          },
+          "contrChassisPos": {
+            "type": "integer"
+          },
+          "oogStatus": {
+            "type": "string"
+          },
+          "oogReason": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateNoticeDetailsResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ConfirmGateoutMoveResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "UpdateCustmReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleRgPlc": {
+            "type": "string"
+          },
+          "vehicleRgNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "gateCode": {
+            "type": "string"
+          },
+          "laneCode": {
+            "type": "string"
+          },
+          "laneType": {
+            "type": "string"
+          }
+        }
+      },
+      "FZGPGateInOutSearchReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vehicleno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          },
+          "gatepassno": {
+            "type": "string"
+          },
+          "inOut": {
+            "type": "string"
+          }
+        }
+      },
+      "CtmsHHTResType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "getVoyages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CtmsHHTRotnResp"
+            }
+          },
+          "exception": {
+            "$ref": "#/components/schemas/ServiceExceptionType"
+          }
+        }
+      },
+      "ContainerType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string"
+          },
+          "contrLocation": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginInfoReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "deviceid": {
+            "type": "string"
+          }
+        }
+      },
+      "EirReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contrno": {
+            "type": "string"
+          },
+          "regplace": {
+            "type": "string"
+          },
+          "vehicleno": {
+            "type": "string"
+          },
+          "platecode": {
+            "type": "string"
+          },
+          "param1": {
+            "type": "string"
+          },
+          "param2": {
+            "type": "string"
+          },
+          "param3": {
+            "type": "string"
+          }
+        }
+      },
+      "TruckInfoReqType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "Voyage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "portCode": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "rotationNo": {
+            "type": "integer"
+          },
+          "vesselName": {
+            "type": "string"
+          },
+          "voyageType": {
+            "type": "integer"
+          },
+          "callType": {
+            "type": "string"
+          },
+          "callReason": {
+            "type": "string"
+          },
+          "voyageRoute": {
+            "type": "string"
+          },
+          "voyageNoIn": {
+            "type": "string"
+          },
+          "voyageNoOut": {
+            "type": "string"
+          },
+          "etaDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "etdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "portArrivalDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arrivalfrom": {
+            "type": "string"
+          },
+          "sailTo": {
+            "type": "string"
+          },
+          "sailDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "plannedBerth": {
+            "type": "string"
+          },
+          "currentBerth": {
+            "type": "string"
+          },
+          "stayHours": {
+            "type": "number"
+          },
+          "arrivalDraft": {
+            "type": "number"
+          },
+          "firstCallDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "readyToSailDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sailDraft": {
+            "type": "number"
+          },
+          "lineCode": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          }
+        }
+      },
+      "Actor": {
+        "type": "object",
+        "required": [
+          "userName"
+        ],
+        "properties": {
+          "userName": {
+            "type": "string"
+          }
+        }
+      },
+      "Rotation": {
+        "type": "object",
+        "properties": {
+          "rotationNumber": {
+            "type": "integer"
+          }
+        }
+      },
+      "Outcome": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SchedulerNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "GasContainerDetailsType": {
+        "type": "object",
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "plateNo": {
+            "type": "string"
+          },
+          "plateEmirate": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "rfIdNo": {
+            "type": "string"
+          }
+        }
+      },
+      "GasTokenDetailsType": {
+        "type": "object",
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "terminalId": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GasEirDetailsType": {
+        "type": "object",
+        "properties": {
+          "terminalId": {
+            "type": "string"
+          },
+          "plateNo": {
+            "type": "string"
+          },
+          "plateEmirate": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "load": {
+            "type": "string"
+          },
+          "handling": {
+            "type": "string"
+          },
+          "consignee": {
+            "type": "string"
+          },
+          "dpaSeal": {
+            "type": "string"
+          },
+          "seal": {
+            "type": "string"
+          },
+          "agentSeal": {
+            "type": "string"
+          },
+          "customsSeal": {
+            "type": "string"
+          },
+          "eirNo": {
+            "type": "string"
+          },
+          "eirDate": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "remarks2": {
+            "type": "string"
+          },
+          "remarks3": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "movType": {
+            "type": "string"
+          },
+          "printEir": {
+            "type": "string"
+          }
+        }
+      },
+      "GasLocDetailsType": {
+        "type": "object",
+        "properties": {
+          "terminalId": {
+            "type": "string"
+          },
+          "plateNo": {
+            "type": "string"
+          },
+          "plateEmirate": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "load": {
+            "type": "string"
+          },
+          "handling": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "seal": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "remarks2": {
+            "type": "string"
+          },
+          "remarks3": {
+            "type": "string"
+          }
+        }
+      },
+      "GasTokenRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tokenNo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tokenNo"
+        ]
+      },
+      "GasContainerRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "containerNo": {
+            "type": "string"
+          },
+          "isoCode": {
+            "type": "string"
+          },
+          "doorDirection": {
+            "type": "string"
+          },
+          "contrPosition": {
+            "type": "string"
+          },
+          "chassisNo": {
+            "type": "string"
+          },
+          "sealPresence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "containerNo"
+        ]
+      },
+      "GasEirRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "portCode": {
+            "type": "string",
+            "default": "J"
+          },
+          "rfIdNo": {
+            "type": "string"
+          },
+          "truckNo": {
+            "type": "string"
+          },
+          "regPlace": {
+            "type": "string"
+          },
+          "chassisType": {
+            "type": "string"
+          },
+          "laneId": {
+            "type": "string"
+          },
+          "visitId": {
+            "type": "string"
+          },
+          "tokenDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasTokenRequest"
+            },
+            "maxItems": 100
+          },
+          "contrDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasContainerRequest"
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "laneId"
+        ]
+      },
+      "GasExceptionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "errorDate": {
+            "type": "string"
+          },
+          "truckNo": {
+            "type": "string"
+          },
+          "regPlace": {
+            "type": "string"
+          },
+          "containerNo": {
+            "type": "string"
+          },
+          "tokenNo": {
+            "type": "string"
+          },
+          "laneId": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorDesc": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "errorDate",
+          "laneId",
+          "errorCode",
+          "errorDesc"
+        ]
+      },
+      "GasTokens": {
+        "type": "object",
+        "properties": {
+          "tokenDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasTokenDetailsType"
+            }
+          },
+          "truckNo": {
+            "type": "string"
+          },
+          "regPlace": {
+            "type": "string"
+          }
+        }
+      },
+      "GasContainers": {
+        "type": "object",
+        "properties": {
+          "contrDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasContainerDetailsType"
+            }
+          }
+        }
+      },
+      "GasEir": {
+        "type": "object",
+        "properties": {
+          "eirDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasEirDetailsType"
+            }
+          },
+          "locDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GasLocDetailsType"
+            }
+          }
+        }
+      },
+      "GasAccepted": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

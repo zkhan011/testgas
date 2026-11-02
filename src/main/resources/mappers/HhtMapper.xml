@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hht">
+  <resultMap id="voyagesrs" type="com.dpw.ports.promis.hht.type.VoyagesType">
+    <result property="rotationnumber" column="rotn" />
+    <result property="vessel_name" column="vess_name" />
+    <result property="vessel_type" column="vess_type" />
+    <result property="portofarrival" column="port_code" />
+    <result property="vessel_country" column="vess_nat" />
+    <result property="agent_name" column="agent_name" />
+    <result property="eta" column="eta_date" />
+    <result property="etd" column="etd_date" />
+    <result property="dwt" column="dwt" />
+    <result property="grt" column="grt" />
+    <result property="loa" column="loa" />
+    <result property="nrt" column="nrt" />
+    <result property="arrivedfrom" column="arr_fm" />
+    <result property="sailto" column="sail_to" />
+    <result property="draft" column="draft" jdbcType="DECIMAL" />
+    <result property="arrdraft" column="arr_draft" jdbcType="DECIMAL" />
+    <result property="saildraft" column="sail_draft" jdbcType="DECIMAL" />
+    <result property="lenba" column="len_ba" jdbcType="DECIMAL" />
+    <result property="lenbf" column="len_bf" jdbcType="DECIMAL" />
+    <result property="readytosaildate" column="READY_TO_SAIL_DATE" />
+    <result property="twsid" column="tws_id" />
+    <result property="moveType" column="mov_type" />
+    <result property="fromLoc" column="from_loc" />
+    <result property="toLoc" column="to_loc" />
+  </resultMap>
+  <select id="getvoyages" resultMap="voyagesrs" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call marine.pkg_pda_txns.prc_get_voyages(#{userid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{password,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceid,jdbcType=NUMERIC,javaType=java.lang.String,mode=IN},#{pcontainerres,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=voyagesrs},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="resboats" type="com.dpw.ports.promis.hht.type.BoatType">
+    <result property="boatId" column="boat_code" />
+    <result property="boatType" column="boat_type" />
+    <result property="boatName" column="boat_name" />
+  </resultMap>
+  <resultMap id="reslocs" type="com.dpw.ports.promis.hht.type.LocationType">
+    <result property="portCode" column="port_code" />
+    <result property="code" column="location_id" />
+    <result property="codeDesc" column="location_name" />
+  </resultMap>
+  <resultMap id="respilots" type="com.dpw.ports.promis.hht.type.PilotType">
+    <result property="userId" column="login_name" />
+    <result property="userPassword" column="password" />
+    <result property="userDesc" column="pilot_name" />
+  </resultMap>
+  <resultMap id="resmovetype" type="com.dpw.ports.promis.hht.type.MoveType">
+    <result property="code" column="move_type_code" />
+    <result property="codeDesc" column="move_type_name" />
+  </resultMap>
+  <resultMap id="resbouys" type="com.dpw.ports.promis.hht.type.BouyType">
+    <result property="bouyPortCode" column="port_code" />
+    <result property="bouyId" column="buoy_code" />
+    <result property="bouyName" column="buoy_name" />
+  </resultMap>
+  <resultMap id="resanchs" type="com.dpw.ports.promis.hht.type.AnchorageType">
+    <result property="code" column="anchorage_code" />
+    <result property="codeDesc" column="anchorage_reason" />
+  </resultMap>
+  <select id="getRefData" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.prc_get_ref_data(#{pcurpilots,jdbcType=CURSOR,javaType=java.sql.ResultSet,mode=OUT,resultMap=respilots},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="getschemaname" statementType="CALLABLE" useCache="false" flushCache="true">
+         {#{schemaname,jdbcType=VARCHAR,mode=OUT} = call fn_getobjectowner (#{pkgname,jdbcType=VARCHAR,mode=IN})}
+    </select>
+  <select id="validateloggedinuser" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call marine.pkg_pda_txns.prc_validate_user_dev(#{txntype,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{id,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{userid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{password,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceidresp,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{retval,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{errmsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="ctmsvoyagesrs" type="com.dpw.ports.promis.hht.type.CTMSVoyagesType">
+    <result property="portcode" column="PORT_CODE" />
+    <result property="terminalid" column="TERMINAL_ID" />
+    <result property="rotationnumber" column="ROTN" />
+    <result property="vesselname" column="VESS_NAME" />
+    <result property="startworkdt" column="START_WORK_DATE" />
+    <result property="endworkdt" column="END_WORK_DATE" />
+    <result property="berthdt" column="BTH_DATE" />
+  </resultMap>
+  <select id="getctmsvoyages" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_USER_VALIDATE(#{userid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{password,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{pcontainerres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=ctmsvoyagesrs,mode=OUT}) }
+</select>
+  <select id="updvesslreq" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_UPD_VESSEL_DTLS(#{userid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{rotationnumber,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{startworkdt,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{endworkdt,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{berthdt,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{errmessage,jdbcType=VARCHAR,mode=OUT}) }
+</select>
+  <resultMap id="tokensrs" type="com.dpw.ports.promis.hht.type.TokensType">
+    <result property="regplace" column="reg_place" />
+    <result property="vehicleno" column="vehicle_no" />
+    <result property="terminalid" column="terminal_id" />
+    <result property="tokenno" column="token_no" jdbcType="NUMERIC" />
+    <result property="planmovedate" column="TOKEN_DATE" />
+    <result property="contrno" column="contr_no" />
+    <result property="sealno" column="seal_no" />
+    <result property="movetype" column="move_type" />
+    <result property="og" column="og" />
+    <result property="imco" column="imco" />
+    <result property="yardlocn" column="yard_locn" />
+    <result property="desig" column="desig" />
+    <result property="yardid" column="yard_id" />
+    <result property="damagecode" column="damage_code" />
+    <result property="damagedescr" column="damage_description" />
+    <result property="inspStatus" column="V_INSP_STATUS" />
+    <result property="paymentStatus" column="PAYMENT_STATUS" />
+  </resultMap>
+  <select id="gettokens" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_TOKEN_DTLS_SLOT (#{userid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{password,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{deviceid,jdbcType=NUMERIC,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{tokenres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=tokensrs,mode=OUT}) }
+    </select>
+  <resultMap id="truckrs" type="com.dpw.ports.promis.hht.type.TruckType">
+    <result property="rfidno" column="rfid_no" />
+    <result property="regplace" column="reg_place" />
+    <result property="vehicleno" column="vehicle_no" />
+    <result property="tokenno" column="token_no" />
+    <result property="planmovedate" column="TOKEN_DATE" />
+    <result property="contrno" column="contr_no" />
+    <result property="chkDigit" column="CHK_DIGIT" />
+    <result property="terminalid" column="terminal_id" />
+    <result property="sealno" column="seal_no" />
+    <result property="movetype" column="move_type" />
+    <result property="og" column="og" />
+    <result property="imco" column="imco" />
+    <result property="yardlocn" column="yard_locn" />
+    <result property="desig" column="desig" />
+    <result property="yardid" column="yard_id" />
+    <result property="damagecode" column="damage_code" />
+    <result property="damagedescr" column="damage_description" />
+    <result property="inspStatus" column="V_INSP_STATUS" />
+    <result property="paymentStatus" column="PAYMENT_STATUS" />
+    <result property="lineCode" column="LINE_CODE" />
+    <result property="customSealReqd" column="CUST_SEAL_REQD" />
+    <result property="isExTown" column="MT_FROM_EXTOWN" />
+    <result property="agentSealReqd" column="AGENT_SEAL_REQD" />
+    <result property="newIsoCode" column="NEW_ISO_CODE" />
+    <result property="customSeal" column="CUSTOM_SEAL" />
+    <result property="agentSeal" column="AGENT_SEAL" />
+    <result property="dpwSeal" column="DPW_SEAL" />
+    <result property="contrpos" column="loc_type_ind" />
+    <result property="gateno" column="entry_gate_id" />
+    <result property="chassisType" column="CHASSIS_TYPE" />
+    <result property="contrChassisPos" column="CONTR_CHASSIS_POS" />
+    <result property="mtInspStatus" column="MT_INSP_STATUS" />
+    <result property="mtInspFlag" column="MT_INSP_FLAG" />
+    <result property="destTerminalId" column="DEST_TERMINAL_ID" />
+    <result property="oogDim" column="og_dimen_trlfb" />
+    <result property="oogReason" column="og_reason" />
+    <result property="oogRemarks" column="og_remarks" />
+    <result property="limitedQtyImcoFlag" column="limited_qty_imco_flag" />
+  </resultMap>
+  <select id="gettokenfortruck" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_TOKEN_DTLS_TRUCK (#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{rfid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{tokenres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=truckrs,mode=OUT}) }
+</select>
+  <resultMap id="truckeirrs" type="com.dpw.ports.promis.hht.type.TruckEIRType">
+    <result property="contrno" column="contr_no" />
+    <result property="eirDate" column="eir_date" />
+    <result property="moverecdate" column="move_rec_date" />
+    <result property="actmovedate" column="act_move_date" />
+    <result property="eirNo" column="eir_no" />
+    <result property="tokenno" column="token_no" />
+    <result property="desig" column="desig" />
+    <result property="lineCode" column="line_code" />
+    <result property="vehicleno" column="vehicle_no" />
+    <result property="regplace" column="reg_place" />
+    <result property="terminalId" column="terminal_id" />
+    <result property="mobNo" column="mobile_no" />
+  </resultMap>
+  <select id="getdwctruckeir" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.get_eir_dtls_for_truck (#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{tokendwcres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=truckeirrs,mode=OUT}) }
+</select>
+  <resultMap id="vgmrs" type="com.dpw.ports.promis.hht.type.VGMWtType">
+    <result property="containerNo" column="CONTR_NO" />
+    <result property="tokenNo" column="TOKEN_NO" />
+    <result property="terminalId" column="TERMINAL_ID" />
+    <result property="declaredWt" column="DECLARED_WT" />
+    <result property="actualWt" column="ACTUAL_WT" />
+    <result property="eirDate" column="EIR_DATE" />
+    <result property="eirNo" column="EIR_NO" />
+    <result property="desig" column="DESIG" />
+  </resultMap>
+  <select id="getVGMContainerWeightDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+        {call VGM_VALIDATIONS_PKG.GET_VGM_CONTAINER_DTLS (#{pi_reg_place,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{pi_truck_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{pi_contr_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{pi_terminal_id,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{po_error,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{po_result_cpm,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=vgmrs,mode=OUT}) }
+</select>
+  <select id="updateVGMContainerWeightDetails" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+        {call VGM_VALIDATIONS_PKG.UPD_VGM_CONTAINER_DTLS(#{pi_contr_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{pi_lift_wt,jdbcType=NUMERIC,javaType=java.lang.Float,mode=IN},#{pi_crane_id,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{pi_user,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{po_error,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <select id="updateCustmGateEntry" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+        {call pkg_rsis_jobs.prc_ins_mdt_custom_truck_entry(#{p_vehicle_reg_place,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_vehicle_reg_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_token_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_contr_no,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_source,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_user_id,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_gate_code,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_lane_code,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{p_lane_type,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{v_error_msg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <select id="updatecontainer" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_UPD_SEAL_DTLS(#{tokenno,jdbcType=INTEGER,mode=IN},#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{sealno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{movetype,jdbcType=INTEGER,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{damagecode,jdbcType=INTEGER,mode=IN},#{damagedescr,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{mtinspflag,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{customseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{dpwseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{agentseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{usercode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{atdate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{devid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{tipmsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{cancelstatus,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isSealInvalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isImcoLabelInvalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN}, #{mtOutSeatIssued,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{chassisType,jdbcType=INTEGER,mode=IN}, #{contrChassisPos,jdbcType=INTEGER,mode=IN}, #{oogStatus,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{oogReason,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <select id="addMTRefusal" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_ADD_MT_REFUSAL(#{tokenno,jdbcType=INTEGER,mode=IN},#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{damagecode,jdbcType=INTEGER,mode=IN},#{damagedescr,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{usercode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isMTRefusal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT})}
+</select>
+  <select id="updateContainerWithDamages" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_UPD_SEAL_DTLS_DAMAGE(#{tokenno,jdbcType=INTEGER,mode=IN},#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{sealno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{movetype,jdbcType=INTEGER,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{damagecode,jdbcType=INTEGER,mode=IN},#{damagedescr,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{mtinspflag,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{customseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{dpwseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{agentseal,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{usercode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{atdate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{devid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN} ,#{tipmsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{cancelstatus,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isSealInvalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isImcoLabelInvalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN}, #{mtOutSeatIssued,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{chassisType,jdbcType=INTEGER,mode=IN}, #{contrChassisPos,jdbcType=INTEGER,mode=IN}, #{oogStatus,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{oogReason,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <select id="accepttoken" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_ACCEPT_TOKEN_DTLS(#{tokenno,jdbcType=INTEGER,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{terminalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{acctdate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{usercode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{active,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <resultMap id="eirrs" type="com.dpw.ports.promis.hht.type.EirType">
+    <result property="tokenno" column="token_no" />
+    <result property="eirno" column="eir_no" />
+    <result property="eirdate" column="eir_date" />
+    <result property="contrno" column="contr_no" />
+    <result property="desig" column="desig" />
+    <result property="terminalid" column="terminal_id" />
+    <result property="vehicleno" column="vehicle_no" />
+    <result property="regplace" column="reg_place" />
+    <result property="inspremark" column="cust_insp_remarks" />
+    <result property="freezone" column="free_zone" />
+    <result property="sealno" column="seal_no" />
+    <result property="custXrayHold" column="cust_xray_hold" />
+    <result property="custXrayHoldRemarks" column="cust_xray_hold_remarks" />
+    <result property="inspFlag" column="INSP_FLAG" />
+    <result property="dmInspRemarks" column="DM_INSP_REMARKS" />
+  </resultMap>
+  <select id="geteir" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                     {call OPCT_GET_VESSEL_DETAILS.OPCT_HHT_GET_EIR_DTLS(#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplace,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param1,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param2,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param3,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{eirres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=eirrs,mode=OUT})}
+</select>
+  <select id="confirmgateoutmove" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_EIR_VERIFICATION(#{tokenno,jdbcType=INTEGER,mode=IN},#{eirno,jdbcType=INTEGER,mode=IN},#{containerno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{terminalid,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{confirm,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{usercode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+</select>
+  <resultMap id="gatepasslist" type="com.dpw.ports.promis.hht.type.FZGPGateInOutSearchList">
+    <result property="gpno" column="GP_NO" />
+    <result property="vehicle" column="VEHICLE" />
+    <result property="gpdate" column="GP_DATE" />
+    <result property="gpexpdate" column="GP_EXPDATE" />
+    <result property="gpstatus" column="GP_STATUS" />
+    <result property="gptype" column="GP_TYPE" />
+    <result property="gprefno" column="GP_REF_NO" />
+    <result property="boeno" column="BOENO" />
+    <result property="goodsdesc" column="GOOD_DESCRIPTION" />
+    <result property="pkgtype" column="PKG_TYP" />
+    <result property="contnrno" column="CONTR_NO" />
+    <result property="sealno" column="SEAL_NO" />
+    <result property="marksnos" column="MARKS_NOS" />
+    <result property="custname" column="CUST_NAME" />
+    <result property="contnrsize" column="CONTR_SIZE" />
+    <result property="cargotypes" column="CARGO_TYPE" />
+    <result property="chasisunit" column="CHASIS_UNIT" />
+    <result property="chasisno" column="CHASISNO" />
+    <result property="gpitemqty" column="GP_ITEM_QTY" />
+    <result property="gpitemwt" column="GP_ITEM_WT" />
+    <result property="inspnauth" column="INSPN_AUTH" />
+    <result property="actiondesc" column="ACTION_DESC" />
+    <result property="inspremarks" column="INSP_REMARKS" />
+    <result property="remarks" column="REMARKS" />
+    <result property="southjafzaflag" column="south_jafza" />
+    <result property="custHold" column="CUST_HOLD" />
+    <result property="custRemarks" column="CUST_REMARKS" />
+    <result property="gateNo" column="GATE_NO" />
+    <result property="dmInspRequired" column="DM_INSP_REQUIRED" />
+    <result property="dmInspStatus" column="DM_INSP_STATUS" />
+  </resultMap>
+  <resultMap id="gatepasslistGCRORO" type="com.dpw.ports.promis.hht.type.FZGPGateInOutSearchList">
+    <result property="gpno" column="GP_NO" />
+    <result property="vehicle" column="VEHICLE" />
+    <result property="gpdate" column="GP_DATE" />
+    <result property="gpexpdate" column="GP_EXPDATE" />
+    <result property="gpstatus" column="GP_STATUS" />
+    <result property="gptype" column="GP_TYPE" />
+    <result property="gprefno" column="GP_REF_NO" />
+    <result property="boeno" column="BOENO" />
+    <result property="boeDesc" column="BOE_DESCR" />
+    <result property="goodsdesc" column="GOOD_DESCRIPTION" />
+    <result property="pkgtype" column="PKG_TYP" />
+    <result property="contnrno" column="CONTR_NO" />
+    <result property="sealno" column="SEAL_NO" />
+    <result property="marksnos" column="MARKS_NOS" />
+    <result property="custname" column="CUST_NAME" />
+    <result property="contnrsize" column="CONTR_SIZE" />
+    <result property="cargotypes" column="CARGO_TYPE" />
+    <result property="chasisunit" column="CHASIS_UNIT" />
+    <result property="chasisno" column="CHASISNO" />
+    <result property="gpitemqty" column="GP_ITEM_QTY" />
+    <result property="gpitemwt" column="GP_ITEM_WT" />
+    <result property="inspnauth" column="INSPN_AUTH" />
+    <result property="actiondesc" column="ACTION_DESC" />
+    <result property="inspremarks" column="INSP_REMARKS" />
+    <result property="remarks" column="REMARKS" />
+    <result property="southjafzaflag" column="south_jafza" />
+    <result property="custHold" column="CUST_HOLD" />
+    <result property="custRemarks" column="CUST_REMARKS" />
+    <result property="dmInspRequired" column="DM_INSP_REQUIRED" />
+    <result property="dmInspStatus" column="DM_INSP_STATUS" />
+  </resultMap>
+  <select id="fzgatepasslist" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call MDT_FZGATE_PACKAGE.MDT_FZGATE_PASS_LIST_INOUT(#{gpnumber,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplace,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gpType,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gatepasslist,jdbcType=CURSOR,javaType=java.sql.ResultSet,mode=OUT,resultMap=gatepasslist},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="fzgatepassupdate" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                 {call MDT_FZGATE_PACKAGE.MDT_FZGATE_PASS_UPDATE(#{gpnumber,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gprefnumber,jdbcType=NUMERIC,javaType=java.lang.String,mode=IN},#{gateno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{gateuser,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{sourcesys,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{remarks,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{noofrows,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="tokenDetailsRS" type="com.dpw.ports.promis.hht.type.ContainerType">
+    <result property="containerNo" column="contr_no" />
+    <result property="creationDate" column="crt_date" />
+    <result property="contrLocation" column="contr_location" />
+  </resultMap>
+  <select id="getTokenDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call mt_contr_monitor.update_token_dtl (#{tokenNo,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},#{userId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{contrList,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=tokenDetailsRS,mode=OUT},#{errMsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="dummyContainerRS" type="com.dpw.ports.promis.hht.type.DummyContainerType">
+    <result property="containerNo" column="contr_no" />
+    <result property="yardLocation" column="yard_location" />
+    <result property="lineCode" column="line_code" />
+    <result property="isoType" column="iso_type" />
+    <result property="containerSize" column="contr_size" />
+    <result property="newIsoCode" column="new_iso_code" />
+    <result property="truckCode" column="truck_code" />
+    <result property="schId" column="sch_id" />
+    <result property="slotId" column="slot_id" />
+    <result property="haulCode" column="haul_code" />
+    <result property="terminalId" column="terminal_id" />
+  </resultMap>
+  <select id="getDEDContrPlanMoves" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call mt_contr_monitor.get_ded_plan_moves_dtls (#{tokenNo,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},#{dummyContrList,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=dummyContainerRS,mode=OUT},#{errMsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="sendTOSMsg" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call mt_contr_monitor.send_tos_msg_6021(#{msgID,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{msgAction,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{lineCode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{contrNo,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{isoType,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{contrSize,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{newIsoCode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{truckCode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{scheduleId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{slotId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{haulCode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{terminalId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{msg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{errMsg,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="prevSealDetailsRS" type="com.dpw.ports.promis.hht.type.SealType">
+    <result property="sealNo" column="SEAL_NO" />
+    <result property="sealDate" column="SEAL_DATE" />
+    <result property="moveType" column="MOVE_TYPE" />
+    <result property="moveTypeDesc" column="MOVE_TYPE_DESC" />
+  </resultMap>
+  <select id="prevSealDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_PRV_SEAL_DTLS (#{PI_CONTR_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_TOKEN_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{PO_RESULT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=prevSealDetailsRS,mode=OUT}) }
+    </select>
+  <resultMap id="prevDamageDetailsRS" type="com.dpw.ports.promis.hht.type.DamageType">
+    <result property="damageCode" column="DAMAGE_CODE" />
+    <result property="damageDesc" column="DAMAGE_DESCRIPTION" />
+    <result property="damageDate" column="DAMAGE_DATE" />
+    <result property="moveTypeCode" column="MOVE_TYPE_CODE" />
+    <result property="moveTypeDesc" column="MOVE_TYPE_DESC" />
+  </resultMap>
+  <select id="prevDamageDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_PRV_DMG_DTLS (#{PI_CONTR_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_TOKEN_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{PO_RESULT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=prevDamageDetailsRS,mode=OUT}) }
+    </select>
+  <resultMap id="codes" type="com.dpw.ports.promis.hht.type.CodeType">
+    <result property="codeValue" column="CODE_CODE" />
+    <result property="codeName" column="CODE_DESC1" />
+  </resultMap>
+  <select id="getMajorDamages" resultMap="codes" parameterType="java.util.Map">
+        SELECT CODE_CODE, CODE_DESC1
+        FROM codes
+        WHERE CODE_TYPE = 'DAMAGE'
+        <if test="includeNonMajor != null and includeNonMajor == false">
+        AND CODE_CODE &gt; 50
+        </if>
+        ORDER BY CODE_CODE
+    </select>
+  <resultMap id="getTokenContrDtlsForTruckRS" type="com.dpw.ports.promis.hht.type.DummyTokenContrType">
+    <result property="vehicleNo" column="VEHICLE_NO" />
+    <result property="tokenNo" column="TOKEN_NO" />
+    <result property="contrNo" column="CONTR_NO" />
+    <result property="yardLoc" column="YARD_LOCN" />
+    <result property="desig" column="DESIG" />
+    <result property="terminalId" column="TERMINAL_ID" />
+    <result property="mtype" column="MOVE_TYPE" />
+    <result property="weight" column="WT" />
+    <result property="isoCode" column="NEW_ISO_CODE" />
+    <result property="destTerminal" column="DEST_TERMINAL_ID" />
+    <result property="haulType" column="HAUL_TYPE" />
+  </resultMap>
+  <select id="getTokenContrDtlsForTruck" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_TOKEN_COMER_TRUCK (#{PI_VEHICLE_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{PO_RESULT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=getTokenContrDtlsForTruckRS,mode=OUT}) }
+    </select>
+  <select id="verifyUser" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_USER_VALIDATION (#{PI_USER_NAME,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_USER_PWD,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_VALID,jdbcType=INTEGER,javaType=java.lang.Integer,mode=OUT},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="contrlocRS" type="com.dpw.ports.promis.hht.type.ContrLocationType">
+    <result property="contrno" column="contr_no" />
+    <result property="terminalid" column="terminal_id" />
+    <result property="movetype" column="move_type" />
+    <result property="yardlocn" column="yard_locn" />
+    <result property="yardid" column="yard_id" />
+    <result property="contrpos" column="loc_type_ind" />
+    <result property="gateno" column="entry_gate_id" />
+  </resultMap>
+  <select id="getContrLocation" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_LOC_FOR_CONTR_QUTA (#{contrno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{contrlocres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=contrlocRS,mode=OUT}) }
+    </select>
+  <resultMap id="printeirRS" type="com.dpw.ports.promis.hht.type.PrintEirType">
+    <result property="tokenno" column="TOKEN_NO" />
+    <result property="consigneename" column="CONSIGNEE" />
+    <result property="eirdate" column="EIR_DATE" />
+    <result property="eirno" column="EIR_NO" />
+    <result property="contrno" column="CONTR_NO" />
+    <result property="terminalid" column="TERMINAL_ID" />
+    <result property="vehicleno" column="PLATE_NO" />
+    <result property="regplace" column="PLATE_EMIRATE" />
+    <result property="seal" column="SEAL" />
+    <result property="dpaSeal" column="DPA_SEAL" />
+    <result property="agentSeal" column="AGENT_SEAL" />
+    <result property="customsSeal" column="CUSTOMS_SEAL" />
+    <result property="load" column="LOAD" />
+    <result property="handling" column="HANDLING" />
+    <result property="remarks" column="REMARKS" />
+    <result property="remarks2" column="REMARKS2" />
+    <result property="remarks3" column="REMARKS3" />
+    <result property="location" column="LOCATION" />
+  </resultMap>
+  <select id="printEir" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+                     {call OPCT_GET_VESSEL_DETAILS.OPCT_HHT_GET_EIR_CNSGNEE_DTLS(#{contrno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplace,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{platecode,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param1,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param2,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{param3,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{printeirres,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=printeirRS,mode=OUT})}
+    </select>
+  <resultMap id="vesselRS" type="com.dpw.ports.promis.hht.type.NoticeDetailsResType">
+    <result property="rotationNumber" column="ROTN" />
+    <result property="vesselName" column="VESS_NAME" />
+    <result property="berthNumber" column="CURR_BTH" />
+    <result property="voyageNumber" column="VOYAGE_NO" />
+    <result property="pinNumber" column="PIN_NO" />
+  </resultMap>
+  <resultMap id="noticeDetailsRS" type="com.dpw.ports.promis.hht.type.NoticeTypeList">
+    <result property="noticeType" column="NOTICE_TYPE" />
+    <result property="etcDate" column="ETC_DATE" />
+    <result property="userId" column="CREATED_BY" />
+  </resultMap>
+  <select id="getNoticeDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call PR_BERTH_BOOKING_PKG.GET_VSL_NOTICE_DTLS (#{rotationNumber,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},#{terminalId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{vesselRS,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=vesselRS,mode=OUT},#{noticeDetailsRS,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=noticeDetailsRS,mode=OUT},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="updateNoticeDetails" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call PR_BERTH_BOOKING_PKG.INSUPD_NOTICE_DTLS(#{rotationNumber,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},#{terminalId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{noticeType,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{etcDate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{procStatus,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{userId,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{status,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="berthrs" type="com.dpw.ports.promis.hht.type.BerthType">
+    <result property="rotationNumber" column="rotn" />
+    <result property="vesselName" column="vess_name" />
+    <result property="terminalId" column="terminal_id" />
+  </resultMap>
+  <select id="getBerths" statementType="CALLABLE" useCache="false" flushCache="true">
+                 {call PR_BERTH_BOOKING_PKG.GET_BERTHS(#{berthRS,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=berthrs,mode=OUT},#{errmessage,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <resultMap id="tokenSlotRs" type="com.dpw.ports.promis.hht.type.TokenSlotType">
+    <result property="regPlace" column="REG_PLACE" />
+    <result property="vehicleNo" column="VEHICLE_NO" />
+    <result property="tokenNo" column="TOKEN_NO" />
+    <result property="containerNo" column="CONTR_NO" />
+    <result property="slotStartTime" column="SLOT_START_TIME" />
+    <result property="slotEndTime" column="SLOT_END_TIME" />
+    <result property="terminalId" column="TERMINAL_ID" />
+    <result property="timeSlotValid" column="TIME_SLOT_VALID" />
+    <result property="stopInspection" column="STOP_INSPECTION" />
+    <result property="satisfyAnyOne" column="ALLOW_SATISFY_ANYONE" />
+    <result property="validThreshold" column="LV_THRESHOLD_VALID" />
+    <result property="thresholdError" column="LV_THRESHOLD_ERROR" />
+  </resultMap>
+  <select id="getTokenSlot" statementType="CALLABLE" useCache="false" flushCache="true">
+         {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_TOKEN_TIME_SLOT(#{vehicleno,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{regplate,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{tokenSlotRs,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=tokenSlotRs,mode=OUT}) }
+    </select>
+  <resultMap id="trunkInfoRs" type="com.dpw.ports.promis.hht.type.TruckInfoResType">
+    <result property="containerNumber" column="CONTR_NO" />
+    <result property="moveType" column="MOVE_TYPE" />
+    <result property="designation" column="DESIG" />
+    <result property="yardLocation" column="YARD_LOCN" />
+    <result property="tokenNo" column="TOKEN_NO" />
+    <result property="terminalId" column="TERMINAL_ID" />
+    <result property="regPlate" column="REG_PLACE" />
+    <result property="vehicleNo" column="VEHICLE_NO" />
+    <result property="lineCode" column="LINE_CODE" />
+  </resultMap>
+  <select id="getTruckInfoByContainer" statementType="CALLABLE" useCache="false" flushCache="true">
+         {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_PLAN_FOR_CONTAINER(#{containerNumber,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{trunkInfoRs,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=trunkInfoRs,mode=OUT}) }
+    </select>
+  <select id="getAdjustTimeSlot" statementType="CALLABLE" useCache="false" flushCache="true">
+         {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_ADJUST_TIME_SLOT(#{PI_CONTR_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_TOKEN_NO,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},#{PI_USER_CODE,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_RESULT,jdbcType=INTEGER,javaType=java.lang.Integer,mode=OUT},#{PO_REMARKS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="getPGADetails" resultMap="gatepasslist" parameterType="map">
+           SELECT H.GA_NO AS GP_NO,
+       H.CITY_CODE || ' ' || NVL(H.PLATE_CODE, '') || ' ' || H.VEH_NO AS VEHICLE,
+       TO_CHAR(H.CREATED_ON, 'dd-mm-yyyy hh24:mi') AS GP_DATE,
+       NULL AS GP_TYPE,
+       NULL AS GP_REF_NO,
+       NULL AS CONTR_NO,
+       NULL AS SEAL_NO,
+       (SELECT B.MARKS_NO
+          FROM BOL B
+         WHERE B.ROTN = D.ROTATION_NO
+           AND B.BOL_NO = D.BOL_NO
+           AND D.BOL_UNIQ_ID = B.BOL_UNIQUE_IND
+           AND D.BOL_SPLIT_ID = B.BOL_SPLIT) AS MARKS_NOS,
+       (SELECT V.PARTY_NAME
+          FROM GATE_ADVICE_REQUEST GA, V_PARTY_FULL V
+         WHERE GA.GA_REQ_ID = H.GA_REQ_ID
+           AND GA.CONSIGNEE_CODE = V.PARTY_CODE
+           AND V.CUSTOMER_TYPE = GA.CONSIGNEE_TYPE
+           AND V.IS_PARTY_VALID = 1
+           AND V.IS_ROLE_VALID = 1) AS CUST_NAME,
+       NULL AS CONTR_SIZE,
+       NULL AS CHASIS_UNIT,
+       NULL AS CHASISNO,
+       NULL AS INSPN_AUTH,
+       NULL AS ACTION_DESC,
+       NULL AS INSP_REMARKS,
+       NULL AS REMARKS,
+       NULL AS SOUTH_JAFZA,
+       NULL AS CUST_HOLD,
+       NULL AS CUST_REMARKS,
+       NULL AS GP_STATUS,
+       TO_CHAR(H.GA_EXPIRY_DATE, 'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+       DECODE(H.CARGO_TYPE, 'VC', 'VEHICLE CARGO', 'BC', 'BULK', 'GC') AS CARGO_TYPE,
+       D.ROTATION_NO,
+       D.BOL_NO,
+       D.BOL_UNIQ_ID,
+       D.BOL_SPLIT_ID,
+       D.CON_SR_NO,
+       D.Doc_No AS BOENO,
+       (SELECT GC.CARGO_CATEGORY_DESC
+          FROM GCB_CARGO_CAT_MAPPING_DTLS GD, GCB_CARGO_CATEGORY GC
+         WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID
+           AND GD.DETAIL_ID = D.DETAIL_ID) AS GOOD_DESCRIPTION,
+       (SELECT CD.CODE_DESC1
+          FROM GCB_CARGO_CAT_MAPPING_DTLS GD,CODES CD
+         WHERE GD.DETAIL_ID = D.DETAIL_ID
+         AND CD.CODE_CODE=GD.PKG_TYPE
+         AND CD.code_type = 'PACKAGE'
+         ) AS PKG_TYP,
+       NVL(D.QTY, D.WEIGHT) AS GP_ITEM_QTY,
+       D.WEIGHT AS GP_ITEM_WT,
+       NULL AS GATE_NO
+  FROM GATE_ADVICE_HDR H, GATE_ADVICE_DTLS D
+ WHERE H.GA_ID = D.GA_ID
+  AND H.CITY_CODE = #{CITY_CODE}
+  AND H.VEH_NO = #{VEH_NO}
+  <if test="PLT_CODE != null and PLT_CODE != ''">
+  AND H.PLATE_CODE = #{PLT_CODE}
+  </if>
+   AND (H.IS_SELF_DRIVEN IS NULL OR H.IS_SELF_DRIVEN != 1)
+   AND H.GA_EXPIRY_DATE &gt; SYSDATE
+   AND H.IS_VALID=1
+   AND H.GA_STATUS='A'
+   AND D.DOC_TYPE = 'BOL'
+
+union
+
+ SELECT H.GA_NO AS GP_NO,
+       H.CITY_CODE || ' ' || NVL(H.PLATE_CODE, '') || ' ' || H.VEH_NO AS VEHICLE,
+       TO_CHAR(H.CREATED_ON, 'dd-mm-yyyy hh24:mi') AS GP_DATE,
+       NULL AS GP_TYPE,
+       NULL AS GP_REF_NO,
+       NULL AS CONTR_NO,
+       NULL AS SEAL_NO,
+       (select ci.MARKS_NOS
+          from cargo_Item ci, export_booking exb
+          where exb.rotation_no = D.rotation_no
+           AND exb.agent_brn = D.bol_no
+           AND exb.export_booking_id = ci.export_booking_id
+           and CI.CARGO_CATEGORY_ID = D.DETAIL_ID
+           ) AS MARKS_NOS,
+       (SELECT V.PARTY_NAME
+          FROM GATE_ADVICE_REQUEST GA, V_PARTY_FULL V
+         WHERE GA.GA_REQ_ID = H.GA_REQ_ID
+           AND GA.CONSIGNEE_CODE = V.PARTY_CODE
+           AND V.CUSTOMER_TYPE = GA.CONSIGNEE_TYPE
+           AND V.IS_PARTY_VALID = 1
+           AND V.IS_ROLE_VALID = 1) AS CUST_NAME,
+       NULL AS CONTR_SIZE,
+       NULL AS CHASIS_UNIT,
+       NULL AS CHASISNO,
+       NULL AS INSPN_AUTH,
+       NULL AS ACTION_DESC,
+       NULL AS INSP_REMARKS,
+       NULL AS REMARKS,
+       NULL AS SOUTH_JAFZA,
+       NULL AS CUST_HOLD,
+       NULL AS CUST_REMARKS,
+       NULL AS GP_STATUS,
+       TO_CHAR(H.GA_EXPIRY_DATE, 'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+       DECODE(H.CARGO_TYPE, 'VC', 'VEHICLE CARGO', 'BC', 'BULK', 'GC') AS CARGO_TYPE,
+       D.ROTATION_NO,
+       D.BOL_NO,
+       NULL,
+       NULL,
+       D.CON_SR_NO,
+       D.BOL_NO AS BOENO,
+       (SELECT GC.CARGO_CATEGORY_DESC
+          FROM GCB_CARGO_CAT_MAPPING_DTLS GD, GCB_CARGO_CATEGORY GC
+         WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID
+           AND GD.DETAIL_ID = D.DETAIL_ID) AS GOOD_DESCRIPTION,
+       (SELECT CD.CODE_DESC1
+          FROM GCB_CARGO_CAT_MAPPING_DTLS GD,CODES CD
+         WHERE GD.DETAIL_ID = D.DETAIL_ID
+         AND CD.CODE_CODE=GD.PKG_TYPE
+         AND CD.code_type = 'PACKAGE'
+         ) AS PKG_TYP,
+       NVL(D.QTY, D.WEIGHT) AS GP_ITEM_QTY,
+       D.WEIGHT AS GP_ITEM_WT,
+       NULL AS GATE_NO
+  FROM GATE_ADVICE_HDR H, GATE_ADVICE_DTLS D
+ WHERE H.GA_ID = D.GA_ID
+   AND H.CITY_CODE = #{CITY_CODE}
+   AND H.VEH_NO = #{VEH_NO}
+   <if test="PLT_CODE != null and PLT_CODE != ''">
+   AND H.PLATE_CODE = #{PLT_CODE}
+   </if>
+   AND (H.IS_SELF_DRIVEN IS NULL OR H.IS_SELF_DRIVEN != 1)
+   AND H.GA_EXPIRY_DATE &gt; SYSDATE
+   AND H.IS_VALID=1
+   AND H.GA_STATUS='A'
+   AND D.DOC_TYPE = 'BRN'
+
+    </select>
+  <select id="getCrgType" parameterType="map" resultType="java.lang.String">
+        SELECT CRG_TYPE FROM GPHDR_G WHERE TRUCK_REG_NO=#{TRUCK_REG_NO}
+        <if test="GP_NO != null and GP_NO != ''">
+            AND GP_NO=#{GP_NO}
+        </if>
+  </select>
+  <select id="getGPDetailsGC" resultMap="gatepasslist" parameterType="map">
+       SELECT H.GP_NO AS GP_NO,
+            TO_CHAR(H.SRVY_DTTM + (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL}),'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+            DECODE(H.CRG_TYPE,'AU','VEHICLE CARGO','PC','GC','BULK') As CARGO_TYPE,
+            (SELECT B.CSTM_BOE_NO FROM BOECRGHDR_G B , BOECRGDTLS_G D1 WHERE B.INT_BOE_NO = D1.INT_BOE_NO AND D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO) AS BOENO,
+            (SELECT GC.CARGO_CATEGORY_DESC FROM GCB_CARGO_CAT_MAPPING_DTLS GD , GCB_CARGO_CATEGORY GC WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID AND GD.DETAIL_ID = PP.DETAIL_ID)  AS GOOD_DESCRIPTION,
+            (SELECT GD.PKG_TYPE FROM GCB_CARGO_CAT_MAPPING_DTLS GD  WHERE GD.DETAIL_ID = PP.DETAIL_ID) AS PKG_TYP,
+            NULL AS CHASISNO,
+            I.MARKS_NOS AS MARKS_NOS,
+            NVL(D.CNFM_UNIT_CNT,D.CNFM_TOT_WT) AS GP_ITEM_QTY,
+            D.CNFM_TOT_WT AS GP_ITEM_WT,
+            P.PREGP_NO AS GP_REF_NO,
+            NULL AS GP_STATUS,
+            NULL AS GP_TYPE,
+            H.TRUCK_REG_NO AS VEHICLE,
+            TO_CHAR(H.ADT_INS_DTTM,'dd-mm-yyyy hh24:mi') AS GP_DATE,
+            NULL AS CONTR_NO,
+            NULL AS SEAL_NO,
+            (SELECT PTY.PTY_nm FROM PTY_IM PTY WHERE PTY.PTY_CD= PP.CSNE_CD ) AS CUST_NAME,
+            NULL AS CONTR_SIZE,
+            NULL AS CHASIS_UNIT,
+            NULL AS INSPN_AUTH,
+            NULL AS ACTION_DESC,
+            NULL AS INSP_REMARKS,
+            NULL AS REMARKS,
+            NULL AS SOUTH_JAFZA,
+            NULL AS CUST_HOLD,
+            NULL AS CUST_REMARKS
+        FROM   	GPHDR_G H,
+                GPDTLS_G D,
+                PREGATEHDR_G P,
+                IGMCRG_VW I,
+                PREGATEDTLS_G PP
+        WHERE  	H.INT_GP_NO = D.INT_GP_NO
+                AND    H.TRUCK_REG_NO = #{TRUCK_REG_NO}
+                AND    P.INT_PREGP_NO = H.INT_PREGP_NO
+                AND    (P.SELF_DRIVE_FLG ='N' or P.SELF_DRIVE_FLG IS NULL)
+                AND    P.INT_PREGP_NO = PP.INT_PREGP_NO
+                AND    D.INT_APPLN_IGM_CRG_SEQ_NO = I.INT_IGM_CRG_SEQ_NO
+                AND    D.INT_PKG_SEQ_NO = I.INT_PKG_SEQ_NO
+                                AND    H.CRG_TYPE  != 'RORO'
+                AND    H.SRVY_DTTM  &gt; SYSDATE - (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL})
+        UNION
+        SELECT TO_CHAR(GPM.GATE_PASS_NO)  AS GP_NO,
+            TO_CHAR(GPM.CREATED_DATE + (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL}),'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+            GCC.CARGO_TYPE As CARGO_TYPE,
+            B.DPC_BOE_NO AS BOENO,
+            GCC.cargo_category_desc  AS GOOD_DESCRIPTION,
+            GCCMD.PKG_TYPE  AS PKG_TYP,
+            NULL AS CHASISNO,
+            B.MARKS_NO AS MARKS_NOS,
+            NVL(CCGP.MAPPING_QTY,CCGP.MAPPING_WEIGHT) AS GP_ITEM_QTY,
+            CCGP.MAPPING_WEIGHT AS GP_ITEM_WT,
+            (SELECT GA_NO FROM GATE_ADVICE_HDR GAH WHERE GAH.GA_ID=GPM.GA_ID) AS GP_REF_NO,
+            NULL AS GP_STATUS,
+            NULL AS GP_TYPE,
+            GPM.TRUCK_NO AS VEHICLE,
+            TO_CHAR(GPM.CREATED_DATE,'dd-mm-yyyy hh24:mi') AS GP_DATE,
+            NULL AS CONTR_NO,
+            NULL AS SEAL_NO,
+            (SELECT V.PARTY_NAME FROM V_PARTY_FULL V WHERE GCCM.CUSTOMER_CODE=V.PARTY_CODE AND GCCM.CUSTOMER_TYPE=V.CUSTOMER_TYPE) AS CUST_NAME,
+            NULL AS CONTR_SIZE,
+            NULL AS CHASIS_UNIT,
+            NULL AS INSPN_AUTH,
+            NULL AS ACTION_DESC,
+            NULL AS INSP_REMARKS,
+            NULL AS REMARKS,
+            NULL AS SOUTH_JAFZA,
+            NULL AS CUST_HOLD,
+            NULL AS CUST_REMARKS
+        FROM    GCB_CARGO_CAT_MAPPING_DTLS  GCCMD,
+                GCB_CARGO_CAT_MAPPING       GCCM,
+                GATE_PASS_MASTER            GPM,
+                CARGO_CAT_GATE_PASS_MAPPING CCGP,
+                GCB_CARGO_CATEGORY          GCC,
+                BOL                         B
+        WHERE CCGP.GATE_PASS_ID = GPM.GATE_PASS_ID
+            AND    GPM.TRUCK_NO = #{TRUCK_REG_NO}
+            AND   CCGP.CARGO_CAT_DETAIL_ID = GCCMD.DETAIL_ID
+            AND   GCCMD.MAPPING_ID = GCCM.MAPPING_ID
+            AND   B.BOL_NO = GCCM.BOL_NO
+            AND   B.BOL_UNIQUE_IND = GCCM.BOL_UNIQUE_IND
+            AND   B.BOL_SPLIT      = GCCM.BOL_SPLIT
+            AND   B.rotn           = GCCM.ROTATION_NO
+            AND   GCC.CARGO_CATEGORY_ID = GCCMD.CARGO_CATEGORY_ID
+            AND   GCC.CARGO_TYPE != 'RORO'
+            AND    GPM.CREATED_DATE  &gt; SYSDATE - (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL})
+            AND   GPM.CALM_GP_NO IS NULL
+            AND   GPM.GATE_PASS_NO IS NOT NULL
+    </select>
+  <select id="getGPDetailsRORO" resultMap="gatepasslist" parameterType="map">
+        SELECT  H.GP_NO AS GP_NO,
+                TO_CHAR(H.SRVY_DTTM + (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL}),'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+                DECODE(H.CRG_TYPE,'AU','VEHICLE CARGO','GC') AS CARGO_TYPE,
+                (SELECT B.CSTM_BOE_NO FROM BOECRGHDR_G B , BOECRGDTLS_G D1 WHERE B.INT_BOE_NO = D1.INT_BOE_NO AND D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO) AS BOENO,
+                (SELECT GC.CARGO_CATEGORY_DESC FROM GCB_CARGO_CAT_MAPPING_DTLS GD , GCB_CARGO_CATEGORY GC WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID
+                AND GD.DETAIL_ID = I.EXT_DETAIL_ID)  AS GOOD_DESCRIPTION,
+                (SELECT GD.PKG_TYPE FROM GCB_CARGO_CAT_MAPPING_DTLS GD  WHERE GD.DETAIL_ID = I.EXT_DETAIL_ID)  AS PKG_TYP,
+                I.LABEL AS CHASISNO,
+                I.MARKS_NOS AS MARKS_NOS,
+                NVL(D.CNFM_UNIT_CNT, D.CNFM_TOT_WT ) AS GP_ITEM_QTY,
+                D.CNFM_TOT_WT AS GP_ITEM_WT,
+                P.PREGP_NO AS GP_REF_NO,
+                NULL AS GP_STATUS,
+                NULL AS GP_TYPE,
+                H.TRUCK_REG_NO AS VEHICLE,
+                TO_CHAR(H.ADT_INS_DTTM,'dd-mm-yyyy hh24:mi') AS GP_DATE,
+                NULL AS CONTR_NO,
+                NULL AS SEAL_NO,
+                (SELECT PTY.PTY_nm FROM PTY_IM PTY WHERE PTY.PTY_CD= PP.CSNE_CD ) AS CUST_NAME,
+                NULL AS CONTR_SIZE,
+                NULL AS CHASIS_UNIT,
+                NULL AS INSPN_AUTH,
+                NULL AS ACTION_DESC,
+                NULL AS INSP_REMARKS,
+                NULL AS REMARKS,
+                NULL AS SOUTH_JAFZA,
+                NULL AS CUST_HOLD,
+                NULL AS CUST_REMARKS
+        FROM    GPHDR_G H,
+                GPDTLS_G D,
+                PREGATEHDR_G P,
+                IGMCRG_VW I,
+                PREGATEDTLS_G PP
+        WHERE   H.INT_GP_NO = D.INT_GP_NO
+                AND     H.TRUCK_REG_NO = #{TRUCK_REG_NO}
+                AND     P.INT_PREGP_NO = H.INT_PREGP_NO
+                AND     P.INT_PREGP_NO = PP.INT_PREGP_NO
+                AND     (P.SELF_DRIVE_FLG ='N' OR P.SELF_DRIVE_FLG IS NULL)
+                AND     D.INT_APPLN_IGM_CRG_SEQ_NO = I.INT_IGM_CRG_SEQ_NO
+                AND     D.INT_PKG_SEQ_NO = I.INT_PKG_SEQ_NO
+                AND     H.SRVY_DTTM  &gt; SYSDATE - (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL})
+                AND     H.CRG_TYPE = 'AU'
+        UNION
+        SELECT TO_CHAR(GPM.GATE_PASS_NO) AS GP_NO,
+                TO_CHAR(GPM.CREATED_DATE + (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL}),'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+                GCC.CARGO_TYPE As CARGO_TYPE,
+                B.DPC_BOE_NO AS BOENO,
+                GCC.cargo_category_desc  AS GOOD_DESCRIPTION,
+                GCCMD.PKG_TYPE  AS PKG_TYP,
+                DDM.CHASIS_NO AS CHASISNO,
+                B.MARKS_NO AS MARKS_NOS,
+                NVL(CCGP.MAPPING_QTY,CCGP.MAPPING_WEIGHT) AS GP_ITEM_QTY,
+                CCGP.MAPPING_WEIGHT AS GP_ITEM_WT,
+                (SELECT GA_NO FROM GATE_ADVICE_HDR GAH WHERE GAH.GA_ID=GPM.GA_ID) AS GP_REF_NO,
+                NULL AS GP_STATUS,
+                NULL AS GP_TYPE,
+                GPM.TRUCK_NO AS VEHICLE,
+                TO_CHAR(GPM.CREATED_DATE,'dd-mm-yyyy hh24:mi') AS GP_DATE,
+                NULL AS CONTR_NO,
+                NULL AS SEAL_NO,
+                (SELECT V.PARTY_NAME FROM V_PARTY_FULL V WHERE GCCM.CUSTOMER_CODE=V.PARTY_CODE AND GCCM.CUSTOMER_TYPE=V.CUSTOMER_TYPE) AS CUST_NAME,
+                NULL AS CONTR_SIZE,
+                NULL AS CHASIS_UNIT,
+                NULL AS INSPN_AUTH,
+                NULL AS ACTION_DESC,
+                NULL AS INSP_REMARKS,
+                NULL AS REMARKS,
+                NULL AS SOUTH_JAFZA,
+                NULL AS CUST_HOLD,
+                NULL AS CUST_REMARKS
+        FROM   	GCB_CARGO_CAT_MAPPING_DTLS  GCCMD,
+                GCB_CARGO_CAT_MAPPING       GCCM,
+                GCB_CARGO_CATEGORY          GCC,
+                GATE_PASS_MASTER            GPM,
+                CARGO_CAT_GATE_PASS_MAPPING CCGP,
+                GATE_PASS_DETAIL            GPD,
+                DT_DETAIL_MAP               DDM,
+                BOL                         B
+        WHERE 	GPM.GATE_PASS_ID = GPD.GATE_PASS_ID
+                AND   GPM.TRUCK_NO = #{TRUCK_REG_NO}
+                AND   CCGP.GATE_PASS_ID = GPM.GATE_PASS_ID
+                AND   CCGP.CARGO_CAT_DETAIL_ID = GCCMD.DETAIL_ID
+                AND   B.BOL_NO = GCCM.BOL_NO
+                AND   B.BOL_UNIQUE_IND = GCCM.BOL_UNIQUE_IND
+                AND   B.BOL_SPLIT      = GCCM.BOL_SPLIT
+                AND   B.ROTN           = GCCM.ROTATION_NO
+                AND   GCCMD.MAPPING_ID = GCCM.MAPPING_ID
+                AND   DDM.DT_DETAILID = GPD.DT_DETAILID
+                AND   GCC.CARGO_CATEGORY_ID = GCCMD.CARGO_CATEGORY_ID
+                AND   GPM.CREATED_DATE  &gt; SYSDATE - (SELECT TO_NUMBER(PARAM_VALUE)/24 FROM PARAMETER_OM WHERE PARAM_NM = #{PARAMVAL})
+                AND   GCC.CARGO_TYPE = 'RORO'
+                AND   GPM.CALM_GP_NO IS NULL
+                AND   GPM.GATE_PASS_NO IS NOT NULL
+    </select>
+  <select id="getGPDetailsGCRORO" resultMap="gatepasslistGCRORO" parameterType="map">
+SELECT  H.GP_NO AS GP_NO,
+      TO_CHAR(H.SRVY_DTTM + (SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO')),'dd-mm-yyyy hh24:mi')
+      AS GP_EXPDATE,
+      DECODE(H.CRG_TYPE,'AU','VEHICLE CARGO','BL','BULK','GC') As CARGO_TYPE,
+      (SELECT B.CSTM_BOE_NO FROM BOECRGHDR_G B , BOECRGDTLS_G D1 WHERE B.INT_BOE_NO = D1.INT_BOE_NO AND D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO) AS BOENO,
+      (SELECT
+              CASE
+              WHEN mdb.boe_code  IN ('14-2-4', '14-2-6')
+              THEN 'FOR FREE ZONE ONLY'
+              WHEN (mdb.boe_code  IN ('302', '305', '501') and mdb.import_facility_type =4 and mdb.import_facility_code='1')
+              THEN 'FOR FREE ZONE ONLY'
+              else NULL
+         END AS BOE_DESCR
+      FROM BOECRGHDR_G B ,
+       BOECRGDTLS_G D1,
+       mq_dpc_boes mdb
+       WHERE B.INT_BOE_NO = D1.INT_BOE_NO AND D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO
+       and mdb.bill_no = b.cstm_boe_no) AS BOE_DESCR,
+       DECODE(H.CRG_TYPE,
+       'AU',
+       (SELECT GC.CARGO_CATEGORY_DESC
+       FROM GCB_CARGO_CAT_MAPPING_DTLS GD,
+       GCB_CARGO_CATEGORY         GC
+       WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID
+       AND GD.DETAIL_ID = nvl(PP.DETAIL_ID, I.EXT_DETAIL_ID)),
+       (SELECT SC.L_DESCR
+                 FROM SUBCMDTCD_GM SC, STRGCRGDTLS_G ST
+                WHERE SC.CMDT_CD = ST.CMDT_CD
+                  AND SC.SUB_CMDT_CD = ST.SUB_CMDT_CD
+                  AND ST.INT_GP_NO = H.INT_GP_NO
+                  AND ST.INT_PKG_SEQ_NO = I.INT_PKG_SEQ_NO
+                  AND ST.SEQ_NO = NVL(D.SEQ_NO, PP.SEQ_NO)
+                  AND NVL(SC.DEL_FLG, 'N') = 'N'
+                  AND ROWNUM = 1)) AS GOOD_DESCRIPTION,
+                   DECODE(H.CRG_TYPE,
+                'AU',
+                  (SELECT GD.PKG_TYPE
+                  FROM GCB_CARGO_CAT_MAPPING_DTLS GD,
+                      GCB_CARGO_CATEGORY         GC
+         WHERE GC.CARGO_CATEGORY_ID = GD.CARGO_CATEGORY_ID
+                  AND GD.DETAIL_ID = nvl(PP.DETAIL_ID, I.EXT_DETAIL_ID)),
+              (SELECT ST.PKG_TYPE
+                 FROM SUBCMDTCD_GM SC, STRGCRGDTLS_G ST
+                 WHERE SC.CMDT_CD = ST.CMDT_CD
+                  AND SC.SUB_CMDT_CD = ST.SUB_CMDT_CD
+                  AND ST.INT_GP_NO = H.INT_GP_NO
+                  AND ST.INT_PKG_SEQ_NO = I.INT_PKG_SEQ_NO
+                  AND ST.SEQ_NO = NVL(D.SEQ_NO, PP.SEQ_NO)
+                  AND NVL(SC.DEL_FLG, 'N') = 'N'
+                  AND ROWNUM = 1)) AS PKG_TYP,
+
+      I.LABEL AS CHASISNO,
+      I.MARKS_NOS AS MARKS_NOS,
+      NVL(D.CNFM_UNIT_CNT, D.CNFM_TOT_WT ) AS GP_ITEM_QTY,
+      D.CNFM_TOT_WT AS GP_ITEM_WT,
+      P.PREGP_NO AS GP_REF_NO,
+      NULL AS GP_STATUS,
+      NULL AS GP_TYPE,
+      H.TRUCK_REG_NO AS VEHICLE,
+      TO_CHAR(H.ADT_INS_DTTM,'dd-mm-yyyy hh24:mi') AS GP_DATE,
+      NULL AS CONTR_NO,
+      NULL AS SEAL_NO,
+      (SELECT PTY.PTY_nm FROM PTY_IM PTY WHERE PTY.PTY_CD= PP.CSNE_CD ) AS CUST_NAME,
+      NULL AS CONTR_SIZE,
+      NULL AS CHASIS_UNIT,
+      NULL AS INSPN_AUTH,
+      NULL AS ACTION_DESC,
+      NULL AS INSP_REMARKS,
+      NULL AS REMARKS,
+      NULL AS SOUTH_JAFZA,
+      NULL AS CUST_HOLD,
+      NULL AS CUST_REMARKS,
+      NULL AS GATE_NO,
+      NVL(D.SEQ_NO, PP.SEQ_NO)  SEQ_NO,
+    (SELECT 'Y'
+        FROM BOE_HOLD_HDR BHH, INSP_AUTHORITIES IA,BOECRGHDR_G B, BOECRGDTLS_G D1
+        WHERE B.INT_BOE_NO = D1.INT_BOE_NO
+        AND  D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO
+        AND  BHH.INSP_AUTH = IA.AUTH_CODE
+        AND  BHH.BOE_NO = B.CSTM_BOE_NO
+        AND  IA.CTMS_AUTH_CODE = '04'
+        AND  BHH.STATUS = 'I'
+        AND  BHH.INSP_TYPE = 3
+        AND ROWNUM = 1
+    ) DM_INSP_REQUIRED,
+    NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+    FROM TXN_DM_INSPECTION_STATUS DIS,BOECRGHDR_G B, BOECRGDTLS_G D1
+    WHERE B.INT_BOE_NO = D1.INT_BOE_NO
+    AND  D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO
+    AND DIS.BOE_NO = B.CSTM_BOE_NO AND DIS.GP_NO = H.GP_NO AND NVL(DIS.DOC_TYPE, 'B') = 'G'
+    AND ROWNUM = 1),
+        NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+    FROM TXN_DM_INSPECTION_STATUS DIS,BOECRGHDR_G B, BOECRGDTLS_G D1
+    WHERE B.INT_BOE_NO = D1.INT_BOE_NO
+    AND  D1.INT_IGM_EA_CRG_SEQ_NO = D.INT_APPLN_IGM_CRG_SEQ_NO
+    AND DIS.BOE_NO = B.CSTM_BOE_NO AND DIS.GP_NO IS NULL AND NVL(DIS.DOC_TYPE, 'B') = 'B'
+    AND ROWNUM = 1),
+         'D')) DM_INSP_STATUS
+    FROM    GPHDR_G H,
+      GPDTLS_G D,
+      PREGATEHDR_G P,
+      IGMCRG_VW I,
+      PREGATEDTLS_G PP
+    WHERE   H.INT_GP_NO = D.INT_GP_NO
+      AND     H.TRUCK_REG_NO like #{TRUCK_REG_NO}
+      AND     P.INT_PREGP_NO = H.INT_PREGP_NO
+      AND     P.INT_PREGP_NO = PP.INT_PREGP_NO
+      AND     (P.SELF_DRIVE_FLG ='N' OR P.SELF_DRIVE_FLG IS NULL)
+      AND     D.INT_APPLN_IGM_CRG_SEQ_NO = I.INT_IGM_CRG_SEQ_NO
+      AND     D.INT_PKG_SEQ_NO = I.INT_PKG_SEQ_NO
+      AND     H.SRVY_DTTM  &gt; SYSDATE - (SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO'))
+    UNION
+SELECT
+TO_CHAR(GPM.GATE_PASS_NO) AS GP_NO,
+TO_CHAR(GPM.CREATED_DATE  + (SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO')),'dd-mm-yyyy hh24:mi')
+      AS GP_EXPDATE,
+       GCC.CARGO_TYPE As CARGO_TYPE,
+       B.DPC_BOE_NO AS BOENO,
+        (SELECT
+              CASE
+              WHEN mdb.boe_code  IN ('14-2-4', '14-2-6')
+              THEN 'FOR FREE ZONE ONLY'
+              WHEN (mdb.boe_code  IN ('302', '305', '501') and mdb.import_facility_type =4 and mdb.import_facility_code='1')
+              THEN 'FOR FREE ZONE ONLY'
+              else NULL
+         END AS BOE_DESCR
+      FROM mq_dpc_boes mdb
+       WHERE mdb.bill_no = B.DPC_BOE_NO) AS BOE_DESCR,
+       gcc.cargo_category_desc AS GOOD_DESCRIPTION,
+       GCCMD.PKG_TYPE AS PKG_TYP,
+       DDM.CHASIS_NO AS CHASISNO,
+       B.MARKS_NO AS MARKS_NOS,
+       NVL(CCGP.MAPPING_QTY, CCGP.MAPPING_WEIGHT) AS GP_ITEM_QTY,
+       CCGP.MAPPING_WEIGHT AS GP_ITEM_WT,
+       (SELECT GA_NO FROM GATE_ADVICE_HDR GAH WHERE GAH.GA_ID = GPM.GA_ID) AS GP_REF_NO,
+       NULL AS GP_STATUS,
+       NULL AS GP_TYPE,
+       GPM.TRUCK_NO AS VEHICLE,
+       TO_CHAR(GPM.CREATED_DATE, 'dd-mm-yyyy hh24:mi') AS GP_DATE,
+       NULL AS CONTR_NO,
+       NULL AS SEAL_NO,
+       (SELECT V.PARTY_NAME
+          FROM V_PARTY_FULL V
+         WHERE GCCM.CUSTOMER_CODE = V.PARTY_CODE
+           AND GCCM.CUSTOMER_TYPE = V.CUSTOMER_TYPE) AS CUST_NAME,
+       NULL AS CONTR_SIZE,
+       NULL AS CHASIS_UNIT,
+       NULL AS INSPN_AUTH,
+       NULL AS ACTION_DESC,
+       NULL AS INSP_REMARKS,
+       NULL AS REMARKS,
+       NULL AS SOUTH_JAFZA,
+       NULL AS CUST_HOLD,
+       NULL AS CUST_REMARKS,
+       NULL AS GATE_NO,
+       CCGP.CARGO_CAT_DETAIL_ID AS SEQ_NO,
+        (SELECT 'Y'
+         FROM BOE_HOLD_HDR BHH, INSP_AUTHORITIES IA
+         WHERE BHH.INSP_AUTH = IA.AUTH_CODE
+         AND IA.CTMS_AUTH_CODE = '04'
+         AND BHH.STATUS = 'I'
+         AND BHH.BOE_NO = B.BOE_NO
+         AND BHH.INSP_TYPE = 3
+         AND ROWNUM = 1
+         ) DM_INSP_REQUIRED,
+        NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+        FROM TXN_DM_INSPECTION_STATUS DIS
+        WHERE DIS.BOE_NO = B.BOE_NO AND DIS.GP_NO = TO_CHAR(GPM.GATE_PASS_NO) AND NVL(DIS.DOC_TYPE, 'B') = 'G'
+        AND ROWNUM = 1),
+                NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+        FROM TXN_DM_INSPECTION_STATUS DIS
+        WHERE DIS.BOE_NO = B.BOE_NO AND DIS.GP_NO IS NULL AND NVL(DIS.DOC_TYPE, 'B') = 'B'
+        AND ROWNUM = 1),
+                'D')) DM_INSP_STATUS
+  FROM GCB_CARGO_CAT_MAPPING_DTLS  GCCMD,
+       GCB_CARGO_CAT_MAPPING       GCCM,
+       gcb_cargo_category          GCC,
+       GATE_PASS_MASTER            GPM,
+       CARGO_CAT_GATE_PASS_MAPPING CCGP,
+       DT_DETAIL_MAP               DDM,
+       GATE_PASS_DETAIL            GPD,
+       BOL                         B
+ WHERE GPM.GATE_PASS_ID = GPD.GATE_PASS_ID
+   AND GPM.GATE_PASS_TYPE = 'I'
+   AND   GPM.TRUCK_NO  like #{TRUCK_REG_NO}
+   AND CCGP.GATE_PASS_ID = GPM.GATE_PASS_ID
+   AND CCGP.CARGO_CAT_DETAIL_ID = GCCMD.DETAIL_ID
+   AND B.BOL_NO = GCCM.BOL_NO
+   AND B.BOL_UNIQUE_IND = GCCM.BOL_UNIQUE_IND
+   AND B.BOL_SPLIT = GCCM.BOL_SPLIT
+   AND B.rotn = GCCM.ROTATION_NO
+   AND GCCMD.MAPPING_ID = GCCM.MAPPING_ID
+   AND DDM.DT_DETAILID = GPD.DT_DETAILID
+   AND GCC.CARGO_CATEGORY_ID = GCCMD.CARGO_CATEGORY_ID
+  AND GPM.CREATED_DATE &gt;
+       SYSDATE -(SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO'))
+   AND GPM.CALM_GP_NO IS NULL
+   AND GPM.GATE_PASS_NO IS NOT NULL
+UNION
+SELECT
+TO_CHAR(GPM.GATE_PASS_NO) AS GP_NO,
+TO_CHAR(GPM.CREATED_DATE + (SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO')),'dd-mm-yyyy hh24:mi')
+      AS GP_EXPDATE,
+       GCC.CARGO_TYPE As CARGO_TYPE,
+       B.DPC_BOE_NO AS BOENO,
+       (SELECT
+              CASE
+              WHEN mdb.boe_code  IN ('14-2-4', '14-2-6')
+              THEN 'FOR FREE ZONE ONLY'
+              WHEN (mdb.boe_code  IN ('302', '305', '501') and mdb.import_facility_type =4 and mdb.import_facility_code='1')
+              THEN 'FOR FREE ZONE ONLY'
+              else NULL
+         END AS BOE_DESCR
+      FROM mq_dpc_boes mdb
+       WHERE mdb.bill_no = B.DPC_BOE_NO) AS BOE_DESCR,
+       gcc.cargo_category_desc AS GOOD_DESCRIPTION,
+       GCCMD.PKG_TYPE AS PKG_TYP,
+       NULL AS CHASISNO,
+       B.MARKS_NO AS MARKS_NOS,
+       NVL(CCGP.MAPPING_QTY, CCGP.MAPPING_WEIGHT) AS GP_ITEM_QTY,
+       CCGP.MAPPING_WEIGHT AS GP_ITEM_WT,
+       (SELECT GA_NO FROM GATE_ADVICE_HDR GAH WHERE GAH.GA_ID = GPM.GA_ID) AS GP_REF_NO,
+       NULL AS GP_STATUS,
+       NULL AS GP_TYPE,
+       GPM.TRUCK_NO AS VEHICLE,
+       TO_CHAR(GPM.CREATED_DATE, 'dd-mm-yyyy hh24:mi') AS GP_DATE,
+       NULL AS CONTR_NO,
+       NULL AS SEAL_NO,
+       (SELECT V.PARTY_NAME
+          FROM V_PARTY_FULL V
+         WHERE GCCM.CUSTOMER_CODE = V.PARTY_CODE
+           AND GCCM.CUSTOMER_TYPE = V.CUSTOMER_TYPE) AS CUST_NAME,
+       NULL AS CONTR_SIZE,
+       NULL AS CHASIS_UNIT,
+       NULL AS INSPN_AUTH,
+       NULL AS ACTION_DESC,
+       NULL AS INSP_REMARKS,
+       NULL AS REMARKS,
+       NULL AS SOUTH_JAFZA,
+       NULL AS CUST_HOLD,
+       NULL AS CUST_REMARKS,
+       NULL AS GATE_NO,
+       CCGP.CARGO_CAT_DETAIL_ID  AS SEQ_NO,
+        (SELECT 'Y'
+         FROM BOE_HOLD_HDR BHH, INSP_AUTHORITIES IA
+         WHERE BHH.INSP_AUTH = IA.AUTH_CODE
+         AND IA.CTMS_AUTH_CODE = '04'
+         AND BHH.STATUS = 'I'
+         AND BHH.BOE_NO = B.BOE_NO
+         AND BHH.INSP_TYPE = 3
+         AND ROWNUM = 1
+         ) DM_INSP_REQUIRED,
+        NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+        FROM TXN_DM_INSPECTION_STATUS DIS
+        WHERE DIS.BOE_NO = B.BOE_NO AND DIS.GP_NO = TO_CHAR(GPM.GATE_PASS_NO) AND NVL(DIS.DOC_TYPE, 'B') = 'G'
+        AND ROWNUM = 1),
+                NVL((SELECT DECODE(DIS.INSP_STATUS,'R','R','D')
+        FROM TXN_DM_INSPECTION_STATUS DIS
+        WHERE DIS.BOE_NO = B.BOE_NO AND DIS.GP_NO IS NULL AND NVL(DIS.DOC_TYPE, 'B') = 'B'
+        AND ROWNUM = 1),
+                'D')) DM_INSP_STATUS
+  FROM GCB_CARGO_CAT_MAPPING_DTLS  GCCMD,
+       GCB_CARGO_CAT_MAPPING       GCCM,
+       gcb_cargo_category          GCC,
+       GATE_PASS_MASTER            GPM,
+       CARGO_CAT_GATE_PASS_MAPPING CCGP,
+       GATE_PASS_DETAIL            GPD,
+       BOL                         B
+ WHERE GPM.GATE_PASS_ID = GPD.GATE_PASS_ID
+   AND GPM.GATE_PASS_TYPE = 'D'
+   AND   GPM.TRUCK_NO  like #{TRUCK_REG_NO}
+   AND CCGP.GATE_PASS_ID = GPM.GATE_PASS_ID
+   AND B.BOL_NO = GCCM.BOL_NO
+   AND B.BOL_UNIQUE_IND = GCCM.BOL_UNIQUE_IND
+   AND B.BOL_SPLIT = GCCM.BOL_SPLIT
+   AND B.rotn = GCCM.ROTATION_NO
+   AND GCCMD.MAPPING_ID = GCCM.MAPPING_ID
+   AND GPD.DT_DETAILID = GCCMD.DETAIL_ID
+   AND GCC.CARGO_CATEGORY_ID = GCCMD.CARGO_CATEGORY_ID
+   AND CCGP.CARGO_CAT_DETAIL_ID = GCCMD.DETAIL_ID
+  AND GPM.CREATED_DATE &gt;
+       SYSDATE -(SELECT MAX(TO_NUMBER(PARAM_VALUE))/24 FROM PARAMETER_OM WHERE PARAM_NM IN ('GP_EXPIRY_GC','GP_EXPIRY_RORO'))
+   AND GPM.CALM_GP_NO IS NULL
+   AND GPM.GATE_PASS_NO IS NOT NULL
+UNION
+SELECT TO_CHAR(GPM.GATE_PASS_NO) AS GP_NO,
+       TO_CHAR(GPM.CREATED_DATE +
+               (SELECT MAX(TO_NUMBER(PARAM_VALUE)) / 24
+                  FROM PARAMETER_OM
+                 WHERE PARAM_NM IN ('GP_EXPIRY_GC', 'GP_EXPIRY_RORO')),
+               'dd-mm-yyyy hh24:mi') AS GP_EXPDATE,
+       GAH.CARGO_TYPE AS CARGO_TYPE,
+       GAD.DOC_NO AS BOENO,
+       (SELECT CASE
+                 WHEN MDB.BOE_CODE IN ('14-1-4', '14-2-6') THEN
+                  'FOR FREE ZONE ONLY'
+                 WHEN (MDB.BOE_CODE IN ('302', '305', '501') AND
+                      MDB.IMPORT_FACILITY_TYPE = 4 AND
+                      MDB.IMPORT_FACILITY_CODE = '1') THEN
+                  'FOR FREE ZONE ONLY'
+                 WHEN MDB.BOE_CODE IN ('14-1-1') THEN
+                  'AUCTION CARGO'
+                 ELSE
+                  NULL
+               END AS BOE_DESCR
+          FROM MQ_DPC_BOES MDB
+         WHERE MDB.BILL_NO = GCCM.BOE_NO) AS BOE_DESCR,
+       GCC.CARGO_CATEGORY_DESC AS GOOD_DESCRIPTION,
+       GCCMD.PKG_TYPE AS PKG_TYP,
+       NULL AS CHASISNO,
+       NULL AS MARKS_NOS,
+       GPD.MAPPING_QTY AS GP_ITEM_QTY,
+       GAD.WEIGHT AS GP_ITEM_WT,
+       GAH.GA_NO AS GP_REF_NO,
+       NULL AS GP_STATUS,
+       NULL AS GP_TYPE,
+       GPM.TRUCK_NO AS VEHICLE,
+       TO_CHAR(GPM.CREATED_DATE, 'dd-mm-yyyy hh24:mi') AS GP_DATE,
+       GAC.CONTR_NO AS CONTR_NO,
+       NULL AS SEAL_NO,
+       (SELECT V.PARTY_NAME
+          FROM V_PARTY_FULL V
+         WHERE GCCM.CUSTOMER_CODE = V.PARTY_CODE
+           AND GCCM.CUSTOMER_TYPE = V.CUSTOMER_TYPE) AS CUST_NAME,
+       GAC.CONTR_SIZE AS CONTR_SIZE,
+       NULL AS CHASIS_UNIT,
+       NULL AS INSPN_AUTH,
+       NULL AS ACTION_DESC,
+       NULL AS INSP_REMARKS,
+       NULL AS REMARKS,
+       NULL AS SOUTH_JAFZA,
+       NULL AS CUST_HOLD,
+       NULL AS CUST_REMARKS,
+       NULL AS GATE_NO,
+       GCCMD.DETAIL_ID AS SEQ_NO,
+       (SELECT 'Y'
+          FROM BOE_HOLD_HDR BHH, INSP_AUTHORITIES IA
+         WHERE BHH.INSP_AUTH = IA.AUTH_CODE
+           AND IA.CTMS_AUTH_CODE = '04'
+           AND BHH.STATUS = 'I'
+           AND BHH.BOE_NO = GCCM.BOE_NO
+           AND BHH.INSP_TYPE = 3
+           AND ROWNUM = 1) DM_INSP_REQUIRED,
+       NVL((SELECT DECODE(DIS.INSP_STATUS, 'R', 'R', 'D')
+             FROM TXN_DM_INSPECTION_STATUS DIS
+            WHERE DIS.BOE_NO = GCCM.BOE_NO
+              AND DIS.GP_NO = TO_CHAR(GPM.GATE_PASS_NO)
+              AND NVL(DIS.DOC_TYPE, 'B') = 'G'
+              AND ROWNUM = 1),
+           NVL((SELECT DECODE(DIS.INSP_STATUS, 'R', 'R', 'D')
+                 FROM TXN_DM_INSPECTION_STATUS DIS
+                WHERE DIS.BOE_NO = GCCM.BOE_NO
+                  AND DIS.GP_NO IS NULL
+                  AND NVL(DIS.DOC_TYPE, 'B') = 'B'
+                  AND ROWNUM = 1),
+               'D')) DM_INSP_STATUS
+  FROM AUC_GATE_PASS_MASTER       GPM,
+       AUC_GATE_PASS_DETAILS      GPD,
+       GATE_ADVICE_HDR            GAH,
+       GATE_ADVICE_DTLS           GAD,
+       GATE_ADVICE_CONTR_DTLS     GAC,
+       GCB_CARGO_CAT_MAPPING_DTLS GCCMD,
+       GCB_CARGO_CAT_MAPPING      GCCM,
+       GCB_CARGO_CATEGORY         GCC
+ WHERE GPM.GATE_PASS_ID = GPD.GATE_PASS_ID
+   AND GPM.GATE_PASS_TYPE = 'O'
+   AND GPM.TRUCK_NO LIKE #{TRUCK_REG_NO}
+   AND GPM.GA_ID = GAH.GA_ID
+   AND GAH.GA_ID = GAD.GA_ID
+   AND GPM.IS_VALID = 1
+   AND GPD.IS_VALID = 1
+   AND GAH.IS_VALID = 1
+   AND GAD.IS_VALID = 1
+   AND GAC.IS_VALID(+) = 1
+   AND GAD.GA_DTL_ID = GAC.GA_DTL_ID(+)
+   AND GCCMD.MAPPING_ID = GCCM.MAPPING_ID
+   AND GAD.DETAIL_ID = GCCMD.DETAIL_ID
+   AND GCC.CARGO_CATEGORY_ID = GCCMD.CARGO_CATEGORY_ID
+   AND GPM.CREATED_DATE &gt;
+       SYSDATE -
+       (SELECT MAX(TO_NUMBER(PARAM_VALUE)) / 24
+          FROM PARAMETER_OM
+         WHERE PARAM_NM IN ('GP_EXPIRY_GC', 'GP_EXPIRY_RORO'))
+   AND GPM.GATE_PASS_NO IS NOT NULL
+    </select>
+  <insert id="insertGCExtTrkMove" parameterType="map">
+        INSERT INTO GC_EXT_TRUCK_MOVE(REC_ID,GATE_TYPE,GATE_LOCATION,
+                                      TRUCK_NO,DOC_NO,
+                                      DOC_TYPE,REF_DOC_NO,
+                                      REF_DOC_TYPE,TIMESTAMP,
+                                      SECURITY_ID,IS_VALID,
+                                      CREATED_BY,CREATED_DATE,REMARKS)
+                                      VALUES
+                                      (#{REC_ID},#{GATE_TYPE},#{GATE_LOCATION},
+                                      #{TRUCK_NO},#{DOC_NO},
+                                      #{DOC_TYPE},#{REF_DOC_NO},
+                                      #{REF_DOC_TYPE},#{INOUTDATE},
+                                      #{SECURITY_ID},#{IS_VALID},
+                                      #{CREATED_BY},#{CREATED_DATE},#{REMARKS})
+    </insert>
+  <select id="getGCTrkNextVal" resultType="long">
+        select GC_EXT_TRUCK_REC_SEQ_ID.NEXTVAL from DUAL
+    </select>
+  <select id="gpnoStatus" parameterType="map" resultType="java.lang.String">
+        select * from GC_EXT_TRUCK_MOVE where DOC_NO= #{gpno}
+    </select>
+  <resultMap id="trucknoRS" type="com.dpw.ports.promis.hht.type.FZGPGateInOutSearchReqType">
+    <result property="regplace" column="REG_PLACE" />
+    <result property="platecode" column="PLATE_CODE" />
+    <result property="vehicleno" column="VEH_NO" />
+  </resultMap>
+  <select id="fztruckno" resultMap="trucknoRS" parameterType="map">
+        SELECT E.VEHICLE_CITY_CODE AS REG_PLACE,E.VEHICLE_PLATE_CODE AS PLATE_CODE,E.VEH_NO AS VEH_NO FROM EGP_GATE_PASS E where E.GP_NO =#{GPNO}
+        UNION
+        SELECT SUBSTR(H.TRUCK_REG_NO,1,INSTR(H.TRUCK_REG_NO,' ')-1) AS REG_PLACE,
+            DECODE((LENGTH(H.TRUCK_REG_NO) - LENGTH(REPLACE(H.TRUCK_REG_NO,' '))),1,NULL,SUBSTR(H.TRUCK_REG_NO,INSTR(H.TRUCK_REG_NO,' ',1,1)+1,INSTR(H.TRUCK_REG_NO,' ',1,2)-INSTR(H.TRUCK_REG_NO,' ',1,1))) AS PLATE_CODE,
+            DECODE((LENGTH(H.TRUCK_REG_NO) - LENGTH(REPLACE(H.TRUCK_REG_NO,' '))),1,SUBSTR(H.TRUCK_REG_NO,INSTR(H.TRUCK_REG_NO,' ')+1),SUBSTR(H.TRUCK_REG_NO,INSTR(H.TRUCK_REG_NO,' ',1,2)+1)) AS VEH_NO
+        FROM GPHDR_G H WHERE H.GP_NO =#{GPNO}
+        UNION
+        SELECT SUBSTR(GPM.TRUCK_NO,1,INSTR(GPM.TRUCK_NO,' ')-1) AS REG_PLACE,
+            DECODE((LENGTH(GPM.TRUCK_NO) - LENGTH(REPLACE(GPM.TRUCK_NO,' '))),1,NULL,SUBSTR(GPM.TRUCK_NO,INSTR(GPM.TRUCK_NO,' ',1,1)+1,INSTR(GPM.TRUCK_NO,' ',1,2)-INSTR(GPM.TRUCK_NO,' ',1,1))) AS PLATE_CODE,
+            DECODE((LENGTH(GPM.TRUCK_NO) - LENGTH(REPLACE(GPM.TRUCK_NO,' '))),1,SUBSTR(GPM.TRUCK_NO,INSTR(GPM.TRUCK_NO,' ')+1),SUBSTR(GPM.TRUCK_NO,INSTR(GPM.TRUCK_NO,' ',1,2)+1)) AS VEH_NO
+        FROM GATE_PASS_MASTER GPM WHERE To_CHAR(GPM.GATE_PASS_NO) =#{GPNO}
+        UNION
+        SELECT GAH.CITY_CODE AS REG_PLACE,GAH.PLATE_CODE AS PLATE_CODE,GAH.VEH_NO AS VEH_NO FROM GATE_ADVICE_HDR GAH where GAH.GA_NO =#{GPNO}
+        UNION
+         SELECT  SUBSTR(H.TRUCK_NO,1,INSTR(H.TRUCK_NO,'-')-1) AS REG_PLACE,
+            DECODE((LENGTH(H.TRUCK_NO) - LENGTH(REPLACE(H.TRUCK_NO,'-'))),1,NULL,SUBSTR(H.TRUCK_NO,INSTR(H.TRUCK_NO,'-',1,1)+1,INSTR(H.TRUCK_NO,'-',1,2)-INSTR(H.TRUCK_NO,'-',1,1))) AS PLATE_CODE,
+            DECODE((LENGTH(H.TRUCK_NO) - LENGTH(REPLACE(H.TRUCK_NO,'-'))),1,SUBSTR(H.TRUCK_NO,INSTR(H.TRUCK_NO,'-')+1),SUBSTR(H.TRUCK_NO,INSTR(H.TRUCK_NO,'-',1,2)+1)) AS VEH_NO
+          FROM AUC_GATE_PASS_MASTER H WHERE H.GATE_PASS_NO = #{GPNO}
+    </select>
+  <resultMap id="containerDamagesRS" type="com.dpw.ports.promis.hht.type.ContainerDamageType">
+    <result column="STD_INSTR_ID" property="stdInstructionId" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+    <result column="STD_INSTR_SPE_ID" property="stdInstructionSpecId" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+    <result column="CONTR_NO" property="contrNO" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="AGENT_REF" property="agentRef" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="LINE_CODE" property="lineCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="AGENT_CODE" property="agentCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="VALID_FROM_DATE" property="validFrDate" />
+    <result column="VALID_TO_DATE" property="validToDate" />
+    <result column="REMARKS" property="remarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="MOVEMENT_TYPE" property="movementType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_TYPE_CODE" property="eventTypeCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_ACTION_CODE" property="eventActionCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_QUALIFIER_CODE" property="eventQualifierCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_CRITERIA_KEY" property="eventCriteriaKey" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_CRITERIA_CONDITION" property="eventCriteriaConditon" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_CRITERIA_VALUE" property="eventCriteriaValue" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="EVENT_CRITERIA_VALUE2" property="eventCriteriaValue2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_CAT" property="cntrCat" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_SIZE" property="cntrSize" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_STATUS" property="cntrStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="ISO_TYPE" property="isoType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_RANGE_FROM" property="cntrRangeFr" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_RANGE_TO" property="cntrRangeTo" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CONTR_PREFIX" property="cntrPrefix" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_APPL" property="chargeAppl" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_CODE" property="chargeCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="APP_REMARKS" property="appRemarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="REJ_REMARKS" property="rejRemarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CANCEL_REMARKS" property="cancelRemarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_CODE1" property="chargeCode1" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_CODE2" property="chargeCode2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_CODE3" property="chargeCode3" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="CHARGE_CODE4" property="chargeCode4" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DAMAGE_CODE" property="damageCodes" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="INS_FLAG" property="insFlag" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DMG_TYPE_FLAG" property="damageTypeFlag" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_CONTR_CAT" property="displayContainerCategory" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_EVENT_CRITERIA_COND" property="displayEventCriteriaCondition" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_EVENT_CRITERIA_KEY" property="displayEventCriteriaKey" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_LINE_NAME" property="displayLineName" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_AGENT_NAME" property="displayAgentName" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_MOVEMENT_TYPE" property="displayMovementType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_EVENT_TYPE" property="displayEventType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_EVENT_ACTION" property="displayEventAction" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_EVENT_QUALIFIER" property="displayEventQualifier" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_CONTR_STATUS" property="displayContainerStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_ISO_TYPE" property="displayISOType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="DISPLAY_DAMAGE_CODE" property="displayDamageCodes" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result column="STD_INSTR_CREATE_DATE" property="stdInstrCreateDate" />
+  </resultMap>
+  <select id="getContainerDamages" statementType="CALLABLE" useCache="false" flushCache="true">
+        {call OPCT_GET_VESSEL_DETAILS.OPCT_GET_STANDING_DMG_DTLS (#{PI_CONTR_NO,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT},#{PO_RESULT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=containerDamagesRS,mode=OUT}) }
+    </select>
+  <select id="updateStdDmgDetails" statementType="CALLABLE" useCache="false" flushCache="true" resultType="java.lang.String">
+        {call OPCT_GET_VESSEL_DETAILS.OPCT_UPDATE_STANDING_DMG_DTLS (#{PI_STD_INSTR_ID,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_STD_INSTR_SPE_ID,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PI_USER_ID,jdbcType=VARCHAR,javaType=java.lang.String,mode=IN},#{PO_STATUS,jdbcType=VARCHAR,javaType=java.lang.String,mode=OUT}) }
+    </select>
+  <select id="getMajorDamageFlag" resultType="java.lang.String">
+        select PR_STANDING_INSTRUCTION_PKG.Fnc_get_intr_flag from dual
+    </select>
+  <select id="getDSGatePassLGPNo" parameterType="map" resultType="java.lang.String">
+      select gdd.bill_no from mq_dpc_goods gdd where gdd.gp_no = #{gpno} and exists (select '1' from
+      mq_dpc_boes bes where bes.bill_no = gdd.bill_no and bes.boe_code = 'LGP' and bes.is_valid = 1) and rownum = 1
+    </select>
+</mapper>

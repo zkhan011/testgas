@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.UUID;
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = GateController.class)
 public class ApiErrors extends ResponseEntityExceptionHandler {
     private static final Logger LOG = LoggerFactory.getLogger(ApiErrors.class);
 

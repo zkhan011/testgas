@@ -1,7 +1,7 @@
 package com.dpw.gasws.util;
 
-import com.pcfc.ports.promis.common.Utilities;
-import com.pcfc.services.exception.SystemException;
+import com.dpw.ports.promis.common.Utilities;
+import com.dpw.services.exception.SystemException;
 
 import java.sql.Timestamp;
 

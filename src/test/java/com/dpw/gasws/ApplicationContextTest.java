@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(properties = {
+    "gate.security.api-key=test-client-key-more-than-24-characters",
+    "gate.security.admin-key=test-admin-key-more-than-24-characters",
     "gasws.security.username=test",
     "gasws.security.password-hash=$2a$10$dXJ3SW6G7P50lGmMkkmwe.20M5z5GSWOR1OMLNjUwS4fQJpV3wB2a"
 })
