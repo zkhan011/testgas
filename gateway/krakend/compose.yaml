@@ -1,0 +1,13 @@
+services:
+  krakend:
+    image: krakend:3.0.3
+    command: [run, -c, /etc/krakend/krakend.json]
+    ports:
+      - "127.0.0.1:8081:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json:ro
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true

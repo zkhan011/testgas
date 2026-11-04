@@ -1,0 +1,20 @@
+name: KrakenD gateway
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  gateway:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 gateway/krakend/generate.py --check
+      - run: python3 -m unittest discover -s gateway/krakend -p 'test_*.py'
+      - name: Validate schema and routes with KrakenD
+        run: docker run --rm -v "$PWD/gateway/krakend:/etc/krakend:ro" krakend:3.0.3 check -t --lint-no-network -c /etc/krakend/krakend.json
+      - name: Verify real gateway forwarding against mock backend
+        run: python3 gateway/krakend/smoke.py

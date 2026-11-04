@@ -1,0 +1,5 @@
+{
+  "enabled": false,
+  "backend_url": "http://host.docker.internal:8080",
+  "timeout": "60s"
+}

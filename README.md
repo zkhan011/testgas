@@ -174,3 +174,7 @@ The new application does not load the bundled legacy JARs, JNDI objects, DES uti
 ## Cutover
 
 Deploy REST alongside SOAP on a separate port, configure TLS and the new service credential, validate all four operations in UAT, update clients to the documented JSON/HTTP contract, then switch traffic. Keep the SOAP deployment available for rollback until business acceptance. Disable it after migration; do not package its old libraries with the new JAR.
+
+## KrakenD API gateway
+
+The [KrakenD deployment guide](gateway/krakend/README.md) includes configuration for all 50 business endpoints, preserving legacy operation paths, JSON payloads and existing Basic/API-key authentication. It also includes Docker Compose startup, configuration generation from OpenAPI, and gateway forwarding checks.
