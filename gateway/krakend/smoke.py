@@ -17,7 +17,19 @@ class Backend(BaseHTTPRequestHandler):
         pass
 
     def do_POST(self):
-        body = self.rfile.read(int(self.headers.get('Content-Length', '0')))
+        if self.headers.get('Transfer-Encoding', '').lower() == 'chunked':
+            chunks = []
+            while True:
+                size = int(self.rfile.readline().split(b';', 1)[0].strip(), 16)
+                if size == 0:
+                    while self.rfile.readline().strip():
+                        pass
+                    break
+                chunks.append(self.rfile.read(size))
+                self.rfile.read(2)
+            body = b''.join(chunks)
+        else:
+            body = self.rfile.read(int(self.headers.get('Content-Length', '0')))
         payload = json.loads(body)
         code = payload.get('testStatus', 200)
         response = json.dumps({'path': self.path, 'body': body.decode(),
