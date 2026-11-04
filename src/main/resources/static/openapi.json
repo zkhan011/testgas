@@ -15,7 +15,7 @@
     }
   ],
   "paths": {
-    "/api/v1/marine/voyages/search": {
+    "/api/v1/getVoyages": {
       "post": {
         "operationId": "getVoyages",
         "responses": {
@@ -60,7 +60,7 @@
         }
       }
     },
-    "/api/v1/reference-data/search": {
+    "/api/v1/getRefData": {
       "post": {
         "operationId": "getRefData",
         "responses": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "/api/v1/marine/transactions": {
+    "/api/v1/pushMarineDetails": {
       "post": {
         "operationId": "pushMarineDetails",
         "responses": {
@@ -150,7 +150,7 @@
         }
       }
     },
-    "/api/v1/marine/signatures": {
+    "/api/v1/uploadSignature": {
       "post": {
         "operationId": "uploadSignature",
         "responses": {
@@ -195,7 +195,7 @@
         }
       }
     },
-    "/api/v1/ctms/voyages/search": {
+    "/api/v1/getVoyagesFromCTMS": {
       "post": {
         "operationId": "getVoyagesFromCTMS",
         "responses": {
@@ -240,7 +240,7 @@
         }
       }
     },
-    "/api/v1/ctms/voyage-updates": {
+    "/api/v1/CTMSVoyageUpdate": {
       "post": {
         "operationId": "CTMSVoyageUpdate",
         "responses": {
@@ -285,7 +285,7 @@
         }
       }
     },
-    "/api/v1/tokens/search": {
+    "/api/v1/getTokens": {
       "post": {
         "operationId": "getTokens",
         "responses": {
@@ -330,7 +330,7 @@
         }
       }
     },
-    "/api/v1/trucks/token-search": {
+    "/api/v1/getTokenForTruck": {
       "post": {
         "operationId": "getTokenForTruck",
         "responses": {
@@ -375,7 +375,7 @@
         }
       }
     },
-    "/api/v1/trucks/eirs/search": {
+    "/api/v1/getDWCTruckEIR": {
       "post": {
         "operationId": "getDWCTruckEIR",
         "responses": {
@@ -420,7 +420,7 @@
         }
       }
     },
-    "/api/v1/gates/customs-entries": {
+    "/api/v1/updateCustmGateEntry": {
       "post": {
         "operationId": "updateCustmGateEntry",
         "responses": {
@@ -465,7 +465,7 @@
         }
       }
     },
-    "/api/v1/containers/empty-allocations": {
+    "/api/v1/getDynamicMTContainer": {
       "post": {
         "operationId": "getDynamicMTContainer",
         "responses": {
@@ -510,7 +510,7 @@
         }
       }
     },
-    "/api/v1/containers/planned-moves/search": {
+    "/api/v1/getDEDContrPlanMoves": {
       "post": {
         "operationId": "getDEDContrPlanMoves",
         "responses": {
@@ -555,7 +555,7 @@
         }
       }
     },
-    "/api/v1/tos/messages": {
+    "/api/v1/sendTOSMsg": {
       "post": {
         "operationId": "sendTOSMsg",
         "responses": {
@@ -600,7 +600,7 @@
         }
       }
     },
-    "/api/v1/containers/seal-updates": {
+    "/api/v1/updateContainer": {
       "post": {
         "operationId": "updateContainer",
         "responses": {
@@ -645,7 +645,7 @@
         }
       }
     },
-    "/api/v1/tokens/acceptances": {
+    "/api/v1/acceptToken": {
       "post": {
         "operationId": "acceptToken",
         "responses": {
@@ -690,7 +690,7 @@
         }
       }
     },
-    "/api/v1/eirs/search": {
+    "/api/v1/getEir": {
       "post": {
         "operationId": "getEir",
         "responses": {
@@ -735,7 +735,7 @@
         }
       }
     },
-    "/api/v1/gates/exit-confirmations": {
+    "/api/v1/confirmGateoutMove": {
       "post": {
         "operationId": "confirmGateoutMove",
         "responses": {
@@ -780,7 +780,7 @@
         }
       }
     },
-    "/api/v1/gate-passes/search": {
+    "/api/v1/getFZGPGateInOutSearchList": {
       "post": {
         "operationId": "getFZGPGateInOutSearchList",
         "responses": {
@@ -825,7 +825,7 @@
         }
       }
     },
-    "/api/v1/gate-passes/movements": {
+    "/api/v1/procFZGPGateInOutUpdate": {
       "post": {
         "operationId": "procFZGPGateInOutUpdate",
         "responses": {
@@ -870,7 +870,7 @@
         }
       }
     },
-    "/api/v1/containers/seal-history/search": {
+    "/api/v1/prevSealDetails": {
       "post": {
         "operationId": "prevSealDetails",
         "responses": {
@@ -915,7 +915,7 @@
         }
       }
     },
-    "/api/v1/containers/damage-history/search": {
+    "/api/v1/prevDamageDetails": {
       "post": {
         "operationId": "prevDamageDetails",
         "responses": {
@@ -960,7 +960,7 @@
         }
       }
     },
-    "/api/v1/damage-codes/search": {
+    "/api/v1/getMajorDamages": {
       "post": {
         "operationId": "getMajorDamages",
         "responses": {
@@ -1005,7 +1005,7 @@
         }
       }
     },
-    "/api/v1/users/verifications": {
+    "/api/v1/verifyUser": {
       "post": {
         "operationId": "verifyUser",
         "responses": {
@@ -1050,7 +1050,7 @@
         }
       }
     },
-    "/api/v1/commercial-trucks/token-search": {
+    "/api/v1/getTokenForCommercialTruck": {
       "post": {
         "operationId": "getTokenForCommercialTruck",
         "responses": {
@@ -1095,7 +1095,7 @@
         }
       }
     },
-    "/api/v1/containers/location-search": {
+    "/api/v1/getContrLocation": {
       "post": {
         "operationId": "getContrLocation",
         "responses": {
@@ -1140,7 +1140,7 @@
         }
       }
     },
-    "/api/v1/eirs/print-jobs": {
+    "/api/v1/printEir": {
       "post": {
         "operationId": "printEir",
         "responses": {
@@ -1185,7 +1185,7 @@
         }
       }
     },
-    "/api/v1/containers/empty-refusals": {
+    "/api/v1/addMTRefusal": {
       "post": {
         "operationId": "addMTRefusal",
         "responses": {
@@ -1230,7 +1230,7 @@
         }
       }
     },
-    "/api/v1/vessels/notices/search": {
+    "/api/v1/getNoticeDetailsForVessel": {
       "post": {
         "operationId": "getNoticeDetailsForVessel",
         "responses": {
@@ -1275,7 +1275,7 @@
         }
       }
     },
-    "/api/v1/vessels/notice-updates": {
+    "/api/v1/updateNoticeDetailsForVessel": {
       "post": {
         "operationId": "updateNoticeDetailsForVessel",
         "responses": {
@@ -1320,7 +1320,7 @@
         }
       }
     },
-    "/api/v1/berths/search": {
+    "/api/v1/getBerthDetails": {
       "post": {
         "operationId": "getBerthDetails",
         "responses": {
@@ -1365,7 +1365,7 @@
         }
       }
     },
-    "/api/v1/containers/weights/search": {
+    "/api/v1/getVGMContainerWeightDetails": {
       "post": {
         "operationId": "getVGMContainerWeightDetails",
         "responses": {
@@ -1410,7 +1410,7 @@
         }
       }
     },
-    "/api/v1/containers/weight-updates": {
+    "/api/v1/updateVGMContainerWeightDetails": {
       "post": {
         "operationId": "updateVGMContainerWeightDetails",
         "responses": {
@@ -1455,7 +1455,7 @@
         }
       }
     },
-    "/api/v1/tokens/time-slots/search": {
+    "/api/v1/getTokenTimeSlot": {
       "post": {
         "operationId": "getTokenTimeSlot",
         "responses": {
@@ -1500,7 +1500,7 @@
         }
       }
     },
-    "/api/v1/containers/truck-search": {
+    "/api/v1/getTruckInfoByContainer": {
       "post": {
         "operationId": "getTruckInfoByContainer",
         "responses": {
@@ -1545,7 +1545,7 @@
         }
       }
     },
-    "/api/v1/tokens/time-slot-adjustments": {
+    "/api/v1/getAdjustTimeSlot": {
       "post": {
         "operationId": "getAdjustTimeSlot",
         "responses": {
@@ -1590,7 +1590,7 @@
         }
       }
     },
-    "/api/v1/containers/standing-damages/search": {
+    "/api/v1/getContainerDamages": {
       "post": {
         "operationId": "getContainerDamages",
         "responses": {
@@ -1635,7 +1635,7 @@
         }
       }
     },
-    "/api/v1/containers/standing-damage-updates": {
+    "/api/v1/updateStdDmgDetails": {
       "post": {
         "operationId": "updateStdDmgDetails",
         "responses": {
@@ -1680,8 +1680,8 @@
         }
       }
     },
-    "/api/v1/configuration/major-damage-flag": {
-      "get": {
+    "/api/v1/getMajorDamageFlag": {
+      "post": {
         "operationId": "getMajorDamageFlag",
         "responses": {
           "200": {
@@ -1712,10 +1712,21 @@
           "500": {
             "description": "Technical failure"
           }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false
+              }
+            }
+          }
         }
       }
     },
-    "/api/v1/containers/damage-updates": {
+    "/api/v1/updateContainerWithDamages": {
       "post": {
         "operationId": "updateContainerWithDamages",
         "responses": {
@@ -1760,7 +1771,7 @@
         }
       }
     },
-    "/api/v1/voyages/rotations": {
+    "/api/v1/generateRotationNo": {
       "post": {
         "operationId": "generateRotationNo",
         "responses": {
@@ -1805,7 +1816,7 @@
         }
       }
     },
-    "/api/v1/voyages/{twsId}/advices": {
+    "/api/v1/adviceVoyage": {
       "post": {
         "operationId": "adviceVoyage",
         "responses": {
@@ -1838,29 +1849,34 @@
             "description": "Technical failure"
           }
         },
-        "parameters": [
-          {
-            "name": "twsId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Actor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Actor"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "twsId": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "twsId"
+                    ]
+                  }
+                ]
               }
             }
           }
         }
       }
     },
-    "/api/v1/voyages/{twsId}/cancellations": {
+    "/api/v1/cancelVoyage": {
       "post": {
         "operationId": "cancelVoyage",
         "responses": {
@@ -1893,29 +1909,34 @@
             "description": "Technical failure"
           }
         },
-        "parameters": [
-          {
-            "name": "twsId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Actor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Actor"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "twsId": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "twsId"
+                    ]
+                  }
+                ]
               }
             }
           }
         }
       }
     },
-    "/api/v1/voyages/{twsId}/billings": {
+    "/api/v1/billVoyage": {
       "post": {
         "operationId": "billVoyage",
         "responses": {
@@ -1948,20 +1969,28 @@
             "description": "Technical failure"
           }
         },
-        "parameters": [
-          {
-            "name": "twsId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "twsId": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "twsId"
+                ]
+              }
             }
           }
-        ]
+        }
       }
     },
-    "/api/v1/admin/schedulers": {
-      "get": {
+    "/api/v1/getConfiguredJobsForMarineAQ": {
+      "post": {
         "operationId": "getConfiguredJobsForMarineAQ",
         "responses": {
           "200": {
@@ -1992,10 +2021,21 @@
           "500": {
             "description": "Technical failure"
           }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false
+              }
+            }
+          }
         }
       }
     },
-    "/api/v1/admin/schedulers/{name}/starts": {
+    "/api/v1/startScheduler": {
       "post": {
         "operationId": "startScheduler",
         "responses": {
@@ -2028,19 +2068,27 @@
             "description": "Technical failure"
           }
         },
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
             }
           }
-        ]
+        }
       }
     },
-    "/api/v1/admin/schedulers/{name}/stops": {
+    "/api/v1/stopScheduler": {
       "post": {
         "operationId": "stopScheduler",
         "responses": {
@@ -2073,20 +2121,28 @@
             "description": "Technical failure"
           }
         },
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
             }
           }
-        ]
+        }
       }
     },
-    "/api/v1/tokens": {
-      "get": {
+    "/api/v1/getTokenDetails": {
+      "post": {
         "operationId": "getTokenDetails",
         "tags": [
           "GAS"
@@ -2123,45 +2179,38 @@
             "description": "Unexpected error"
           }
         },
-        "parameters": [
-          {
-            "name": "terminalId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "rfIdNo",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "truckNo",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "regPlace",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
+        "description": "Supply rfIdNo or both truckNo and regPlace.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "terminalId": {
+                    "type": "string"
+                  },
+                  "rfIdNo": {
+                    "type": "string"
+                  },
+                  "truckNo": {
+                    "type": "string"
+                  },
+                  "regPlace": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "terminalId"
+                ]
+              }
             }
           }
-        ],
-        "description": "Supply rfIdNo or both truckNo and regPlace."
+        }
       }
     },
-    "/api/v1/containers": {
-      "get": {
+    "/api/v1/getContainerDetails": {
+      "post": {
         "operationId": "getContainerDetails",
         "tags": [
           "GAS"
@@ -2198,19 +2247,27 @@
             "description": "Unexpected error"
           }
         },
-        "parameters": [
-          {
-            "name": "terminalId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "terminalId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "terminalId"
+                ]
+              }
             }
           }
-        ]
+        }
       }
     },
-    "/api/v1/eir-location-requests": {
+    "/api/v1/getEirLocationDetails": {
       "post": {
         "operationId": "getEirLocationDetails",
         "tags": [
@@ -2260,7 +2317,7 @@
         }
       }
     },
-    "/api/v1/gate-exceptions": {
+    "/api/v1/postExceptionData": {
       "post": {
         "operationId": "postExceptionData",
         "tags": [

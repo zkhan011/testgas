@@ -33,9 +33,9 @@ class MigrationTest {
   var mvc=MockMvcBuilders.standaloneSetup(new HhtController(service)).setMessageConverters(new MappingJackson2HttpMessageConverter(json)).setControllerAdvice(new ApiExceptionHandler(),new LegacyErrorAdvice()).build();
   var ops=json.readTree(Files.readString(Path.of("docs/endpoint-mapping.json")));assertEquals(46,ops.size());int count=0;
   for(var op:ops){if(count==39)break;clearInvocations(service);var req=op.get("method").asText().equals("GET")?get(op.get("path").asText()):post(op.get("path").asText()).contentType("application/json").content("{}");mvc.perform(req).andExpect(status().isOk());String expected=op.get("operation").asText();if(expected.equals("getTokenForCommercialTruck"))expected="getTokenContrDtlsForTruck";var inv=mockingDetails(service).getInvocations();assertEquals(1,inv.size());assertEquals(expected,inv.iterator().next().getMethod().getName());count++;}assertEquals(39,count);
-  mvc.perform(post("/api/v1/trucks/token-search").contentType("text/xml").content("<Envelope/>")).andExpect(status().isUnsupportedMediaType());
+  mvc.perform(post("/api/v1/getTokenForTruck").contentType("text/xml").content("<Envelope/>")).andExpect(status().isUnsupportedMediaType());
   mvc.perform(post("/PilotPlanningService").contentType("text/xml").content("<Envelope/>")).andExpect(status().isNotFound());
-  mvc.perform(post("/api/v1/trucks/token-search").contentType("application/json").content("{\"wrongField\":1}")).andExpect(status().isBadRequest());
+  mvc.perform(post("/api/v1/getTokenForTruck").contentType("application/json").content("{\"wrongField\":1}")).andExpect(status().isBadRequest());
  }
  @Test void jsonPreservesRfidAndBase64()throws Exception{
   var json=new ObjectMapper();var truck=json.readValue("{\"RFID\":\"ABC\",\"vehicleno\":\"00123\"}",TruckReqType.class);assertEquals("ABC",truck.getRFID());assertEquals("00123",truck.getVehicleno());var sign=new SignReqType();sign.setSign(new byte[]{1,2,3});assertTrue(json.writeValueAsString(sign).contains("AQID"));

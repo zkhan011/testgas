@@ -48,16 +48,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/marine/voyages/search",
+        "url": "{{baseUrl}}/api/v1/getVoyages",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -75,16 +70,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/reference-data/search",
+        "url": "{{baseUrl}}/api/v1/getRefData",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -102,16 +92,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/marine/transactions",
+        "url": "{{baseUrl}}/api/v1/pushMarineDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"pilotPlanning\": [\n    {\n      \"marineHeader\": {\n        \"twsid\": 0,\n        \"txn_id\": 0,\n        \"mdt_txn_id\": 0,\n        \"rotn\": 0,\n        \"move_type\": \"REPLACE_ME\",\n        \"from_location\": \"REPLACE_ME\",\n        \"to_location\": \"REPLACE_ME\",\n        \"vessel_board_time\": \"REPLACE_ME\",\n        \"vessel_leave_time\": \"REPLACE_ME\",\n        \"launch_boat_code\": \"REPLACE_ME\",\n        \"modified_vessel_draft\": 0,\n        \"channel_entry_time\": \"REPLACE_ME\",\n        \"channel_exit_time\": \"REPLACE_ME\",\n        \"buoy_no\": \"REPLACE_ME\",\n        \"buoy_cross_time\": \"REPLACE_ME\",\n        \"breakwater_cross_time\": \"REPLACE_ME\",\n        \"fl_time\": \"REPLACE_ME\",\n        \"ll_time\": \"REPLACE_ME\",\n        \"is_detained\": 0,\n        \"detention_from_date\": \"REPLACE_ME\",\n        \"detention_to_date\": \"REPLACE_ME\",\n        \"is_dead_ship\": 0,\n        \"remarks\": \"REPLACE_ME\",\n        \"vessel_master_name\": \"REPLACE_ME\",\n        \"vessel_master_sign_date\": \"REPLACE_ME\",\n        \"is_job_complete\": 0,\n        \"is_valid\": 0,\n        \"crt_mod_by\": \"REPLACE_ME\",\n        \"crt_mod_passwd\": \"REPLACE_ME\",\n        \"crt_mod_device\": \"REPLACE_ME\",\n        \"crt_mod_date\": \"REPLACE_ME\",\n        \"anchoragetime\": \"REPLACE_ME\",\n        \"anchoragereason\": 0,\n        \"anchorageremarks\": \"REPLACE_ME\"\n      },\n      \"marineDetail\": [\n        {\n          \"resource_code\": \"REPLACE_ME\",\n          \"usage_start_time\": \"REPLACE_ME\",\n          \"usage_end_time\": \"REPLACE_ME\"\n        }\n      ]\n    }\n  ],\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"pilotPlanning\": [\n    {\n      \"marineHeader\": {\n        \"twsid\": 0,\n        \"txn_id\": 0,\n        \"mdt_txn_id\": 0,\n        \"rotn\": 0,\n        \"move_type\": \"REPLACE_ME\",\n        \"from_location\": \"REPLACE_ME\",\n        \"to_location\": \"REPLACE_ME\",\n        \"vessel_board_time\": \"REPLACE_ME\",\n        \"vessel_leave_time\": \"REPLACE_ME\",\n        \"launch_boat_code\": \"REPLACE_ME\",\n        \"modified_vessel_draft\": 0,\n        \"channel_entry_time\": \"REPLACE_ME\",\n        \"channel_exit_time\": \"REPLACE_ME\",\n        \"buoy_no\": \"REPLACE_ME\",\n        \"buoy_cross_time\": \"REPLACE_ME\",\n        \"breakwater_cross_time\": \"REPLACE_ME\",\n        \"fl_time\": \"REPLACE_ME\",\n        \"ll_time\": \"REPLACE_ME\",\n        \"is_detained\": 0,\n        \"detention_from_date\": \"REPLACE_ME\",\n        \"detention_to_date\": \"REPLACE_ME\",\n        \"is_dead_ship\": 0,\n        \"remarks\": \"REPLACE_ME\",\n        \"vessel_master_name\": \"REPLACE_ME\",\n        \"vessel_master_sign_date\": \"REPLACE_ME\",\n        \"is_job_complete\": 0,\n        \"is_valid\": 0,\n        \"crt_mod_by\": \"REPLACE_ME\",\n        \"crt_mod_passwd\": \"REPLACE_ME\",\n        \"crt_mod_device\": \"REPLACE_ME\",\n        \"crt_mod_date\": \"REPLACE_ME\",\n        \"anchoragetime\": \"REPLACE_ME\",\n        \"anchoragereason\": 0,\n        \"anchorageremarks\": \"REPLACE_ME\"\n      },\n      \"marineDetail\": [\n        {\n          \"resource_code\": \"REPLACE_ME\",\n          \"usage_start_time\": \"REPLACE_ME\",\n          \"usage_end_time\": \"REPLACE_ME\"\n        }\n      ]\n    }\n  ],\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -129,16 +114,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/marine/signatures",
+        "url": "{{baseUrl}}/api/v1/uploadSignature",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"txn_id\": 0,\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  },\n  \"sign\": \"AA==\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"txn_id\": 0,\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  },\n  \"sign\": \"AA==\"\n}"
         }
       }
     },
@@ -156,16 +136,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/ctms/voyages/search",
+        "url": "{{baseUrl}}/api/v1/getVoyagesFromCTMS",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -183,16 +158,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/ctms/voyage-updates",
+        "url": "{{baseUrl}}/api/v1/CTMSVoyageUpdate",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"rotationnumber\": \"REPLACE_ME\",\n  \"startworkdt\": \"REPLACE_ME\",\n  \"endworkdt\": \"REPLACE_ME\",\n  \"berthdt\": \"REPLACE_ME\",\n  \"deviceid\": \"REPLACE_ME\",\n  \"userid\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"rotationnumber\": \"REPLACE_ME\",\n  \"startworkdt\": \"REPLACE_ME\",\n  \"endworkdt\": \"REPLACE_ME\",\n  \"berthdt\": \"REPLACE_ME\",\n  \"deviceid\": \"REPLACE_ME\",\n  \"userid\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -210,16 +180,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/tokens/search",
+        "url": "{{baseUrl}}/api/v1/getTokens",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -237,16 +202,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/trucks/token-search",
+        "url": "{{baseUrl}}/api/v1/getTokenForTruck",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"RFID\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"RFID\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -264,16 +224,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/trucks/eirs/search",
+        "url": "{{baseUrl}}/api/v1/getDWCTruckEIR",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -291,16 +246,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/gates/customs-entries",
+        "url": "{{baseUrl}}/api/v1/updateCustmGateEntry",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"vehicleRgPlc\": \"REPLACE_ME\",\n  \"vehicleRgNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\",\n  \"containerNo\": \"REPLACE_ME\",\n  \"source\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\",\n  \"gateCode\": \"REPLACE_ME\",\n  \"laneCode\": \"REPLACE_ME\",\n  \"laneType\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"vehicleRgPlc\": \"REPLACE_ME\",\n  \"vehicleRgNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\",\n  \"containerNo\": \"REPLACE_ME\",\n  \"source\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\",\n  \"gateCode\": \"REPLACE_ME\",\n  \"laneCode\": \"REPLACE_ME\",\n  \"laneType\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -318,16 +268,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/empty-allocations",
+        "url": "{{baseUrl}}/api/v1/getDynamicMTContainer",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenNo\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenNo\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -345,16 +290,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/planned-moves/search",
+        "url": "{{baseUrl}}/api/v1/getDEDContrPlanMoves",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenNo\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenNo\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -372,16 +312,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/tos/messages",
+        "url": "{{baseUrl}}/api/v1/sendTOSMsg",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"msgID\": \"REPLACE_ME\",\n  \"msgAction\": \"REPLACE_ME\",\n  \"lineCode\": \"REPLACE_ME\",\n  \"contrNo\": \"REPLACE_ME\",\n  \"isoType\": \"REPLACE_ME\",\n  \"contrSize\": \"REPLACE_ME\",\n  \"newIsoCode\": \"REPLACE_ME\",\n  \"truckCode\": \"REPLACE_ME\",\n  \"scheduleId\": \"REPLACE_ME\",\n  \"slotId\": \"REPLACE_ME\",\n  \"haulCode\": \"REPLACE_ME\",\n  \"terminalId\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"msgID\": \"REPLACE_ME\",\n  \"msgAction\": \"REPLACE_ME\",\n  \"lineCode\": \"REPLACE_ME\",\n  \"contrNo\": \"REPLACE_ME\",\n  \"isoType\": \"REPLACE_ME\",\n  \"contrSize\": \"REPLACE_ME\",\n  \"newIsoCode\": \"REPLACE_ME\",\n  \"truckCode\": \"REPLACE_ME\",\n  \"scheduleId\": \"REPLACE_ME\",\n  \"slotId\": \"REPLACE_ME\",\n  \"haulCode\": \"REPLACE_ME\",\n  \"terminalId\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -399,16 +334,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/seal-updates",
+        "url": "{{baseUrl}}/api/v1/updateContainer",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"sealno\": \"REPLACE_ME\",\n  \"movetype\": 0,\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"atdate\": \"REPLACE_ME\",\n  \"devid\": \"REPLACE_ME\",\n  \"tipmsg\": \"REPLACE_ME\",\n  \"cancelstatus\": \"REPLACE_ME\",\n  \"mtinspflag\": \"REPLACE_ME\",\n  \"customseal\": \"REPLACE_ME\",\n  \"dpwseal\": \"REPLACE_ME\",\n  \"agentseal\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"isSealInvalid\": \"REPLACE_ME\",\n  \"isImcoLabelInvalid\": \"REPLACE_ME\",\n  \"mtOutSeatIssued\": \"REPLACE_ME\",\n  \"chassisType\": 0,\n  \"contrChassisPos\": 0,\n  \"oogStatus\": \"REPLACE_ME\",\n  \"oogReason\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"sealno\": \"REPLACE_ME\",\n  \"movetype\": 0,\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"atdate\": \"REPLACE_ME\",\n  \"devid\": \"REPLACE_ME\",\n  \"tipmsg\": \"REPLACE_ME\",\n  \"cancelstatus\": \"REPLACE_ME\",\n  \"mtinspflag\": \"REPLACE_ME\",\n  \"customseal\": \"REPLACE_ME\",\n  \"dpwseal\": \"REPLACE_ME\",\n  \"agentseal\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"isSealInvalid\": \"REPLACE_ME\",\n  \"isImcoLabelInvalid\": \"REPLACE_ME\",\n  \"mtOutSeatIssued\": \"REPLACE_ME\",\n  \"chassisType\": 0,\n  \"contrChassisPos\": 0,\n  \"oogStatus\": \"REPLACE_ME\",\n  \"oogReason\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -426,16 +356,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/tokens/acceptances",
+        "url": "{{baseUrl}}/api/v1/acceptToken",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenno\": 0,\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"acctdate\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"active\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenno\": 0,\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"acctdate\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"active\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -453,16 +378,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/eirs/search",
+        "url": "{{baseUrl}}/api/v1/getEir",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"contrno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"param1\": \"REPLACE_ME\",\n  \"param2\": \"REPLACE_ME\",\n  \"param3\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"contrno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"param1\": \"REPLACE_ME\",\n  \"param2\": \"REPLACE_ME\",\n  \"param3\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -480,16 +400,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/gates/exit-confirmations",
+        "url": "{{baseUrl}}/api/v1/confirmGateoutMove",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenno\": 0,\n  \"eirno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\",\n  \"confirm\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenno\": 0,\n  \"eirno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\",\n  \"confirm\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -507,16 +422,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/gate-passes/search",
+        "url": "{{baseUrl}}/api/v1/getFZGPGateInOutSearchList",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"gatepassno\": \"REPLACE_ME\",\n  \"inOut\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"gatepassno\": \"REPLACE_ME\",\n  \"inOut\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -534,16 +444,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/gate-passes/movements",
+        "url": "{{baseUrl}}/api/v1/procFZGPGateInOutUpdate",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"pgpno\": \"REPLACE_ME\",\n  \"pgprefno\": \"REPLACE_ME\",\n  \"gateno\": \"REPLACE_ME\",\n  \"gateuser\": \"REPLACE_ME\",\n  \"sourcesys\": \"REPLACE_ME\",\n  \"premark\": \"REPLACE_ME\",\n  \"srcApp\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"pgpno\": \"REPLACE_ME\",\n  \"pgprefno\": \"REPLACE_ME\",\n  \"gateno\": \"REPLACE_ME\",\n  \"gateuser\": \"REPLACE_ME\",\n  \"sourcesys\": \"REPLACE_ME\",\n  \"premark\": \"REPLACE_ME\",\n  \"srcApp\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -561,16 +466,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/seal-history/search",
+        "url": "{{baseUrl}}/api/v1/prevSealDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"contrNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"contrNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -588,16 +488,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/damage-history/search",
+        "url": "{{baseUrl}}/api/v1/prevDamageDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"contrNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"contrNo\": \"REPLACE_ME\",\n  \"tokenNo\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -615,16 +510,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/damage-codes/search",
+        "url": "{{baseUrl}}/api/v1/getMajorDamages",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"includeNonMajor\": 0\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"includeNonMajor\": 0\n}"
         }
       }
     },
@@ -642,16 +532,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/users/verifications",
+        "url": "{{baseUrl}}/api/v1/verifyUser",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userName\": \"REPLACE_ME\",\n  \"password\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userName\": \"REPLACE_ME\",\n  \"password\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -669,16 +554,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/commercial-trucks/token-search",
+        "url": "{{baseUrl}}/api/v1/getTokenForCommercialTruck",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"truckNo\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"truckNo\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -696,16 +576,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/location-search",
+        "url": "{{baseUrl}}/api/v1/getContrLocation",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"contrno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"vehicleno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"contrno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -723,16 +598,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/eirs/print-jobs",
+        "url": "{{baseUrl}}/api/v1/printEir",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"contrno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"param1\": \"REPLACE_ME\",\n  \"param2\": \"REPLACE_ME\",\n  \"param3\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"contrno\": \"REPLACE_ME\",\n  \"regplace\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"param1\": \"REPLACE_ME\",\n  \"param2\": \"REPLACE_ME\",\n  \"param3\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -750,16 +620,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/empty-refusals",
+        "url": "{{baseUrl}}/api/v1/addMTRefusal",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"isMTRefusal\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"isMTRefusal\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -777,16 +642,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/vessels/notices/search",
+        "url": "{{baseUrl}}/api/v1/getNoticeDetailsForVessel",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"rotationNumber\": 0,\n  \"terminalId\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"rotationNumber\": 0,\n  \"terminalId\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -804,16 +664,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/vessels/notice-updates",
+        "url": "{{baseUrl}}/api/v1/updateNoticeDetailsForVessel",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"rotationNumber\": 0,\n  \"terminalId\": \"REPLACE_ME\",\n  \"noticeList\": [\n    {\n      \"noticeType\": \"REPLACE_ME\",\n      \"etcDate\": \"REPLACE_ME\",\n      \"userId\": \"REPLACE_ME\"\n    }\n  ]\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"rotationNumber\": 0,\n  \"terminalId\": \"REPLACE_ME\",\n  \"noticeList\": [\n    {\n      \"noticeType\": \"REPLACE_ME\",\n      \"etcDate\": \"REPLACE_ME\",\n      \"userId\": \"REPLACE_ME\"\n    }\n  ]\n}"
         }
       }
     },
@@ -831,16 +686,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/berths/search",
+        "url": "{{baseUrl}}/api/v1/getBerthDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userCredentials\": {\n    \"username\": \"REPLACE_ME\",\n    \"password\": \"REPLACE_ME\",\n    \"deviceid\": \"REPLACE_ME\"\n  }\n}"
         }
       }
     },
@@ -858,16 +708,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/weights/search",
+        "url": "{{baseUrl}}/api/v1/getVGMContainerWeightDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"regplate\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"regplate\": \"REPLACE_ME\",\n  \"platecode\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"containerno\": \"REPLACE_ME\",\n  \"terminalid\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -885,16 +730,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/weight-updates",
+        "url": "{{baseUrl}}/api/v1/updateVGMContainerWeightDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"containerno\": \"REPLACE_ME\",\n  \"liftedWt\": 0,\n  \"craneId\": \"REPLACE_ME\",\n  \"userName\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"containerno\": \"REPLACE_ME\",\n  \"liftedWt\": 0,\n  \"craneId\": \"REPLACE_ME\",\n  \"userName\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -912,16 +752,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/tokens/time-slots/search",
+        "url": "{{baseUrl}}/api/v1/getTokenTimeSlot",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -939,16 +774,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/truck-search",
+        "url": "{{baseUrl}}/api/v1/getTruckInfoByContainer",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"containerNumber\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"containerNumber\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -966,16 +796,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/tokens/time-slot-adjustments",
+        "url": "{{baseUrl}}/api/v1/getAdjustTimeSlot",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"containerNo\": \"REPLACE_ME\",\n  \"tokenNo\": 0,\n  \"userCode\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"containerNo\": \"REPLACE_ME\",\n  \"tokenNo\": 0,\n  \"userCode\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -993,16 +818,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/standing-damages/search",
+        "url": "{{baseUrl}}/api/v1/getContainerDamages",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"containerNo\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"containerNo\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -1020,23 +840,18 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/standing-damage-updates",
+        "url": "{{baseUrl}}/api/v1/updateStdDmgDetails",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"stdInstructionId\": \"REPLACE_ME\",\n  \"stdInstructionSpecId\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"stdInstructionId\": \"REPLACE_ME\",\n  \"stdInstructionSpecId\": \"REPLACE_ME\",\n  \"userId\": \"REPLACE_ME\"\n}"
         }
       }
     },
     {
       "name": "getMajorDamageFlag",
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [
           {
             "key": "X-API-Key",
@@ -1047,8 +862,12 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/configuration/major-damage-flag",
-        "description": "Replace example values before execution; writes may have side effects."
+        "url": "{{baseUrl}}/api/v1/getMajorDamageFlag",
+        "description": "Replace example values before execution; writes may have side effects.",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
       }
     },
     {
@@ -1065,16 +884,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/containers/damage-updates",
+        "url": "{{baseUrl}}/api/v1/updateContainerWithDamages",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"sealno\": \"REPLACE_ME\",\n  \"movetype\": 0,\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"atdate\": \"REPLACE_ME\",\n  \"devid\": \"REPLACE_ME\",\n  \"tipmsg\": \"REPLACE_ME\",\n  \"cancelstatus\": \"REPLACE_ME\",\n  \"mtinspflag\": \"REPLACE_ME\",\n  \"customseal\": \"REPLACE_ME\",\n  \"dpwseal\": \"REPLACE_ME\",\n  \"agentseal\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"isSealInvalid\": \"REPLACE_ME\",\n  \"isImcoLabelInvalid\": \"REPLACE_ME\",\n  \"mtOutSeatIssued\": \"REPLACE_ME\",\n  \"chassisType\": 0,\n  \"contrChassisPos\": 0,\n  \"oogStatus\": \"REPLACE_ME\",\n  \"oogReason\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"tokenno\": 0,\n  \"containerno\": \"REPLACE_ME\",\n  \"sealno\": \"REPLACE_ME\",\n  \"movetype\": 0,\n  \"regplate\": \"REPLACE_ME\",\n  \"vehicleno\": \"REPLACE_ME\",\n  \"damagecode\": 0,\n  \"damagedescr\": \"REPLACE_ME\",\n  \"usercode\": \"REPLACE_ME\",\n  \"atdate\": \"REPLACE_ME\",\n  \"devid\": \"REPLACE_ME\",\n  \"tipmsg\": \"REPLACE_ME\",\n  \"cancelstatus\": \"REPLACE_ME\",\n  \"mtinspflag\": \"REPLACE_ME\",\n  \"customseal\": \"REPLACE_ME\",\n  \"dpwseal\": \"REPLACE_ME\",\n  \"agentseal\": \"REPLACE_ME\",\n  \"gate\": \"REPLACE_ME\",\n  \"isSealInvalid\": \"REPLACE_ME\",\n  \"isImcoLabelInvalid\": \"REPLACE_ME\",\n  \"mtOutSeatIssued\": \"REPLACE_ME\",\n  \"chassisType\": 0,\n  \"contrChassisPos\": 0,\n  \"oogStatus\": \"REPLACE_ME\",\n  \"oogReason\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -1092,16 +906,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/voyages/rotations",
+        "url": "{{baseUrl}}/api/v1/generateRotationNo",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"portCode\": \"REPLACE_ME\",\n  \"terminalId\": \"REPLACE_ME\",\n  \"rotationNo\": 0,\n  \"vesselName\": \"REPLACE_ME\",\n  \"voyageType\": 0,\n  \"callType\": \"REPLACE_ME\",\n  \"callReason\": \"REPLACE_ME\",\n  \"voyageRoute\": \"REPLACE_ME\",\n  \"voyageNoIn\": \"REPLACE_ME\",\n  \"voyageNoOut\": \"REPLACE_ME\",\n  \"etaDate\": \"2026-10-26T08:00:00+04:00\",\n  \"etdDate\": \"2026-10-26T08:00:00+04:00\",\n  \"portArrivalDate\": \"2026-10-26T08:00:00+04:00\",\n  \"arrivalfrom\": \"REPLACE_ME\",\n  \"sailTo\": \"REPLACE_ME\",\n  \"sailDate\": \"2026-10-26T08:00:00+04:00\",\n  \"plannedBerth\": \"REPLACE_ME\",\n  \"currentBerth\": \"REPLACE_ME\",\n  \"stayHours\": 0,\n  \"arrivalDraft\": 0,\n  \"firstCallDate\": \"2026-10-26T08:00:00+04:00\",\n  \"readyToSailDate\": \"2026-10-26T08:00:00+04:00\",\n  \"sailDraft\": 0,\n  \"lineCode\": \"REPLACE_ME\",\n  \"createdBy\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"portCode\": \"REPLACE_ME\",\n  \"terminalId\": \"REPLACE_ME\",\n  \"rotationNo\": 0,\n  \"vesselName\": \"REPLACE_ME\",\n  \"voyageType\": 0,\n  \"callType\": \"REPLACE_ME\",\n  \"callReason\": \"REPLACE_ME\",\n  \"voyageRoute\": \"REPLACE_ME\",\n  \"voyageNoIn\": \"REPLACE_ME\",\n  \"voyageNoOut\": \"REPLACE_ME\",\n  \"etaDate\": \"2026-10-26T08:00:00+04:00\",\n  \"etdDate\": \"2026-10-26T08:00:00+04:00\",\n  \"portArrivalDate\": \"2026-10-26T08:00:00+04:00\",\n  \"arrivalfrom\": \"REPLACE_ME\",\n  \"sailTo\": \"REPLACE_ME\",\n  \"sailDate\": \"2026-10-26T08:00:00+04:00\",\n  \"plannedBerth\": \"REPLACE_ME\",\n  \"currentBerth\": \"REPLACE_ME\",\n  \"stayHours\": 0,\n  \"arrivalDraft\": 0,\n  \"firstCallDate\": \"2026-10-26T08:00:00+04:00\",\n  \"readyToSailDate\": \"2026-10-26T08:00:00+04:00\",\n  \"sailDraft\": 0,\n  \"lineCode\": \"REPLACE_ME\",\n  \"createdBy\": \"REPLACE_ME\"\n}"
         }
       }
     },
@@ -1119,16 +928,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/voyages/{{twsId}}/advices",
+        "url": "{{baseUrl}}/api/v1/adviceVoyage",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userName\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userName\": \"REPLACE_ME\",\n  \"twsId\": 1\n}"
         }
       }
     },
@@ -1146,16 +950,11 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/voyages/{{twsId}}/cancellations",
+        "url": "{{baseUrl}}/api/v1/cancelVoyage",
         "description": "Replace example values before execution; writes may have side effects.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userName\": \"REPLACE_ME\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"userName\": \"REPLACE_ME\",\n  \"twsId\": 1\n}"
         }
       }
     },
@@ -1173,14 +972,18 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/voyages/{{twsId}}/billings",
-        "description": "Replace example values before execution; writes may have side effects."
+        "url": "{{baseUrl}}/api/v1/billVoyage",
+        "description": "Replace example values before execution; writes may have side effects.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"twsId\": 1\n}"
+        }
       }
     },
     {
       "name": "getConfiguredJobsForMarineAQ",
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [
           {
             "key": "X-API-Key",
@@ -1191,8 +994,12 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/admin/schedulers",
-        "description": "Replace example values before execution; writes may have side effects."
+        "url": "{{baseUrl}}/api/v1/getConfiguredJobsForMarineAQ",
+        "description": "Replace example values before execution; writes may have side effects.",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
       }
     },
     {
@@ -1209,8 +1016,12 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/admin/schedulers/{{schedulerName}}/starts",
-        "description": "Replace example values before execution; writes may have side effects."
+        "url": "{{baseUrl}}/api/v1/startScheduler",
+        "description": "Replace example values before execution; writes may have side effects.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"PROCESS_VOYAGE_SCH\"\n}"
+        }
       }
     },
     {
@@ -1227,15 +1038,19 @@
             "value": "application/json"
           }
         ],
-        "url": "{{baseUrl}}/api/v1/admin/schedulers/{{schedulerName}}/stops",
-        "description": "Replace example values before execution; writes may have side effects."
+        "url": "{{baseUrl}}/api/v1/stopScheduler",
+        "description": "Replace example values before execution; writes may have side effects.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"PROCESS_VOYAGE_SCH\"\n}"
+        }
       }
     },
     {
       "name": "GAS - getTokenDetails",
       "request": {
-        "method": "GET",
-        "url": "{{baseUrl}}/api/v1/tokens?terminalId=T1&truckNo=00123&regPlace=DXB",
+        "method": "POST",
+        "url": "{{baseUrl}}/api/v1/getTokenDetails",
         "auth": {
           "type": "basic",
           "basic": [
@@ -1250,14 +1065,24 @@
               "type": "string"
             }
           ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"terminalId\": \"T1\",\n  \"truckNo\": \"00123\",\n  \"regPlace\": \"DXB\"\n}"
         }
       }
     },
     {
       "name": "GAS - getContainerDetails",
       "request": {
-        "method": "GET",
-        "url": "{{baseUrl}}/api/v1/containers?terminalId=T1&truckNo=00123&regPlace=DXB",
+        "method": "POST",
+        "url": "{{baseUrl}}/api/v1/getContainerDetails",
         "auth": {
           "type": "basic",
           "basic": [
@@ -1272,6 +1097,16 @@
               "type": "string"
             }
           ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"terminalId\": \"T1\"\n}"
         }
       }
     },
@@ -1279,7 +1114,7 @@
       "name": "GAS - getEirLocationDetails",
       "request": {
         "method": "POST",
-        "url": "{{baseUrl}}/api/v1/eir-location-requests",
+        "url": "{{baseUrl}}/api/v1/getEirLocationDetails",
         "auth": {
           "type": "basic",
           "basic": [
@@ -1311,7 +1146,7 @@
       "name": "GAS - postExceptionData",
       "request": {
         "method": "POST",
-        "url": "{{baseUrl}}/api/v1/gate-exceptions",
+        "url": "{{baseUrl}}/api/v1/postExceptionData",
         "auth": {
           "type": "basic",
           "basic": [

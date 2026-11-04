@@ -40,38 +40,38 @@ class GateControllerTest {
     @MockitoBean GateRepository repository;
 
     @Test void unauthenticatedRequestsCannotReachDatabase() throws Exception {
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1")).andExpect(status().isUnauthorized());
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}")).andExpect(status().isUnauthorized());
         verifyNoInteractions(repository);
     }
 
     @Test void validBasicCredentialsAuthenticate() throws Exception {
         when(repository.containers("T1")).thenReturn(new Responses.Containers(List.of()));
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(httpBasic("test", "test-password")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(httpBasic("test", "test-password")))
                 .andExpect(status().isOk());
     }
 
     @Test void wrongBasicPasswordIsRejected() throws Exception {
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(httpBasic("test", "wrong")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(httpBasic("test", "wrong")))
                 .andExpect(status().isUnauthorized());
         verifyNoInteractions(repository);
     }
 
     @Test void emptyContainerSearchIsSuccessful() throws Exception {
         when(repository.containers("T1")).thenReturn(new Responses.Containers(List.of()));
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(user("test").roles("GATE")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(user("test").roles("GATE")))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.contrDetails").isEmpty());
     }
 
     @Test void blankTerminalAndMissingVehicleAreRejected() throws Exception {
-        mvc.perform(get("/api/v1/containers").param("terminalId", " ").with(user("test").roles("GATE")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\" \"}").with(user("test").roles("GATE")))
                 .andExpect(status().isBadRequest());
-        mvc.perform(get("/api/v1/tokens").param("terminalId", "T1").with(user("test").roles("GATE")))
+        mvc.perform(post("/api/v1/getTokenDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(user("test").roles("GATE")))
                 .andExpect(status().isBadRequest());
         verifyNoInteractions(repository);
     }
 
     @Test void nestedInvalidContainerIsRejectedBeforeCallingOracle() throws Exception {
-        mvc.perform(post("/api/v1/eir-location-requests").with(user("test").roles("GATE"))
+        mvc.perform(post("/api/v1/getEirLocationDetails").with(user("test").roles("GATE"))
                 .contentType("application/json").content("""
                 {"laneId":"2IB01","contrDetails":[{"containerNo":""}]}
                 """))
@@ -81,7 +81,7 @@ class GateControllerTest {
 
     @Test void eirAcceptsJsonWithoutLegacyCredentials() throws Exception {
         when(repository.eir(any())).thenReturn(new Responses.Eir(List.of(), List.of()));
-        mvc.perform(post("/api/v1/eir-location-requests").with(user("test").roles("GATE"))
+        mvc.perform(post("/api/v1/getEirLocationDetails").with(user("test").roles("GATE"))
                 .contentType("application/json").content("""
                 {"laneId":"2IB01","truckNo":"00123","regPlace":"DXB"}
                 """))
@@ -91,7 +91,7 @@ class GateControllerTest {
     }
 
     @Test void exceptionsReturnSuccessOnlyAfterProcedureCompletes() throws Exception {
-        mvc.perform(post("/api/v1/gate-exceptions").with(user("test").roles("GATE"))
+        mvc.perform(post("/api/v1/postExceptionData").with(user("test").roles("GATE"))
                 .contentType("application/json").content("""
                 {"errorDate":"30-OCT-2026 08:00:00","laneId":"2IB01","errorCode":"E1","errorDesc":"Test"}
                 """))
@@ -101,13 +101,13 @@ class GateControllerTest {
 
     @Test void oracleBusinessFailureHasNonSuccessStatus() throws Exception {
         when(repository.containers("T1")).thenThrow(new ProcedureRejectedException());
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(user("test").roles("GATE")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(user("test").roles("GATE")))
                 .andExpect(status().isUnprocessableEntity());
     }
 
     @Test void databaseFailuresDoNotExposeSqlAndHaveCorrelationId() throws Exception {
         when(repository.containers("T1")).thenThrow(new DataAccessResourceFailureException("secret database address"));
-        mvc.perform(get("/api/v1/containers").param("terminalId", "T1").with(user("test").roles("GATE")))
+        mvc.perform(post("/api/v1/getContainerDetails").contentType("application/json").content("{\"terminalId\":\"T1\"}").with(user("test").roles("GATE")))
                 .andExpect(status().isServiceUnavailable()).andExpect(header().exists("X-Correlation-ID"))
                 .andExpect(jsonPath("$.correlationId").exists())
                 .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("secret database address"))));
