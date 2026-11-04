@@ -35,7 +35,7 @@ def build(backend, timeout='60s'):
     routes += [route('/openapi.json', 'GET', backend, ['Accept', 'Authorization']),
                route('/actuator/health', 'GET', backend, ['Accept'])]
     return {'$schema': 'https://www.krakend.io/schema/v3.0/krakend.json',
-            'version': 3, 'name': 'DPW Integration API Gateway', 'port': 8080,
+            'version': 4, 'name': 'DPW Integration API Gateway', 'port': 8080,
             'timeout': timeout, 'cache_ttl': '0s', 'endpoints': routes}
 
 

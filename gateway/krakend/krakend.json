@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/v3.0/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "DPW Integration API Gateway",
   "port": 8080,
   "timeout": "60s",
