@@ -1,0 +1,1047 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.0/krakend.json",
+  "version": 4,
+  "name": "DPW Integration API Gateway",
+  "port": 8080,
+  "timeout": "60s",
+  "cache_ttl": "0s",
+  "endpoints": [
+    {
+      "endpoint": "/api/v1/CTMSVoyageUpdate",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/CTMSVoyageUpdate",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/acceptToken",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/acceptToken",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/addMTRefusal",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/addMTRefusal",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/adviceVoyage",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/adviceVoyage",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/billVoyage",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/billVoyage",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/cancelVoyage",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/cancelVoyage",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/confirmGateoutMove",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/confirmGateoutMove",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/generateRotationNo",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/generateRotationNo",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getAdjustTimeSlot",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getAdjustTimeSlot",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getBerthDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getBerthDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getConfiguredJobsForMarineAQ",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getConfiguredJobsForMarineAQ",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getContainerDamages",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getContainerDamages",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getContainerDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Authorization",
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getContainerDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getContrLocation",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getContrLocation",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getDEDContrPlanMoves",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getDEDContrPlanMoves",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getDWCTruckEIR",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getDWCTruckEIR",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getDynamicMTContainer",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getDynamicMTContainer",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getEir",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getEir",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getEirLocationDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Authorization",
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getEirLocationDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getFZGPGateInOutSearchList",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getFZGPGateInOutSearchList",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getMajorDamageFlag",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getMajorDamageFlag",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getMajorDamages",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getMajorDamages",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getNoticeDetailsForVessel",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getNoticeDetailsForVessel",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getRefData",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getRefData",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTokenDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Authorization",
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTokenDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTokenForCommercialTruck",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTokenForCommercialTruck",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTokenForTruck",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTokenForTruck",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTokenTimeSlot",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTokenTimeSlot",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTokens",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTokens",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getTruckInfoByContainer",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getTruckInfoByContainer",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getVGMContainerWeightDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getVGMContainerWeightDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getVoyages",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getVoyages",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/getVoyagesFromCTMS",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/getVoyagesFromCTMS",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/postExceptionData",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Authorization",
+        "Content-Type"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/postExceptionData",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/prevDamageDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/prevDamageDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/prevSealDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/prevSealDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/printEir",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/printEir",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/procFZGPGateInOutUpdate",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/procFZGPGateInOutUpdate",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/pushMarineDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/pushMarineDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/sendTOSMsg",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/sendTOSMsg",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/startScheduler",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/startScheduler",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/stopScheduler",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/stopScheduler",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateContainer",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateContainer",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateContainerWithDamages",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateContainerWithDamages",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateCustmGateEntry",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateCustmGateEntry",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateNoticeDetailsForVessel",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateNoticeDetailsForVessel",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateStdDmgDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateStdDmgDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/updateVGMContainerWeightDetails",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/updateVGMContainerWeightDetails",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/uploadSignature",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/uploadSignature",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/api/v1/verifyUser",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Content-Type",
+        "X-API-Key"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/api/v1/verifyUser",
+          "method": "POST",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/openapi.json",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept",
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/openapi.json",
+          "method": "GET",
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/actuator/health",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Accept"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://host.docker.internal:8080"
+          ],
+          "url_pattern": "/actuator/health",
+          "method": "GET",
+          "encoding": "no-op"
+        }
+      ]
+    }
+  ]
+}
