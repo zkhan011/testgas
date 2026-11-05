@@ -163,13 +163,13 @@ public class HhtIntegrationsDAOImpl implements HhtIntegrationsDAO {
         log.info("Entering into HhtIntegrationsDAOImpl.getTokenDetails("+req.getTokenNo()+")...");
 
         Map params = new HashMap();
-        Integer tokenNo = null;
+        java.math.BigInteger tokenNo = null;
 
         params.put("errMsg","");
         params.put("contrList",new ArrayList());
 
         try {
-            tokenNo = Integer.parseInt(req.getTokenNo());
+            tokenNo = new java.math.BigInteger(req.getTokenNo() == null ? "" : req.getTokenNo());
             params.put("tokenNo",tokenNo);
             params.put("userId",req.getUserId());
         } catch(NumberFormatException e) {
@@ -199,13 +199,13 @@ public class HhtIntegrationsDAOImpl implements HhtIntegrationsDAO {
         log.info("Entering into HhtIntegrationsDAOImpl.getDEDContrPlanMoves("+req.getTokenNo()+")...");
 
         Map params = new HashMap();
-        Integer tokenNo = null;
+        java.math.BigInteger tokenNo = null;
 
         params.put("errMsg","");
         params.put("dummyContrList",new ArrayList<DummyContainerType>());
 
         try {
-            tokenNo = Integer.parseInt(req.getTokenNo());
+            tokenNo = new java.math.BigInteger(req.getTokenNo() == null ? "" : req.getTokenNo());
             params.put("tokenNo",tokenNo);
         } catch(NumberFormatException e) {
             params.put("tokenNo",req.getTokenNo());
@@ -239,7 +239,6 @@ public class HhtIntegrationsDAOImpl implements HhtIntegrationsDAO {
                                                                    ","+tosMsgReqType.getSlotId()+","+tosMsgReqType.getHaulCode()+","+tosMsgReqType.getTerminalId()+")...");
         TOSMsgResType tosMsgResType= new TOSMsgResType();
         Map params = new HashMap();
-        Integer tokenNo = null;
 
         tosMsgResType.setErrMsg("");
         tosMsgResType.setMsg("");

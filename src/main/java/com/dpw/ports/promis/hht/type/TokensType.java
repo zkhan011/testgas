@@ -6,7 +6,7 @@ public class TokensType implements java.io.Serializable {
     protected java.lang.String regplace;
     protected java.lang.String vehicleno;
     protected java.lang.String terminalid;
-    protected java.lang.Integer tokenno;
+    protected java.math.BigInteger tokenno;
     protected java.lang.String planmovedate;
     protected java.lang.String contrno;
     protected java.lang.String sealno;
@@ -48,11 +48,11 @@ public class TokensType implements java.io.Serializable {
         this.terminalid = terminalid;
     }
 
-    public java.lang.Integer getTokenno() {
+    public java.math.BigInteger getTokenno() {
         return tokenno;
     }
 
-    public void setTokenno(java.lang.Integer tokenno) {
+    public void setTokenno(java.math.BigInteger tokenno) {
         this.tokenno = tokenno;
     }
 
