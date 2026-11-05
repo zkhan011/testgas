@@ -8,7 +8,7 @@ public class TruckEIRType implements java.io.Serializable {
     protected java.lang.String moverecdate;
     protected java.lang.String actmovedate;
     protected java.lang.String eirNo;
-    protected java.lang.Integer tokenno;
+    protected java.math.BigInteger tokenno;
     protected java.lang.String desig;
     protected java.lang.String lineCode;
     protected java.lang.String vehicleno;
@@ -59,11 +59,11 @@ public class TruckEIRType implements java.io.Serializable {
         this.eirNo = eirNo;
     }
 
-    public java.lang.Integer getTokenno() {
+    public java.math.BigInteger getTokenno() {
         return tokenno;
     }
 
-    public void setTokenno(java.lang.Integer tokenno) {
+    public void setTokenno(java.math.BigInteger tokenno) {
         this.tokenno = tokenno;
     }
 

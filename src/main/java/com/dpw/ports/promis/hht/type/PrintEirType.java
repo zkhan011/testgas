@@ -4,7 +4,7 @@ package com.dpw.ports.promis.hht.type;
 @com.fasterxml.jackson.annotation.JsonAutoDetect(fieldVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY,getterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,isGetterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,setterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE)
 public class PrintEirType implements java.io.Serializable {
     protected java.lang.String consigneename;
-    protected java.lang.Integer tokenno;
+    protected java.math.BigInteger tokenno;
     protected java.lang.Integer eirno;
     protected java.lang.String eirdate;
     protected java.lang.String contrno;
@@ -33,11 +33,11 @@ public class PrintEirType implements java.io.Serializable {
         this.consigneename = consigneename;
     }
 
-    public java.lang.Integer getTokenno() {
+    public java.math.BigInteger getTokenno() {
         return tokenno;
     }
 
-    public void setTokenno(java.lang.Integer tokenno) {
+    public void setTokenno(java.math.BigInteger tokenno) {
         this.tokenno = tokenno;
     }
 

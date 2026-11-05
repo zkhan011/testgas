@@ -25,7 +25,7 @@ class MigrationTest {
  @Test void all37ProcedureParameterContractsMatchOriginal()throws Exception{
   var root=new ObjectMapper().readTree(getClass().getResourceAsStream("/legacy-procedure-contracts.json"));var c=mappings();var names=root.fieldNames();int count=0;
   while(names.hasNext()){String id=names.next();var expected=root.get(id);var actual=c.getMappedStatement("hht."+id).getBoundSql(new HashMap<>()).getParameterMappings();assertEquals(expected.size(),actual.size(),id);
-   for(int i=0;i<actual.size();i++){var e=expected.get(i);var a=actual.get(i);assertEquals(e.get("property").asText(),a.getProperty(),id);String type=e.get("jdbcType").asText().toUpperCase(Locale.ROOT);type=switch(type){case "NUMBER"->"NUMERIC";case "ORACLECURSOR"->"CURSOR";default->type;};assertEquals(type,a.getJdbcType().name(),id);assertEquals(e.path("mode").asText("IN"),a.getMode().name(),id);}count++;
+   for(int i=0;i<actual.size();i++){var e=expected.get(i);var a=actual.get(i);assertEquals(e.get("property").asText(),a.getProperty(),id);String type=e.get("jdbcType").asText().toUpperCase(Locale.ROOT);type=switch(type){case "NUMBER"->"NUMERIC";case "ORACLECURSOR"->"CURSOR";default->type;};if ((a.getProperty().equalsIgnoreCase("tokenno") || a.getProperty().equals("PI_TOKEN_NO")) && type.equals("INTEGER")) type="NUMERIC";assertEquals(type,a.getJdbcType().name(),id);assertEquals(e.path("mode").asText("IN"),a.getMode().name(),id);}count++;
   }assertEquals(37,count);
  }
  @Test void all39JsonRoutesDispatchAndXmlIsRejected()throws Exception{

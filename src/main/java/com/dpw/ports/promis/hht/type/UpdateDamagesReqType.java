@@ -3,7 +3,7 @@ package com.dpw.ports.promis.hht.type;
 
 @com.fasterxml.jackson.annotation.JsonAutoDetect(fieldVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY,getterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,isGetterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,setterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE)
 public class UpdateDamagesReqType implements java.io.Serializable {
-    protected java.lang.Integer tokenno;
+    protected java.math.BigInteger tokenno;
     protected java.lang.String containerno;
     protected java.lang.String sealno;
     protected java.lang.Integer movetype;
@@ -32,11 +32,11 @@ public class UpdateDamagesReqType implements java.io.Serializable {
     public UpdateDamagesReqType() {
     }
 
-    public java.lang.Integer getTokenno() {
+    public java.math.BigInteger getTokenno() {
         return tokenno;
     }
 
-    public void setTokenno(java.lang.Integer tokenno) {
+    public void setTokenno(java.math.BigInteger tokenno) {
         this.tokenno = tokenno;
     }
 

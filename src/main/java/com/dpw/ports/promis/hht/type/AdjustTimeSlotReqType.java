@@ -4,7 +4,7 @@ package com.dpw.ports.promis.hht.type;
 @com.fasterxml.jackson.annotation.JsonAutoDetect(fieldVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY,getterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,isGetterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE,setterVisibility=com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE)
 public class AdjustTimeSlotReqType implements java.io.Serializable {
     protected java.lang.String containerNo;
-    protected java.lang.Integer tokenNo;
+    protected java.math.BigInteger tokenNo;
     protected java.lang.String userCode;
 
     public AdjustTimeSlotReqType() {
@@ -18,11 +18,11 @@ public class AdjustTimeSlotReqType implements java.io.Serializable {
         this.containerNo = containerNo;
     }
 
-    public java.lang.Integer getTokenNo() {
+    public java.math.BigInteger getTokenNo() {
         return tokenNo;
     }
 
-    public void setTokenNo(java.lang.Integer tokenNo) {
+    public void setTokenNo(java.math.BigInteger tokenNo) {
         this.tokenNo = tokenNo;
     }
 
